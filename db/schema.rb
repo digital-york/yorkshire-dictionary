@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_27_100954) do
+ActiveRecord::Schema.define(version: 2018_05_04_092004) do
+
+  create_table "alt_spellings", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "definition_id"
+    t.index ["definition_id"], name: "index_alt_spellings_on_definition_id"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -24,6 +32,44 @@ ActiveRecord::Schema.define(version: 2018_04_27_100954) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "definition_relations", force: :cascade do |t|
+    t.integer "definition_id"
+    t.integer "related_definition_id"
+    t.string "relation_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["definition_id"], name: "index_definition_relations_on_definition_id"
+    t.index ["related_definition_id"], name: "index_definition_relations_on_related_definition_id"
+  end
+
+  create_table "definition_sources", force: :cascade do |t|
+    t.integer "definition_id"
+    t.integer "source_material_id"
+    t.integer "place_id"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["definition_id"], name: "index_definition_sources_on_definition_id"
+    t.index ["place_id"], name: "index_definition_sources_on_place_id"
+    t.index ["source_material_id"], name: "index_definition_sources_on_source_material_id"
+  end
+
+  create_table "definitions", force: :cascade do |t|
+    t.text "text"
+    t.text "discussion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "word_id"
+    t.index ["word_id"], name: "index_definitions_on_word_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "co_ords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "searches", force: :cascade do |t|
     t.binary "query_params"
     t.integer "user_id"
@@ -31,6 +77,14 @@ ActiveRecord::Schema.define(version: 2018_04_27_100954) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_searches_on_user_id"
+  end
+
+  create_table "source_materials", force: :cascade do |t|
+    t.string "name"
+    t.string "ref"
+    t.string "original_ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,6 +103,12 @@ ActiveRecord::Schema.define(version: 2018_04_27_100954) do
     t.boolean "guest", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,5 +1,7 @@
-class User < ApplicationRecord
+# frozen_string_literal: true
 
+# User class, which is defined by blacklight
+class User < ApplicationRecord
   if Blacklight::Utils.needs_attr_accessible?
     attr_accessible :email, :password, :password_confirmation
   end
