@@ -1,24 +1,13 @@
-# README
+# Yorkshire Historic Dictionary
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is the online version of the Yorkshire Historic Dictionary.
 
-Things you may want to cover:
+For more information on the project, please see [this link](https://www.york.ac.uk/borthwick/projects/yorkshire-dictionary/).
 
-* Ruby version
+The project is developed using Rails, and currently uses Blacklight in the interface.
 
-* System dependencies
+An ActiveRecord data model exists, and the intention is to link this to Solr using Sunspot.
 
-* Configuration
+To import the data from `import_files/yhd.csv` into the app, you can run `rails yhd:import` from the command line.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you wish to regenerate the CSV from the original XLSX file, please refer to `import_readme.md`.
