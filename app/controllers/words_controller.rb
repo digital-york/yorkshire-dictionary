@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all
+    @words = Word.paginate(page: params[:page], per_page: 50)
   end
 
   # GET /words/1
@@ -19,7 +19,9 @@ class WordsController < ApplicationController
   end
 
   def search
-    @words = Word.search(text: params[:search], place: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
+    @words = Word
+      .search(text: params[:search], place: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
+      .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
 
