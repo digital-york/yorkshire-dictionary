@@ -4,6 +4,8 @@ This project is the online version of the Yorkshire Historic Dictionary.
 
 For more information on the project, please see [this link](https://www.york.ac.uk/borthwick/projects/yorkshire-dictionary/).
 
+The project is deployed to heroku for demo purposes, and can be accessed [here](https://yhd.herokuapp.com).
+
 The project is developed using Rails, and currently uses Blacklight in the interface.
 
 An ActiveRecord data model exists, and the intention is to link this to Solr using Sunspot.
