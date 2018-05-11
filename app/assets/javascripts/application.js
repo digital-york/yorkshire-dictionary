@@ -14,8 +14,9 @@
 //= require activestorage
 //= require turbolinks
 //
-// Required by Blacklight
-//= require jquery
-//= require blacklight/blacklight
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+
 
 //= require_tree .

@@ -22,6 +22,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+gem 'jquery-rails'
+gem 'devise'
+gem 'devise-guests', '~> 0.6'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -36,9 +41,10 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'blacklight', ">= 6.1"
+gem 'bootstrap', '~> 4.1.1'
 
-gem 'sunspot_rails'
+gem 'sprockets-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,11 +73,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
-
-gem 'rsolr', '>= 1.0', '< 3'
-gem 'jquery-rails'
-gem 'devise'
-gem 'devise-guests', '~> 0.6'
