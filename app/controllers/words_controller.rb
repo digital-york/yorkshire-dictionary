@@ -10,6 +10,7 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.json
   def show
+    @word = Word.find_by_text(params[:text])
     @defs = @word.definitions
   end
 
@@ -76,7 +77,7 @@ class WordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_word
-      @word = Word.find(params[:id])
+      @word = Word.find_by_text(params[:text])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -6,6 +6,10 @@ class Word < ApplicationRecord
   has_many :definition_sources, through: :definitions
   has_many :places, through: :definition_sources
   has_many :source_materials, through: :definition_sources
+  
+  def to_param
+    text
+  end
 
   def self.search(search)
     if search
