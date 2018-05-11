@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-12">
+		<p>
+			<a class="btn btn-primary" data-toggle="collapse" href="#search-collapse" role="button" aria-expanded="false" aria-controls="search-collapse">
+				Show/Hide Search
+			</a>
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="collapse col-12" id="search-collapse">
+		<%= form_tag words_search_path , method: 'get' do %>
+		<div class="form-group">
+			<%= label_tag :search, "Word" %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search for a word..." %>
+		</div>
+		
+		<div class="form-group">
+			<%= label_tag :search, "Place" %>
+			<%= text_field_tag :search_places, params[:search_places], class: "form-control", placeholder: "In places..." %>
+		</div>
+		
+		<div class="form-group">
+			<%= label_tag :search, "Source ref" %>
+			<%= text_field_tag :search_source_materials, params[:search_source_materials], class: "form-control", placeholder: "With source ref..." %>
+		</div>
+		
+		<div class="form-group">
+			<%= label_tag :search, "Definition/discussion" %>
+			<%= text_field_tag :search_definition_text, params[:search_definition_text], class: "form-control", placeholder: "Containing words in definition/discussion..." %>
+		</div>
+		
+		<%= submit_tag "Search", name: nil, class: "btn btn-secondary" %>
+		<% end %>
+	</div>
+</div>

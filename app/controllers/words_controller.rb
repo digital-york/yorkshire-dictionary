@@ -10,6 +10,7 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.json
   def show
+    @defs = @word.definitions
   end
 
   # GET /words/new
@@ -17,8 +18,17 @@ class WordsController < ApplicationController
     @word = Word.new
   end
 
+  def search
+    @words = Word.search(text: params[:search], place: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
+    render 'index'
+  end
+
   # GET /words/1/edit
   def edit
+  end
+
+  def homepage
+    @words = Word.all
   end
 
   # POST /words
