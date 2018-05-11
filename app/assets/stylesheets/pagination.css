@@ -1,1 +1,23 @@
- /* TODO add CSS for pagination controls */
+/* TODO add CSS for pagination controls */
+.pagination {
+	padding-bottom: 1.5em;
+}
+
+.pagination a, .pagination span, .pagination .current {
+	padding:0.5em;
+	font-style: normal;
+}
+
+.pagination .disabled {
+	color: #b1b1b1;
+}
+
+.pagination .current {
+	color: black;
+	font-weight: bold;
+}
+
+.pagination a {
+	text-decoration: none;
+	color: #0161c7;
+}
