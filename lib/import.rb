@@ -450,9 +450,7 @@ module Import
     # Group 1: word e.g. 'ale-taster'
     # Group 2: word index e.g. 2
     def headword_regex
-      /([a-z\-]+)\s*(?:\((\d*)\))?/
+      /([a-zA-Z\-\s]+)\s*(?:\((\d*)\))?/
     end
   end
 end
-
-# Import::ImportHelper.new.import
