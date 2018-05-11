@@ -16,17 +16,21 @@ class Word < ApplicationRecord
 
       query = joins(:definitions, :places, :source_materials)
 
-      unless def_text&.empty?
-        query.where!('definitions.text LIKE "%%%s%%"', def_text)
-              .or!(query.where('definitions.discussion LIKE "%%%s%%"', def_text))
+      if def_text.present?
+        query.where!('definitions.text ILIKE \'%%%s%%\'', def_text)
+              .or!(query.where('definitions.discussion ILIKE \'%%%s%%\'', def_text))
       end
 
-      query.where!('words.text LIKE "%%%s%%"', text) unless text&.empty?
+      if text.present?
+        query.where!('words.text ILIKE \'%%%s%%\'', text) 
+      end
 
-      query.where!('places.name LIKE "%%%s%%"', place) unless place&.empty?
+      if place&.present?
+        query.where!('places.name ILIKE \'%%%s%%\'', place) 
+      end
 
-      unless source_ref&.empty?
-        query.where!('source_materials.original_ref LIKE "%%%s%%"', source_ref)
+      if source_ref.present?
+        query.where!('source_materials.original_ref ILIKE \'%%%s%%\'', source_ref)
       end
 
       results = query.distinct
