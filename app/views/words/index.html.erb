@@ -4,39 +4,25 @@
     </div>
   <div class="row">
     <div class="col">
+      <h1>Browse by...</h1>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <%= button_to  "Letter", '#', class: "btn btn-primary mr-2" %>
+        <%= button_to  "Location", '#', class: "btn btn-primary mr-2" %>
+        <%= button_to  "Source", '#', class: "btn btn-primary mr-2" %>
+        <%= button_to  "Random word", '#', class: "btn btn-primary mr-2" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
       <%= render 'words/search' %>
     </div>
-  </div>
-  <div class="row" style="margin-top: 1em;">
     <div class="col">
-      <table class="table table-borderless">
-        <tbody>
-          <% @words.each do |word| %>
-            <tr>
-              <td>
-                <p class="lead"><%= link_to word.text, word %></p>
-                <% word.definitions.each_with_index do |definition, index| %>
-                  <p>
-                    <em>
-                      <%= "#{index + 1}) " if word.definitions.size > 1 %>
-                      <%= definition.text || "No definition available. See discussion."%>
-                    </em>
-                  </p>
-                <% end %>
-              </td>
+    </div>
+  </div>
 
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%= will_paginate @words, class: "justify-content-center pagination"%>
-    </div>
-  </div>
-  <div class="row">
-  </div>
+  <%= render 'word_list' %>
+  
 </div>
 
