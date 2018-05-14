@@ -3,9 +3,9 @@
     <div class="col">
       <%= render 'words/search' %>
     </div>
-    <!--<div class="col">
-      <%= link_to 'New Word', new_word_path, class: "btn btn-primary float-right"%>
-    </div>-->
+    <div class="col">
+      <%= link_to 'New Word', new_word_path, class: "btn btn-primary float-right" if current_user&.admin? %>
+    </div>
   </div>
   <div class="row" style="margin-top: 1em;">
     <div class="col">
@@ -22,8 +22,8 @@
             <tr>
               <td><%= word.text %></td>
               <td><%= button_to 'View', word, class: "btn btn-sm btn-secondary", method: 'get' %></td>
-              <!--<td><%= button_to 'Edit', edit_word_path(word), class: "btn btn-sm btn-primary" %></td>-->
-              <!--<td><%= button_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>-->
+              <td><%= button_to 'Edit', edit_word_path(word), class: "btn btn-sm btn-primary" if current_user&.admin? %></td>
+              <td><%= button_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" if current_user&.admin? %></td>
             </tr>
           <% end %>
         </tbody>
