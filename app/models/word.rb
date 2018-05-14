@@ -37,7 +37,7 @@ class Word < ApplicationRecord
         query.where!('source_materials.original_ref ILIKE \'%%%s%%\'', source_ref)
       end
 
-      results = query.distinct
+      results = query.distinct.order :text
 
     else
       results = all
