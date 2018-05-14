@@ -1,40 +1,32 @@
 <div class="container">
-  <div class="col">
-    <p id="notice"><%= notice %></p>
-      <div class="row">
-        <div class="col">
-          <h1><%= @word.text %></h1>
-
-        </div>
-      </div>
-          <% @defs.each_with_index do |definition, index| %>
-      <div class="row mb-5">
-        <div class="col">
-            <strong>
-              <%= index + 1 %>)  <%= definition.text || "No definition available" %>
-            </strong>
-            </br>
-            <% if definition.discussion %>
-            <strong>Discussion</strong>
-            <% end %>
-            <p class="mb-0">
-              <% definition&.discussion&.split(";")&.each do |disc|%>
-                <%= sanitize disc %>
-                </br>
-                </br>
-              <% end %> 
-            </p>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col">
+      <h1><%= @word.text %></h1>
+    </div>
+  </div>
+  <% @defs.each_with_index do |definition, index| %>
+    <div class="row mb-5">
+      <div class="col">
+          <strong><em>
+            <%= index + 1 %>)  <%= definition.text || "No definition available" %>
+          </em></strong>
+          </br>
+          <% if definition.discussion %>
           <% end %>
-      <div class="row">
-        <div class="col">
-          <%= link_to 'Edit', edit_word_path(@word) %> |
-          <%= link_to 'Back', words_path %>
-        </div>
+          <p class="mb-0">
+            <% definition&.discussion&.split(";")&.each do |disc|%>
+              <%= sanitize disc %>
+              </br>
+              </br>
+            <% end %> 
+          </p>
       </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col">
+      <%= link_to 'Edit', edit_word_path(@word) %> |
+      <%= link_to 'Back', words_path %>
     </div>
   </div>
 </div>
-
-

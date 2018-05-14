@@ -9,21 +9,22 @@
   </div>
   <div class="row" style="margin-top: 1em;">
     <div class="col">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Word</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
+      <table class="table table-borderless">
         <tbody>
           <% @words.each do |word| %>
             <tr>
-              <td><%= word.text %></td>
-              <td><%= button_to 'View', word, class: "btn btn-sm btn-secondary", method: 'get' %></td>
-              <td><%= button_to 'Edit', edit_word_path(word), class: "btn btn-sm btn-primary" if current_user&.admin? %></td>
-              <td><%= button_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" if current_user&.admin? %></td>
+              <td>
+                <p class="lead"><%= link_to word.text, word %></p>
+                <% word.definitions.each_with_index do |definition, index| %>
+                  <p>
+                    <em>
+                      <%= "#{index + 1}) " if word.definitions.size > 1 %>
+                      <%= definition.text || "No definition available. See discussion."%>
+                    </em>
+                  </p>
+                <% end %>
+              </td>
+
             </tr>
           <% end %>
         </tbody>
