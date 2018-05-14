@@ -10,7 +10,16 @@
   </head>
 
   <body>
+
+
     <%= render "shared/navbar" %>
+    <div class="container-fluid">
+      <% flash.each do |key, value| %>
+        <!--Use flash_class helper from ApplicationHelper -->
+        <div class="<%= flash_class(key) %>"><%= value %></div>
+      <% end %>
+    </div>
+
     <%= yield %>
     <%= render "shared/footer" %>
   </body>
