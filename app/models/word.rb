@@ -14,7 +14,7 @@ class Word < ApplicationRecord
   def self.search(search)
     if search
       text = search[:text]
-      place = search[:place]
+      places = search[:places]
       source_ref = search[:source_materials]
       def_text = search[:def_text]
 
@@ -29,8 +29,8 @@ class Word < ApplicationRecord
         query.where!('words.text ILIKE \'%%%s%%\'', text) 
       end
 
-      if place&.present?
-        query.where!('places.name ILIKE \'%%%s%%\'', place) 
+      if places&.present?
+        query.where!("places.id IN (?)", places) 
       end
 
       if source_ref.present?

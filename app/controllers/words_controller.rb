@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_places, only: [:index, :search]
 
   # GET /words
   # GET /words.json
@@ -21,7 +22,7 @@ class WordsController < ApplicationController
 
   def search
     @words = Word
-      .search(text: params[:search], place: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
+      .search(text: params[:search], places: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
       .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
@@ -78,6 +79,10 @@ class WordsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_word
       @word = Word.find_by_text(params[:text])
+    end
+    
+    def set_places
+      @all_places = Place.all.order :name
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

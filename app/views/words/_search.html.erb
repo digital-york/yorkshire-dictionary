@@ -17,8 +17,8 @@
 		</div>
 		
 		<div class="form-group">
-			<%= label_tag :search, "Place" %>
-			<%= text_field_tag :search_places, params[:search_places], class: "form-control", placeholder: "In places..." %>
+			<%= label_tag :search, "Places" %>
+			<%= select_tag :search_places, options_from_collection_for_select(@all_places, "id", "name"), multiple: true, class: 'custom-select' %>
 		</div>
 		
 		<div class="form-group">
