@@ -1,22 +1,21 @@
-<%= form_with(model: word, local: true) do |form| %>
-  <% if word.errors.any? %>
+<%= form_with(model: @word, local: true) do |form| %>
+  <% if @word.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
-
       <ul>
-      <% word.errors.full_messages.each do |message| %>
+      <% @word.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :word %>
-    <%= form.text_field :word %>
+  <div class="field form-group">
+    <%= form.label :word%>
+    <%= form.text_field :word, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
