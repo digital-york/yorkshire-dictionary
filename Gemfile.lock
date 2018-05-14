@@ -89,6 +89,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.11)
     devise-guests (0.6.0)
       devise
     erubi (1.7.1)
@@ -234,6 +235,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   debase
   devise
+  devise-bootstrap-views
   devise-guests (~> 0.6)
   jbuilder (~> 2.5)
   jquery-rails

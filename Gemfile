@@ -22,8 +22,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
+
+# User auth
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+gem 'devise-bootstrap-views'
 
 # For pagination
 gem 'will_paginate', '~> 3.1.0'

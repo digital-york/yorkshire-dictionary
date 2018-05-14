@@ -1,6 +1,8 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
   before_action :set_places, only: [:index, :search]
+  before_action :authenticate_user!, except: [:index, :search, :show]
+  before_action :authenticate_admin, except: [:index, :search, :show]
 
   # GET /words
   # GET /words.json
@@ -90,5 +92,10 @@ class WordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
       params.require(:word).permit(:word)
+    end
+
+    def authenticate_admin
+      flash[:error] = "You're not authenticated to access that page."
+      redirect_to root_path unless current_user.admin? 
     end
 end

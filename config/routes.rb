@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'words#index'
   get 'words/search' => 'words#search'
   resources :words, param: :text
