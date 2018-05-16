@@ -11,12 +11,54 @@
  * It is generally better to create a new file per style scope.
  
  *= require 'pagination'
+ *= require 'footer'
  *= require devise_bootstrap_views
  
  */
 
  @import "bootstrap";
 
- .navbar {
-	 margin-bottom: 1rem;
+ .container {
+	 padding-top: 3em;
+	 background-color: white
  }
+
+ .page-body {
+	height: 100vh;
+ }
+ 
+ body, html {
+	margin: 0;
+	padding: 0;
+}
+	
+.background {
+	background-image: image-url("swaledale.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+ #homepage-flexbox {
+	 display: flex;
+	 align-content: center;
+	 flex-direction: column;
+	 height: 80%;
+	 justify-content: center;
+	 text-align: center;
+ }
+
+ #homepage-search-div {
+	background-color: rgba(0,0,0,0.6);
+    padding: 1em 1em 1em 1em;
+	border-radius: .5em;
+	color: white;
+ }
+
+ #homepage-search-text {
+	 color:black;
+ }
+
+ .alphabet-links {
+	 display: flex;
+	 justify-content: center;
+}

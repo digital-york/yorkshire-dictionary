@@ -1,28 +1,13 @@
-<div class="container">
-    <div class="col">
-      <%= link_to 'New Word', new_word_path, class: "btn btn-primary float-right" if current_user&.admin? %>
-    </div>
-  <div class="row">
-    <div class="col">
-      <h1>Browse by...</h1>
-      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <%= button_to  "Letter", '#', class: "btn btn-primary mr-2" %>
-        <%= button_to  "Location", '#', class: "btn btn-primary mr-2" %>
-        <%= button_to  "Source", '#', class: "btn btn-primary mr-2" %>
-        <%= button_to  "Random word", '#', class: "btn btn-primary mr-2" %>
+<div class="background">
+  <div class="container">
+    <!-- <%= link_to 'New Word', new_word_path, class: "btn btn-primary float-right" if current_user&.admin? %> -->
+    <div class="row">
+      <div class="col">
+        <%= render 'words/search' %>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-4">
-    <div class="col">
-      <%= render 'words/search' %>
-    </div>
-    <div class="col">
-    </div>
+    <%= render 'word_list' %>
+    
   </div>
-
-  <%= render 'word_list' %>
-  
 </div>
-

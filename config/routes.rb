@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'words#index'
+  root 'pages#home'
   get 'words/search', to: 'words#search'
   resources :words, param: :text
   get 'contact', to: 'pages#contact'
