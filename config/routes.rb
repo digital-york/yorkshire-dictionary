@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#home'
   get 'words/search', to: 'words#search'
+  get 'words/random', to: 'words#random'
   resources :words, param: :text
   get 'contact', to: 'pages#contact'
 

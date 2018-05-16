@@ -1,8 +1,8 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
   before_action :set_places, only: [:index, :search]
-  before_action :authenticate_user!, except: [:index, :search, :show]
-  before_action :authenticate_admin, except: [:index, :search, :show]
+  before_action :authenticate_user!, except: [:index, :search, :show, :random]
+  before_action :authenticate_admin, except: [:index, :search, :show, :random]
 
   # GET /words
   # GET /words.json
@@ -11,11 +11,18 @@ class WordsController < ApplicationController
     @words = Word.order(:text).paginate(page: params[:page], per_page: 50)
   end
 
+  def random
+    offset = rand(Word.count)
+    @word = Word.offset(offset).first
+    get_word_data(@word)
+    render 'show'
+  end
+  
   # GET /words/1
   # GET /words/1.json
   def show
     @word = Word.find_by_text(params[:text])
-    @defs = @word.definitions
+    get_word_data(@word)
   end
 
   # GET /words/new
@@ -97,5 +104,9 @@ class WordsController < ApplicationController
     def authenticate_admin
       flash[:error] = "You're not authenticated to access that page."
       redirect_to root_path unless current_user.admin? 
+    end
+
+    def get_word_data(word)
+      @defs = word.definitions
     end
 end
