@@ -54,8 +54,7 @@ class Word < ApplicationRecord
         query.where!('source_materials.id in (?)', source_ids)
       end
 
-      results = query.distinct.order :text
-
+      results = query.distinct
     else
       results = all
     end

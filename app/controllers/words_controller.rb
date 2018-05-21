@@ -3,15 +3,28 @@
 class WordsController < ApplicationController
   before_action :set_word, only: %i[show edit update destroy]
   before_action :set_places, only: %i[index search]
+  before_action :set_sort_options, only: %i[index search]
   before_action :set_sources, only: %i[index search]
   before_action :authenticate_user!, except: %i[index search show random]
   before_action :authenticate_admin, except: %i[index search show random]
+
+  def get_sort_order
+    sort_string = params[:sort]
+    if sort_string
+      split = sort_string.split '_'
+      sort_field = split[0]
+      sort_dir = split[1]
+      return {sort_field.to_sym => sort_dir}
+    end
+    return {text: :asc}
+  end
 
   # GET /words
   # GET /words.json
   def index
     # Uses will_paginate gem
     @words = Word
+      .order(get_sort_order)
       .paginate(page: params[:page], per_page: 50)
   end
 
@@ -45,6 +58,7 @@ class WordsController < ApplicationController
                def_text: params[:search_definition_text],
                any: params[:any]
              )
+             .order(get_sort_order)
              .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
@@ -104,6 +118,19 @@ class WordsController < ApplicationController
     
     def set_places
       @all_places = Place.all.select('name,id').order :name
+    end
+
+    def set_sort_options
+      @sort_orders = {
+        'Word (A-Z)' => 'text_asc',
+        'Word (Z-A)' => 'text_desc',
+        # 'Place (A-Z)' => 'word.places_asc',
+        # 'Place (Z-A)' => 'word.places_desc',
+        # 'Source name (A-Z)' => 'source_asc',
+        # 'Source name (Z-A)' => 'source_desc',
+        # 'Date (most recent)' => 'date_desc',
+        # 'Date (oldest)' => 'date_asc',
+      }
     end
 
     def set_sources
