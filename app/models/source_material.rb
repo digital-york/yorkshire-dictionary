@@ -3,5 +3,9 @@
 # Class for a source material
 class SourceMaterial < ApplicationRecord
   has_many :definition_sources
+  
   has_many :definitions, through: :definition_sources
+  has_many :places, through: :definition_sources
+  
+  has_many :words, through: :definitions
 end
