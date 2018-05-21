@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title>Yorkshire Historic Dictionary</title>
     <%= csrf_meta_tags %>
@@ -9,17 +8,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="background">
     <%= render "shared/navbar" %>
-    <div class="page-body">
-      <div class="container-fluid">
-        <% flash.each do |key, value| %>
-          <!--Use flash_class helper from ApplicationHelper -->
-          <div class="<%= flash_class(key) %>"><%= value %></div>
-        <% end %>
-      </div>
-      <%= yield %>
-      <%= render 'shared/footer' %>
+    <div class="container-fluid">
+      <% flash.each do |key, value| %>
+        <!--Use flash_class helper from ApplicationHelper -->
+        <div class="<%= flash_class(key) %>"><%= value %>
+        </div>
+      <% end %>
     </div>
+    <%= yield %>
   </body>
 </html>

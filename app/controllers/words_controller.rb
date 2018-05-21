@@ -1,21 +1,25 @@
+# frozen_string_literal: true
+
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
-  before_action :set_places, only: [:index, :search]
-  before_action :authenticate_user!, except: [:index, :search, :show, :random]
-  before_action :authenticate_admin, except: [:index, :search, :show, :random]
+  before_action :set_word, only: %i[show edit update destroy]
+  before_action :set_places, only: %i[index search]
+  before_action :set_sources, only: %i[index search]
+  before_action :authenticate_user!, except: %i[index search show random]
+  before_action :authenticate_admin, except: %i[index search show random]
 
   # GET /words
   # GET /words.json
   def index
     # Uses will_paginate gem
-    @words = Word.order(:text).paginate(page: params[:page], per_page: 50)
+    @words = Word
+      .paginate(page: params[:page], per_page: 50)
   end
 
   def random
     offset = rand(Word.count)
     @word = Word.offset(offset).first
-    get_word_data(@word)
-    render 'show'
+
+    redirect_to @word
   end
   
   # GET /words/1
@@ -33,14 +37,20 @@ class WordsController < ApplicationController
   def search
     # Uses will_paginate gem
     @words = Word
-      .search(text: params[:search], places: params[:search_places], source_materials: params[:search_source_materials], def_text: params[:search_definition_text])
-      .paginate(page: params[:page], per_page: 50)
+             .search(
+               text: params[:search],
+               places: params[:search_places],
+               letter: params[:letter],
+               source_material_refs: params[:search_source_materials],
+               def_text: params[:search_definition_text],
+               any: params[:any]
+             )
+             .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
 
   # GET /words/1/edit
-  def edit
-  end
+  def edit; end
 
   def homepage
     @words = Word.all
@@ -93,7 +103,23 @@ class WordsController < ApplicationController
     end
     
     def set_places
-      @all_places = Place.all.order :name
+      @all_places = Place.all.select('name,id').order :name
+    end
+
+    def set_sources
+      truncate_len = 30
+      @all_sources = {}
+      sources = SourceMaterial.all.select('original_ref,id,ref').order :original_ref
+      sources.each do |x|
+        truncated_ref = if x&.original_ref
+                          x.original_ref.truncate(truncate_len)
+                        elsif x&.ref
+                          x.ref.truncate(truncate_len)
+                        else
+                          'No reference'
+                        end
+        @all_sources[truncated_ref] = x.id
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

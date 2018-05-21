@@ -1,27 +1,36 @@
 <div class="row" style="margin-top: 1em;">
     <div class="col">
-      <table class="table table-borderless">
-        <tbody>
-          <% @words.each do |word| %>
-            <tr>
-              <td>
-                <p class="lead"><%= link_to word.text, word %></p>
-                <% word.definitions.each_with_index do |definition, index| %>
-                  <p>
-                    <em>
-                      <%= "#{index + 1}) " if word.definitions.size > 1 %>
-                      <%= definition.text || "No definition available. See discussion."%>
-                    </em>
-                  </p>
-                <% end %>
-              </td>
+    
+      <% if @words&.any? %> 
+        <table class="table table-borderless">
+          <tbody>
+            <% @words.each do |word| %>
+              <tr>
+                <td>
+                  <p class="lead"><%= link_to word.text, word %></p>
+                  <% word.definitions.each_with_index do |definition, index| %>
+                    <p>
+                      <em>
+                        <%= "#{index + 1}) " if word.definitions.size > 1 %>
+                        <%= definition.text || "No definition available. See discussion."%>
+                      </em>
+                    </p>
+                  <% end %>
+                </td>
 
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <% unless @words&.any? %>
+        <h2 class="text-center">No words found</h2>
+      <% end %>
+
     </div>
   </div>
+  
   <div class="row">
     <div class="col">
       <%= will_paginate @words, class: "justify-content-center pagination"%>

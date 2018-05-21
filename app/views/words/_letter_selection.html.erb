@@ -1,0 +1,19 @@
+<%= label_tag :search, "Starting with:" %>
+<div class="alphabet-button">
+	<input type="radio" name="letters" value="" id="na" autocomplete="off">
+	<label for="na">
+		N/A
+	</label>
+
+	<% ('A'..'Z').each do |x| %>
+		<input type="radio" value="<%= x %>" name="letter" id="<%= x %>" autocomplete="off"> 
+		<label for="<%= x %>" >
+			<%= x %>
+		</label>
+	<% end %>
+
+	<input type="radio" name="letter" value="-" id="-" autocomplete="off">
+	<label for="-">
+		-
+	</label>
+</div>

@@ -9,30 +9,64 @@
 </div>
 
 <div class="row">
+
 	<!-- Ruby in following line adds 'show' class to list of classes if their is a search field in params (to show the search box on load)-->
 	<div id="search-collapse" class="col collapse <%= "show" if params[:search]&.present? %>">
-		<%= form_tag words_search_path , method: 'get' do %>
-		<div class="form-group">
-			<%= label_tag :search, "Word" %>
-			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "-" %>
-		</div>
 		
-		<div class="form-group">
-			<%= label_tag :search, "Places" %>
-			<%= select_tag :search_places, options_from_collection_for_select(@all_places, "id", "name"), multiple: true, class: 'custom-select' %>
-		</div>
-		
-		<div class="form-group">
-			<%= label_tag :search, "Source ref" %>
-			<%= text_field_tag :search_source_materials, params[:search_source_materials], class: "form-control", placeholder: "-" %>
-		</div>
-		
-		<div class="form-group">
-			<%= label_tag :search, "Definition/discussion phrase" %>
-			<%= text_field_tag :search_definition_text, params[:search_definition_text], class: "form-control", placeholder: "-" %>
-		</div>
-		
-		<%= submit_tag "Search", name: nil, class: "btn btn-secondary" %>
+		<%= form_with url: words_search_url, method: 'get', local:true do |form| %>
+			<div class="card">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs" id="search-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="word-tab" data-toggle="tab" href="#word" role="tab" aria-controls="home" aria-selected="true">Word</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="place-tab" data-toggle="tab" href="#place" role="tab" aria-controls="profile" aria-selected="false">Place</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="text-tab" data-toggle="tab" href="#source" role="tab" aria-controls="contact" aria-selected="false">Source</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="source-tab" data-toggle="tab" href="#text" role="tab" aria-controls="contact" aria-selected="false">Containing text</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="card-body">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane show active" id="word" role="tabpanel" aria-labelledby="search-word-tab">
+							<div class="form-group">
+								<%= label_tag :search, "Containing" %>
+								<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "-" %>
+							</div>
+							<div class="form-group">
+								<%= render 'letter_selection' %>
+							</div>
+						</div>
+						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
+							<div class="form-group">
+								<%= label_tag :search, "Places" %>
+								<%= select_tag :search_places, options_from_collection_for_select(@all_places, "id", "name", params[:place]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
+							</div>
+						</div>
+						
+						<div class="tab-pane" id="text" role="tabpanel" aria-labelledby="search-text-tab">
+							<div class="form-group">
+								<%= label_tag :search, "Definition/discussion phrase" %>
+								<%= text_field_tag :search_definition_text, params[:search_definition_text], class: "form-control", placeholder: "-" %>
+							</div>
+						</div>
+
+						<div class="tab-pane" id="source" role="tabpanel" aria-labelledby="search-source-tab">
+							<div class="form-group">
+								<%= label_tag :search, "Source ref" %>
+								<%= select_tag :search_source_materials, options_for_select(@all_sources, params[:search_source_materials]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
+							</div>
+						</div>
+						<%= submit_tag "Search", name: nil, class: "btn btn-secondary" %>
+					</div>
+				</div>
+			</div>
 		<% end %>
 	</div>
 </div>

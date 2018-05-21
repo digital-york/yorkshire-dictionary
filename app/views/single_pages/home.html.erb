@@ -1,31 +1,23 @@
-<div class="background h-100">
-	<div class="container h-100" style="background-color: transparent">
-		<div id="homepage-flexbox">
-			<div id="homepage-search-div">
-				<div>
-					<input 
-						id="homepage-search-text" 
-						placeholder="Search for a word..."
-						class="form-control form-control-lg" 
-						type="text">
-						</input>
+<div class="homepage-container">
+	<div id="homepage-flexbox" class="mx-auto">
+		<div id="homepage-search-div">
+			<%= form_with url: words_search_path, local: true, method: 'get' do |form|%>
+				<%= form.text_field :any,
+					id:"homepage-search-text",
+					placeholder:"Search for a word...",
+					class:"form-control form-control-lg" %>
 
-						<div class="d-flex justify-content-center">
-							<div class="btn-toolbar mt-2">
-								<div class="btn-group mr-2">
-									<button class="btn btn-secondary">Random Word</button>
-								</div>
-								<div class="btn-group mr-2">
-									<button class="btn btn-secondary">Browse</button> 
-								</div>
-								<div class="btn-group mr-2">
-									<button class="btn btn-secondary">Advanced search</button> 
-								</div>
-							</div>
-						</div>
+			<div class="d-flex justify-content-center">
+				<div class="btn-toolbar mt-2">
+					<div class="btn-group mr-2">
+						<%= form.submit 'Search', name: nil, class: "btn btn-secondary" %>
+					</div>
+					<div class="btn-group mr-2">
+						<%= link_to "Random Word", words_random_url, class:"btn btn-secondary" %>
 					</div>
 				</div>
 			</div>
+			<% end %>
 		</div>
 	</div>
 </div>

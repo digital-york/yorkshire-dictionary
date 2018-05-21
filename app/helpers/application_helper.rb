@@ -1,6 +1,5 @@
 module ApplicationHelper
   def flash_class(level)
-    puts level.class
     case level
         when 'notice' then "alert alert-info"
         when 'success' then "alert alert-success"
