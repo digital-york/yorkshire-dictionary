@@ -6,9 +6,9 @@ For more information on the project, please see [this link](https://www.york.ac.
 
 The project is deployed to heroku for demo purposes, and can be accessed [here](https://yhd.herokuapp.com).
 
-The project is developed using Rails, and currently uses Blacklight in the interface.
+The project is developed using Rails.
 
-An ActiveRecord data model exists, and the intention is to link this to Solr using Sunspot.
+An ActiveRecord data model exists, and the intention is to link this to Solr using Sunspot if necessary.
 
 To import the data from `import_files/yhd.csv` into the app, you can run `rails yhd:import` from the command line.
 
