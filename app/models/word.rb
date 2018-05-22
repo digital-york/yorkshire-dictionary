@@ -15,13 +15,14 @@ class Word < ApplicationRecord
     if search
       text = search[:text]
       places = search[:places]
-      source_ref = search[:source_material_refs]
       source_ids = search[:source_material_ids]
       def_text = search[:def_text]
       letter = search[:letter]
       any = search[:any]
 
       query = joins(:definitions, :places, :source_materials)
+      source_ids = check_empty_search_arrays source_ids
+      places = check_empty_search_arrays places
 
       if any.present?
         query.where!(
@@ -60,4 +61,13 @@ class Word < ApplicationRecord
     end
     results
   end
+
+  private
+
+    def self.check_empty_search_arrays array
+      if array&.size == 1 && array&.first == ''
+        array = nil
+      end
+      return array
+    end
 end

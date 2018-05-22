@@ -45,21 +45,21 @@
 						</div>
 						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
 							<div class="form-group">
-								<%= label_tag :search, "Places" %>
+								<%= label_tag :search_places, "Places" %>
 								<%= select_tag :search_places, options_from_collection_for_select(@all_places, "id", "name", params[:place]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
 							</div>
 						</div>
 						
 						<div class="tab-pane" id="text" role="tabpanel" aria-labelledby="search-text-tab">
 							<div class="form-group">
-								<%= label_tag :search, "Definition/discussion phrase" %>
+								<%= label_tag :search_definition_text, "Definition/discussion phrase" %>
 								<%= text_field_tag :search_definition_text, params[:search_definition_text], class: "form-control", placeholder: "-" %>
 							</div>
 						</div>
 
 						<div class="tab-pane" id="source" role="tabpanel" aria-labelledby="search-source-tab">
 							<div class="form-group">
-								<%= label_tag :search, "Source ref" %>
+								<%= label_tag :search_source_materials, "Source ref" %>
 								<%= select_tag :search_source_materials, options_for_select(@all_sources, params[:search_source_materials]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
 							</div>
 						</div>
