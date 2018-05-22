@@ -11,27 +11,64 @@
 <div class="row" style="margin-top: 1em;">
     <div class="col">
     
-      <% if @words&.any? %> 
-        <table class="table table-borderless">
-          <tbody>
-            <% @words.each do |word| %>
-              <tr>
-                <td>
-                  <p class="lead"><%= link_to word.text, word %></p>
-                  <% word.definitions.each_with_index do |definition, index| %>
-                    <p>
-                      <em>
-                        <%= "#{index + 1}) " if word.definitions.size > 1 %>
-                        <%= definition.text || "No definition available. See discussion."%>
-                      </em>
-                    </p>
-                  <% end %>
-                </td>
+      <% if @words&.any? %>
+        <div class="words-list">
+          <% @words.each do |word| %>
+            <% word.definitions.each_with_index do |definition, index| %>
+              <div class="words-list-entry">
+                <div id="header-line">
+                  <span class="lead word-title">
+                    <%= link_to word.text, word unless word.definitions.size > 1 %>
+                    <%= link_to(word.text + '(' + (index+1).to_s + ')', word) if word.definitions.size > 1 %>
+                  </span>
+                </div>
+                <% if definition&.alt_spellings&.any? %>
+                  <div>
+                    <span class="alt-spellings-prefix">
+                      spellings
+                    </span>
+                    <% definition.alt_spellings.each do  |spelling| %>
+                      <span class="alt-spelling">
+                        <%= spelling.text %>
+                      </span>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if definition&.text %>
+                  <div class="definition-text">
+                    <%= sanitize definition.text%>
+                  </div>
+                <% end %>
+                <% if definition&.related_definitions&.any? %>
+                  <div>
+                    <span class="related-word-prefix">
+                      related
+                    </span>
+                    <% definition.related_definitions.each do  |related| %>
+                      <span class="related">
+                        <%= related.word.text %>
+                      </span>
+                    <% end %>
+                  </div>
+                <% end %>
 
-              </tr>
+                <% if definition&.places&.any? %>
+                  <div>
+                    <span class="places-prefix">
+                      places
+                    </span>
+                    <% definition.places.distinct.each do  |place| %>
+                      <span class="place">
+                        <%= place.name %>
+                      </span>
+                    <% end %>
+                  </div>
+                <% end %>
+                <hr />
+              </div>
             <% end %>
-          </tbody>
-        </table>
+          <% end %>
+        </div>
       <% end %>
 
       <% unless @words&.any? %>

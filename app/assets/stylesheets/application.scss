@@ -80,3 +80,55 @@ html, body {
 .sort .custom-select {
 	width: auto;
 }
+
+.words-list {
+    margin: 0 5em;
+}
+
+.alt-spellings-prefix, .related-word-prefix, .places-prefix{
+	text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.definition-text {
+	margin: 1.1em 0em;
+    text-align: center;
+    font-size: 1.2em;
+    width: 100%;
+    padding: 0 3em;
+    font-style: italic;
+}
+
+.word-title {
+	text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+.alt-spelling, .related, .place {
+    margin-left: 0.3em;
+    font-style: italic;
+    text-transform: lowercase;
+}
+
+.place {
+	background-color: #efefef;
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+    color: #6f6f6f;
+    text-transform: capitalize;
+    //font-style: normal;
+    font-weight: 500;
+    text-align: center;
+}
+
+.navbar-brand {
+	font-family: adobe-caslon-pro,serif;
+	font-style: normal;
+	font-weight: bold;
+}
+
+a {
+	color: #025dc5;
+}
