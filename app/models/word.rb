@@ -47,11 +47,7 @@ class Word < ApplicationRecord
         query.where!("places.id IN (?)", places)
       end
 
-      if source_ref.present?
-        query.where!('source_materials.original_ref ILIKE \'%%%s%%\'', source_ref)
-      end
-      
-      if source_ids.present?
+      if source_ids&.present?
         query.where!('source_materials.id in (?)', source_ids)
       end
 
