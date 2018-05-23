@@ -31,6 +31,8 @@ gem 'devise-bootstrap-views'
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
 
+# Geocoding
+gem 'geocoder'
 
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
