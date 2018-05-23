@@ -23,7 +23,7 @@
                   </span>
                 </div>
                 <% if definition&.alt_spellings&.any? %>
-                  <div>
+                  <div class="alt-spelling-div">
                     <span class="alt-spellings-prefix">
                       spellings
                     </span>
@@ -40,20 +40,20 @@
                   </div>
                 <% end %>
                 <% if definition&.related_definitions&.any? %>
-                  <div>
+                  <div class="related-div">
                     <span class="related-word-prefix">
                       related
                     </span>
                     <% definition.related_definitions.each do  |related| %>
                       <span class="related">
-                        <%= related.word.text %>
+                        <%= link_to related.word.text, related.word %>
                       </span>
                     <% end %>
                   </div>
                 <% end %>
 
                 <% if definition&.places&.any? %>
-                  <div>
+                  <div class="places-div">
                     <span class="places-prefix">
                       places
                     </span>

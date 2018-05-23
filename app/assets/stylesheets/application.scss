@@ -92,11 +92,9 @@ html, body {
 }
 
 .definition-text {
-	margin: 1.1em 0em;
-    text-align: center;
+	margin: 0.8em 0em;
     font-size: 1.2em;
     width: 100%;
-    padding: 0 3em;
     font-style: italic;
 }
 
@@ -112,13 +110,16 @@ html, body {
     text-transform: lowercase;
 }
 
+.alt-spelling-div, .related-div, .places-div {
+	margin-top: 0.5em;
+}
+
 .place {
 	background-color: #efefef;
     padding: 0.2em 0.4em;
     border-radius: 0.3em;
     color: #6f6f6f;
     text-transform: capitalize;
-    //font-style: normal;
     font-weight: 500;
     text-align: center;
 }
