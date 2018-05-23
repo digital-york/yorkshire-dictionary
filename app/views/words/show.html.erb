@@ -4,7 +4,7 @@
       <h1><%= @word.text %></h1>
     </div>
   </div>
-  <% @defs.each_with_index do |definition, index| %>
+  <% @word.definitions.each_with_index do |definition, index| %>
     <div class="row mb-5">
       <div class="col">
           <strong><em>

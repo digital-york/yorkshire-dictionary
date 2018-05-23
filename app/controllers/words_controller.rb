@@ -1,46 +1,39 @@
 # frozen_string_literal: true
 
+# Controller for Word class
 class WordsController < ApplicationController
+  # Define the actions to complete before various controller actions
   before_action :set_word, only: %i[show edit update destroy]
   before_action :set_places, only: %i[index search]
   before_action :set_sort_options, only: %i[index search]
   before_action :set_sources, only: %i[index search]
+
   before_action :authenticate_user!, except: %i[index search show random]
   before_action :authenticate_admin, except: %i[index search show random]
-
-  def get_sort_order
-    sort_string = params[:sort]
-    if sort_string
-      split = sort_string.split '_'
-      sort_field = split[0]
-      sort_dir = split[1]
-      return {sort_field.to_sym => sort_dir}
-    end
-    return {text: :asc}
-  end
 
   # GET /words
   # GET /words.json
   def index
     # Uses will_paginate gem
     @words = Word
-      .order(get_sort_order)
-      .paginate(page: params[:page], per_page: 50)
+             .order(sort_order)
+             .paginate(page: params[:page], per_page: 50)
   end
 
+  # Get a random word and go to its show page
   def random
+    # Get random num between 0 and num words
     offset = rand(Word.count)
+
+    # Get word record at random offset
     @word = Word.offset(offset).first
 
     redirect_to @word
   end
-  
+
   # GET /words/1
   # GET /words/1.json
-  def show
-    @word = Word.find_by_text(params[:text])
-    get_word_data(@word)
-  end
+  def show; end
 
   # GET /words/new
   def new
@@ -58,7 +51,7 @@ class WordsController < ApplicationController
                def_text: params[:search_definition_text],
                any: params[:any]
              )
-             .order(get_sort_order)
+             .order(sort_order)
              .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
@@ -111,55 +104,70 @@ class WordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_word
-      @word = Word.find_by_text(params[:text])
-    end
-    
-    def set_places
-      @all_places = Place.all.select('name,id').order :name
-    end
 
-    def set_sort_options
-      @sort_orders = {
-        'Word (A-Z)' => 'text_asc',
-        'Word (Z-A)' => 'text_desc',
-        # 'Place (A-Z)' => 'word.places_asc',
-        # 'Place (Z-A)' => 'word.places_desc',
-        # 'Source name (A-Z)' => 'source_asc',
-        # 'Source name (Z-A)' => 'source_desc',
-        # 'Date (most recent)' => 'date_desc',
-        # 'Date (oldest)' => 'date_asc',
-      }
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_word
+    @word = Word.find_by_text(params[:text])
+  end
 
-    def set_sources
-      truncate_len = 30
-      @all_sources = {}
-      sources = SourceMaterial.all.select('original_ref,id,ref').order :original_ref
-      sources.each do |x|
-        truncated_ref = if x&.original_ref
-                          x.original_ref.truncate(truncate_len)
-                        elsif x&.ref
-                          x.ref.truncate(truncate_len)
-                        else
-                          'No reference'
-                        end
-        @all_sources[truncated_ref] = x.id
-      end
-    end
+  # Set @sort_orders to be a map of sort option text -> string representing field_sortorder (used by sort_order)
+  def set_sort_options
+    @sort_orders = {
+      'Word (A-Z)' => 'text_asc',
+      'Word (Z-A)' => 'text_desc',
+      # 'Place (A-Z)' => 'word.places_asc',
+      # 'Place (Z-A)' => 'word.places_desc',
+      # 'Source name (A-Z)' => 'source_asc',
+      # 'Source name (Z-A)' => 'source_desc',
+      # 'Date (most recent)' => 'date_desc',
+      # 'Date (oldest)' => 'date_asc',
+    }
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def word_params
-      params.require(:word).permit(:word)
+  # Retrieve the 'sort' param, and split it to get the sort field and direction
+  def sort_order
+    sort_string = params[:sort]
+    if sort_string
+      split = sort_string.split '_'
+      sort_field = split[0]
+      sort_dir = split[1]
+      return {sort_field.to_sym => sort_dir}
     end
+    return {text: :asc}
+  end
 
-    def authenticate_admin
-      flash[:error] = "You're not authenticated to access that page."
-      redirect_to root_path unless current_user.admin? 
+  # Set @all_sources to be a map of truncate(original_ref) -> id, used by the sources select list of the search view
+  def set_sources
+    truncate_len = 30
+    @all_sources = {}
+    sources = SourceMaterial.all.select('original_ref,id,ref').order :original_ref
+    sources.each do |x|
+      truncated_ref = if x&.original_ref
+                        x.original_ref.truncate(truncate_len)
+                      elsif x&.ref
+                        x.ref.truncate(truncate_len)
+                      else
+                        'No reference'
+                      end
+      @all_sources[truncated_ref] = x.id
     end
+  end
 
-    def get_word_data(word)
-      @defs = word.definitions
-    end
+  # Set @all_places to be used by the select list in the search view
+  def set_places
+    @all_places = Place.all.select('name,id').order :name
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def word_params
+    params.require(:word).permit(:word)
+  end
+
+  # Check if user is an admin and error/redirect if not
+  def authenticate_admin
+    return if current_user.admin?
+
+    flash[:error] = "You're not authenticated to access that page."
+    redirect_to root_path
+  end
 end
