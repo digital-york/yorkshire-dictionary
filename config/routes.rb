@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :places
   devise_for :users
   root 'pages#home'
   get 'words/search', to: 'words#search'
