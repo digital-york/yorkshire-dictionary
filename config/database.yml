@@ -21,4 +21,4 @@ production:
   <<: *default
   host: pgyhd.york.ac.uk
   database: yhd_testing
-  password: <%= Rails.application.credentials.database.testing_pw %>
+  password: <%= Rails.application.credentials.database[:testing_pw] %>
