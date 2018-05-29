@@ -43,10 +43,14 @@
 								<%= render 'letter_selection' %>
 							</div>
 						</div>
+						
 						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
 							<div class="form-group">
 								<%= label_tag :search_places, "Places" %>
-								<%= select_tag :search_places, options_from_collection_for_select(@all_places, "id", "name", params[:place]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
+								<%= text_field_tag :search_places, nil, id: "place_typeahead", class: "typeahead form-control" %>
+								<div id='selected-places'>
+
+								</div>
 							</div>
 						</div>
 						
@@ -60,7 +64,10 @@
 						<div class="tab-pane" id="source" role="tabpanel" aria-labelledby="search-source-tab">
 							<div class="form-group">
 								<%= label_tag :search_source_materials, "Source ref" %>
-								<%= select_tag :search_source_materials, options_for_select(@all_sources, params[:search_source_materials]), class: 'custom-select', multiple: true, prompt: 'Select...' %>
+								<%= text_field_tag :search_source_materials, nil, id: "source_typeahead", class: "typeahead form-control" %>
+								<div id='selected-sources'>
+
+								</div>
 							</div>
 						</div>
 						<%= submit_tag "Search", name: nil, class: "btn btn-secondary" %>

@@ -1,0 +1,127 @@
+$(document).on("turbolinks:load", function() {
+
+	// Define data for each of the AC fields
+	let ac_data = [
+		{
+			typeahead_field_selector: '#place_typeahead',
+			display_name_model_field: 'name',
+			term_query_url: '<%= Rails.application.routes.url_helpers.search_places_path %>',
+			id_query_url: '<%= Rails.application.routes.url_helpers.id_search_places_path %>',
+			ac_identifier: 'place',
+			selected_values_div_selector: '#selected-places'
+		},
+		{
+			typeahead_field_selector: '#source_typeahead',
+			display_name_model_field: 'original_ref',
+			term_query_url: '<%= Rails.application.routes.url_helpers.search_source_materials_path %>',
+			id_query_url: '<%= Rails.application.routes.url_helpers.id_search_source_materials_path %>',
+			ac_identifier: 'source',
+			selected_values_div_selector: '#selected-sources'
+		}
+	];
+	
+	// Set up each AC field
+	for (i=0; i<ac_data.length; i++) {
+		// Get current field data
+		data = ac_data[i];
+		
+		// Set up AC for current field
+		setupAutocomplete(data);
+	}
+});
+
+function setupAutocomplete(ac_data) {
+	// Get the IDs for the current query
+	var urlParams = new URLSearchParams(window.location.search);
+	let existing_ids = urlParams.getAll(data.ac_identifier+'[]').map(Number);
+
+	// Retrieve the records for the IDs
+	$.ajax({
+		url: data.id_query_url,
+		type: "get",
+		data: { 
+			ids: existing_ids
+		}
+	}).done(function(results) {
+		// Loop through the matching records and create a html element for each
+		for (let i=0; i<results.length; i++) {
+			let current = results[i];
+			addTypeaheadSelectionToDiv(current.id, current[data.display_name_model_field], data.ac_identifier, data.selected_values_div_selector)
+		}
+	});
+
+	// Don't navigate away from the field on tab when selecting an item
+	$( ac_data.typeahead_field_selector )
+		.on( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+				event.preventDefault();
+			}
+		});
+		
+	// Set up autocomplete
+	$( ac_data.typeahead_field_selector )
+		.autocomplete({
+			source: function( request, response ) {
+				var term = request.term;
+		
+				// Get results from API
+				$.getJSON( ac_data.term_query_url, request, function( data, status, xhr ) {
+					response( data.slice(0,10) );
+				});
+			},
+			focus: function() {
+				// Show results on focus
+				$(this).data("uiAutocomplete").search($(this).val());
+				
+				// prevent value inserted on focus
+				return false;
+			},
+			select: function( event, ui ) {
+				// Get selected ID, add HTML element for selected item
+				let id = ui.item.id;
+				addTypeaheadSelectionToDiv(id, ui.item[ac_data.display_name_model_field], ac_data.ac_identifier, ac_data.selected_values_div_selector);
+				
+				// Clear text box on selection
+				$(event.target).val('');
+				return false;
+			}
+		})
+
+		// Define how to draw search results
+		.autocomplete( "instance" )._renderItem = function( ul, item ) {
+			return $( "<li>" )
+			.append( "<div>" + item[ac_data.display_name_model_field] + "</div>" )
+			.appendTo( ul );
+		};
+};
+
+// Code for adding the selected results to a div of selected terms
+function addTypeaheadSelectionToDiv(id, name, model, results_div) {
+	// Create a data string to identify each results
+	let data_string = 'data-' + model + '=' + id
+	
+	// Create a div with the item and data string
+	let div = `
+		<div ${data_string} class="ac_selected">
+			<input name=${model}[] type="text" value=${id} readonly hidden>
+			<span class="badge badge-info">
+				${name}
+				<span class="delete_ac_selection" onclick="deleteTypeaheadSelection(this)">𝗫</span>
+			</span>
+		</div>
+	`;
+
+	// Create a selector for a div with the same data string inside the current results div
+	existing_div_selector = results_div + ` > [${data_string}]`;
+
+	// Add the term to the results div if it's not already in there
+	if ($(existing_div_selector).length === 0) {
+		$(results_div).append(div);
+	}
+}
+
+// Delete the nearest .ac_selected div
+function deleteTypeaheadSelection(element) {
+	$(element).closest('.ac_selected').remove();
+}

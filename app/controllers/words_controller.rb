@@ -4,9 +4,7 @@
 class WordsController < ApplicationController
   # Define the actions to complete before various controller actions
   before_action :set_word, only: %i[show edit update destroy]
-  before_action :set_places, only: %i[index search]
   before_action :set_sort_options, only: %i[index search]
-  before_action :set_sources, only: %i[index search]
 
   before_action :authenticate_user!, except: %i[index search show random]
   before_action :authenticate_admin, except: %i[index search show random]
@@ -45,7 +43,7 @@ class WordsController < ApplicationController
     @words = Word
              .search(
                text: params[:search],
-               places: params[:search_places],
+               places: params[:place],
                letter: params[:letter],
                source_material_ids: params[:search_source_materials],
                def_text: params[:search_definition_text],
