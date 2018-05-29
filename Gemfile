@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 
+# Used for typeahead
+gem 'jquery-ui-rails'
+
 # User auth
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
