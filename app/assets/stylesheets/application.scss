@@ -10,14 +10,19 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  
- *= require 'pagination'
- *= require 'footer'
  *= require devise_bootstrap_views
  
+ *= require 'footer'
+ *= require 'homepage'
+ *= require 'navbar'
+ *= require 'pagination'
+ *= require 'places'
+ *= require 'search'
+ *= require 'words'
+
  */
 
  @import "bootstrap";
-
  
 html, body {
 	 min-height: 100%;
@@ -34,100 +39,6 @@ html, body {
 	background-image: image-url("swaledale.jpg");
 	background-attachment: fixed;
 	background-size: cover;
-}
-
- .homepage-container {
-	 height:90%;
-	 display:flex;
-	 flex-direction: column;
-	 justify-content: center;
- }
-
- #homepage-flexbox {
-	 text-align: center;
-	 width: 80%;
-	 max-width: 800px;
- }
-
- #homepage-search-div {
-	background-color: rgba(0,0,0,0.6);
-    padding: 1em 1em 1em 1em;
-	border-radius: .5em;
-	color: white;
- }
-
- #homepage-search-text {
-	 color:black;
-	 text-align: center;
- }
-
- .alphabet-links {
-	 display: flex;
-	 justify-content: center;
-}
-
-#letter-container {
-	position: absolute;
-	top: 45%;
-	width: 80%;
-	left: 10%;
-}
-
-.sort {
-	text-align: right;
-}
-
-.sort .custom-select {
-	width: auto;
-}
-
-.words-list {
-    margin: 0 5em;
-}
-
-.alt-spellings-prefix, .related-word-prefix, .places-prefix{
-	text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-.definition-text {
-	margin: 0.8em 0em;
-    font-size: 1.2em;
-    width: 100%;
-    font-style: italic;
-}
-
-.word-title {
-	text-transform: capitalize;
-    font-weight: bold;
-    font-size: 1.7em;
-}
-
-.alt-spelling, .related, .place {
-    margin-left: 0.3em;
-    font-style: italic;
-    text-transform: lowercase;
-}
-
-.alt-spelling-div, .related-div, .places-div {
-	margin-top: 0.5em;
-}
-
-.place {
-	background-color: #efefef;
-    padding: 0.2em 0.4em;
-    border-radius: 0.3em;
-    color: #6f6f6f;
-    text-transform: capitalize;
-    font-weight: 500;
-    text-align: center;
-}
-
-.navbar-brand {
-	font-family: adobe-caslon-pro,serif;
-	font-style: normal;
-	font-weight: bold;
 }
 
 a {

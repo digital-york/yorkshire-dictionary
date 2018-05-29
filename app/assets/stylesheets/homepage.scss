@@ -1,0 +1,24 @@
+.homepage-container {
+	height:90%;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#homepage-flexbox {
+	text-align: center;
+	width: 80%;
+	max-width: 800px;
+}
+
+#homepage-search-div {
+	background-color: rgba(0,0,0,0.6);
+	padding: 1em 1em 1em 1em;
+	border-radius: .5em;
+	color: white;
+}
+
+#homepage-search-text {
+	color:black;
+	text-align: center;
+}
