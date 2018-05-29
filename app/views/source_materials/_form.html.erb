@@ -1,0 +1,17 @@
+<%= form_with(model: source_material, local: true) do |form| %>
+  <% if source_material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(source_material.errors.count, "error") %> prohibited this source_material from being saved:</h2>
+
+      <ul>
+      <% source_material.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

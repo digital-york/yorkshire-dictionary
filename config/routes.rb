@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     get 'id_search', on: :collection
   end
   
+  resources :source_materials do
+    get 'search', on: :collection
+    get 'id_search', on: :collection
+  end
   
   get 'contact', to: 'pages#contact'
 
