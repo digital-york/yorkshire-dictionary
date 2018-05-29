@@ -51,6 +51,18 @@ class PlacesController < ApplicationController
     end
   end
 
+  def search
+    term = params[:term] || nil
+    places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
+    render json: places
+  end
+
+  def id_search
+    ids = params[:ids]
+    places = Place.where(id: ids)
+    render json: places
+  end
+
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
