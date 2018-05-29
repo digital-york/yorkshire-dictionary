@@ -45,7 +45,7 @@ class WordsController < ApplicationController
                text: params[:search],
                places: params[:place],
                letter: params[:letter],
-               source_material_ids: params[:search_source_materials],
+               source_material_ids: params[:source],
                def_text: params[:search_definition_text],
                any: params[:any]
              )
