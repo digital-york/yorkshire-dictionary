@@ -13,7 +13,7 @@
 	<!-- Ruby in following line adds 'show' class to list of classes if their is a search field in params (to show the search box on load)-->
 	<div id="search-collapse" class="col collapse <%= "show" if params[:search]&.present? %>">
 		
-		<%= form_with url: words_search_url, method: 'get', local:true do |form| %>
+		<%= form_with url: search_words_path, method: 'get', local:true do |form| %>
 			<div class="card">
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs" id="search-tabs" role="tablist">
