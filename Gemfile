@@ -34,7 +34,9 @@ gem 'will_paginate', '~> 3.1.0'
 # Geocoding
 gem 'geocoder'
 
-gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+group :production, :staging do
+  gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+end
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
