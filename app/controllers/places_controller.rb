@@ -6,7 +6,10 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @places = Place.all.order(:name).paginate(page: params[:page], per_page: 50)
+
+    # Set @map_places to a hash with data for the map with all places
+    @map_places = map_places
   end
 
   # GET /places/1
@@ -83,5 +86,28 @@ class PlacesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def place_params
     params.fetch(:place, {})
+  end
+
+  def map_places
+    # Get all places, filter fields
+    temp_map_places = Place.all.select(:latitude, :longitude, :name, :id)
+    
+    # New arr. to store data for the map, derived from above db query
+    map_places = []
+
+    # Loop through each db record
+    temp_map_places.each do |place|
+      # Get hash of place data
+      hash = place.attributes
+      
+      # Add link to hash
+      hash['link'] = url_for place
+      
+      # Put hash in var
+      map_places << hash
+    end
+    
+    # Return the array of hashes
+    return map_places
   end
 end
