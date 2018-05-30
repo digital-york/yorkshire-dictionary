@@ -31,6 +31,13 @@ $(document).on("turbolinks:load", function() {
 });
 
 function setupAutocomplete(ac_data) {
+
+	field_exists = $(ac_data.typeahead_field_selector).length;
+
+	if (!field_exists) {
+		return;
+	}
+
 	// Get the IDs for the current query
 	var urlParams = new URLSearchParams(window.location.search);
 	let existing_ids = urlParams.getAll(data.ac_identifier+'[]').map(Number);
