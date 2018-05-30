@@ -5,7 +5,7 @@
     </div>
   </div>
   <% @word.definitions.each_with_index do |definition, index| %>
-    <div class="row mb-5">
+    <div class="row">
       <div class="col">
           <strong><em>
             <%= index + 1 %>)  <%= definition.text || "No definition available" %>
@@ -13,17 +13,15 @@
           </br>
           <% if definition.discussion %>
           <% end %>
-          <p class="mb-0">
             <% definition&.discussion&.split(";")&.each do |disc|%>
-              <%= sanitize disc %>
-              </br>
-              </br>
+              <p class="mb-0 mt-3 ml-4">
+                <%= sanitize disc %>
+              </p>
             <% end %> 
-          </p>
       </div>
     </div>
   <% end %>
-  <div class="row">
+  <div class="row mt-4">
     <div class="col">
       <%= link_to 'Edit', edit_word_path(@word) %> |
       <%= link_to 'Back', words_path %>
