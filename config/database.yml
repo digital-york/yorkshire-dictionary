@@ -19,14 +19,14 @@ test:
 
 staging:
   <<: *default
-  username: yhd
+  username: yhd_staging
   host: pgyhd.york.ac.uk
   database: yhd_staging
   password: <%= Rails.application.credentials.database[:testing_pw] %>
 
 production:
   <<: *default
-  username: yhd
+  username: yhd_staging
   host: pgyhd.york.ac.uk
   database: yhd_staging
   password: <%= Rails.application.credentials.database[:testing_pw] %>
