@@ -3,12 +3,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   timeout: 5000
-  username: yhd
-  password: 2&1j9IfOeoSW
 
 development:
   <<: *default
-  database: yhd_development
+  database: yhd_dev
+  username: yhd_dev
+  password: rainer
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
