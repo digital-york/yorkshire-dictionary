@@ -8,8 +8,12 @@
 
   <div class="row">
     <div class="col">
+    <h1>Places:</h2>
       <% @places.each do |place| %>
           <h2><%= link_to place.name, place %></h2>
+          <% place.definitions.each do |definition|%>
+            <span class="place-word"><%= link_to definition.word.text, definition.word %></span>
+          <% end %>
           <% #link_to 'Edit', edit_place_path(place) %>
           <% # link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>

@@ -6,7 +6,11 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all.order(:name).paginate(page: params[:page], per_page: 50)
+    @places = Place
+                .all
+                .includes(:definitions, :words)
+                .order(:name)
+                .paginate(page: params[:page], per_page: 50)
 
     # Set @map_places to a hash with data for the map with all places
     @map_places = map_places
