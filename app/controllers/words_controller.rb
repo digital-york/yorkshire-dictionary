@@ -14,6 +14,7 @@ class WordsController < ApplicationController
   def index
     # Uses will_paginate gem
     @words = Word
+             .includes(definitions: [{related_definitions: :word}, :places, :alt_spellings])
              .order(sort_order)
              .paginate(page: params[:page], per_page: 50)
   end
