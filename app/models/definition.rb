@@ -9,7 +9,7 @@ class Definition < ApplicationRecord
   has_many :definition_sources
 
   has_many :source_materials, through: :definition_sources
-  has_many :places, through: :definition_sources
+  has_many :places, -> { distinct }, through: :definition_sources
 
   # Associations for related definitions
   has_many :definition_relations

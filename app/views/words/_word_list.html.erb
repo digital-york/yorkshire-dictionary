@@ -57,7 +57,7 @@
                     <span class="places-prefix">
                       places
                     </span>
-                    <% definition.places.distinct.each do  |place| %>
+                    <% definition.places.each do  |place| %>
                       <span class="place">
                         <%= place.name %>
                       </span>
