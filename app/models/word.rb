@@ -5,6 +5,7 @@ class Word < ApplicationRecord
   has_many :definitions
 
   has_many :definition_sources, through: :definitions
+  has_many :alt_spellings, through: :definitions
   has_many :places, through: :definition_sources
   has_many :source_materials, through: :definition_sources
 
@@ -27,6 +28,7 @@ class Word < ApplicationRecord
 
       # Build a join on the tables of interest
       query = joins(:definitions, :places, :source_materials)
+        .includes(:definitions, :places, :source_materials)
       
       # Clean up 2 array params, as they can equal [''], which should be classed as empty
       source_ids = check_empty_search_arrays source_ids
