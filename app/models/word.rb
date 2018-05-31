@@ -28,7 +28,8 @@ class Word < ApplicationRecord
 
       # Build a join on the tables of interest
       query = joins(:definitions, :places, :source_materials)
-        .includes(:definitions, :places, :source_materials)
+        .includes(definitions: [{related_definitions: :word}, :places, :alt_spellings])
+
       
       # Clean up 2 array params, as they can equal [''], which should be classed as empty
       source_ids = check_empty_search_arrays source_ids
