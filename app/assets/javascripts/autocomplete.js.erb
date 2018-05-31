@@ -42,20 +42,24 @@ function setupAutocomplete(ac_data) {
 	var urlParams = new URLSearchParams(window.location.search);
 	let existing_ids = urlParams.getAll(data.ac_identifier+'[]').map(Number);
 
-	// Retrieve the records for the IDs
-	$.ajax({
-		url: data.id_query_url,
-		type: "get",
-		data: { 
-			ids: existing_ids
-		}
-	}).done(function(results) {
-		// Loop through the matching records and create a html element for each
-		for (let i=0; i<results.length; i++) {
-			let current = results[i];
-			addTypeaheadSelectionToDiv(current.id, current[data.display_name_model_field], data.ac_identifier, data.selected_values_div_selector)
-		}
-	});
+	(function(data) {
+		// Retrieve the records for the IDs
+		$.ajax({
+			url: data.id_query_url,
+			type: "get",
+			data: { 
+				ids: existing_ids
+			}
+		}).done(
+			function(results) {
+			// Loop through the matching records and create a html element for each
+				for (let i=0; i<results.length; i++) {
+					let current = results[i];
+					addTypeaheadSelectionToDiv(current.id, current[data.display_name_model_field], data.ac_identifier, data.selected_values_div_selector)
+				}
+			}
+		);
+	})(data);
 
 	// Don't navigate away from the field on tab when selecting an item
 	$( ac_data.typeahead_field_selector )
@@ -69,6 +73,7 @@ function setupAutocomplete(ac_data) {
 	// Set up autocomplete
 	$( ac_data.typeahead_field_selector )
 		.autocomplete({
+			minLength: 1,
 			source: function( request, response ) {
 				var term = request.term;
 		
@@ -78,9 +83,6 @@ function setupAutocomplete(ac_data) {
 				});
 			},
 			focus: function() {
-				// Show results on focus
-				$(this).data("uiAutocomplete").search($(this).val());
-				
 				// prevent value inserted on focus
 				return false;
 			},
@@ -94,8 +96,15 @@ function setupAutocomplete(ac_data) {
 				return false;
 			}
 		})
+		
+		$( ac_data.typeahead_field_selector )
+			.focus(function () {
+				// Show results on focus
+				$(this).autocomplete("search");
+			});
 
 		// Define how to draw search results
+		$( ac_data.typeahead_field_selector )
 		.autocomplete( "instance" )._renderItem = function( ul, item ) {
 			return $( "<li>" )
 			.append( "<div>" + item[ac_data.display_name_model_field] + "</div>" )
