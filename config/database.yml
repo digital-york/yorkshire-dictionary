@@ -2,12 +2,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter: postgresql
   encoding: unicode
+  username: yhd
   timeout: 5000
 
 development:
   <<: *default
   database: yhd_dev
-  username: yhd_dev
   password: rainer
 
 # Warning: The database defined as "test" will be erased and
@@ -16,17 +16,16 @@ development:
 test:
   <<: *default
   database: yhd_test
+  password: rainer
 
 staging:
   <<: *default
-  username: yhd_staging
   host: pgyhd.york.ac.uk
   database: yhd_staging
-  password: <%= Rails.application.credentials.database[:testing_pw] %>
+  password: <%= Rails.application.credentials.database[:staging_pw] %>
 
 production:
   <<: *default
-  username: yhd_staging
   host: pgyhd.york.ac.uk
   database: yhd_staging
-  password: <%= Rails.application.credentials.database[:testing_pw] %>
+  password: <%= Rails.application.credentials.database[:staging_pw] %>
