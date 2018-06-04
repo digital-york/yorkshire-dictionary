@@ -41,7 +41,14 @@ html, body {
 }
 	
 .background {
-	background-image: image-url("swaledale.jpg");
+
+	@media only screen and (min-width: 1920px) {
+		background-image: image-url("swaledale_md.jpg");
+	}
+	@media only screen and (min-width: 4608px) {
+		background-image: image-url("swaledale_lg.jpg");
+	}
+	background-image: image-url("swaledale_sm.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 }
