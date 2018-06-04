@@ -37,6 +37,9 @@ gem 'will_paginate', '~> 3.1.0'
 # Geocoding
 gem 'geocoder'
 
+# Mapping
+gem 'leaflet-rails'
+
 group :production, :staging do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 end
