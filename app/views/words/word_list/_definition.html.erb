@@ -1,0 +1,30 @@
+<div class="words-list-entry">
+	<div id="header-line">
+		<span class="lead word-title">
+		<%= link_to word.text, word unless word.definitions.size > 1 %>
+		<%= link_to(word.text + '(' + (definition_counter+1).to_s + ')', word) if word.definitions.size > 1 %>
+		</span>
+	</div>
+	
+	<!-- render alt spells -->
+	<% if definition&.alt_spellings&.any? %>
+		<%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
+	<% end %>
+	
+	<% if definition&.text %>
+		<div class="definition-text">
+			<%= sanitize definition.text%>
+		</div>
+	<% end %>
+	
+	<!-- render related defs -->
+	<% if definition&.related_definitions&.any? %>
+		<%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
+	<% end %>
+
+	<!-- render definition places -->
+	<% if definition&.places&.any? %>
+		<%= render partial: 'words/word_list/places', object: definition.places %>
+	<% end %>
+	<hr />
+</div>

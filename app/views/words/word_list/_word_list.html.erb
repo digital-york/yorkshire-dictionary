@@ -1,0 +1,32 @@
+
+<div class="row">
+  <div class="col">
+    <div class="sort">
+      <%= label_tag :sort, "Sort by:" %>
+      <%= select_tag :sort, options_for_select(@sort_orders, params[:sort]), class: "custom-select" %>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 1em;">
+    <div class="col">
+
+      <% if @words&.any? %>
+        <div class="words-list">
+          <!-- Render word list entry with @words collection -->
+          <%= render partial: "words/word_list/word",  collection: @words %>
+        </div>
+      <% end %>
+
+      <% unless @words&.any? %>
+        <h2 class="text-center">No words found</h2>
+      <% end %>
+
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <%= will_paginate @words, class: "justify-content-center pagination"%>
+    </div>
+  </div>
