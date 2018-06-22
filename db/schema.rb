@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_095207) do
+ActiveRecord::Schema.define(version: 2018_06_14_132428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,20 +19,8 @@ ActiveRecord::Schema.define(version: 2018_05_31_095207) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "definition_id"
+    t.bigint "definition_id"
     t.index ["definition_id"], name: "index_alt_spellings_on_definition_id"
-  end
-
-  create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "user_type"
-    t.string "document_id"
-    t.string "document_type"
-    t.binary "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_bookmarks_on_document_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "definition_relations", force: :cascade do |t|
@@ -46,9 +34,9 @@ ActiveRecord::Schema.define(version: 2018_05_31_095207) do
   end
 
   create_table "definition_sources", force: :cascade do |t|
-    t.integer "definition_id"
-    t.integer "source_material_id"
-    t.integer "place_id"
+    t.bigint "definition_id"
+    t.bigint "source_material_id"
+    t.bigint "place_id"
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,7 +50,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_095207) do
     t.text "discussion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "word_id"
+    t.bigint "word_id"
     t.index ["word_id"], name: "index_definitions_on_word_id"
   end
 
@@ -75,21 +63,57 @@ ActiveRecord::Schema.define(version: 2018_05_31_095207) do
     t.index ["name"], name: "index_places_on_name"
   end
 
-  create_table "searches", force: :cascade do |t|
-    t.binary "query_params"
-    t.integer "user_id"
-    t.string "user_type"
+  create_table "places_source_references", id: false, force: :cascade do |t|
+    t.bigint "source_reference_id", null: false
+    t.bigint "place_id", null: false
+    t.index ["place_id", "source_reference_id"], name: "index_places_source_references_on_p_id_and_sr_id"
+    t.index ["source_reference_id", "place_id"], name: "index_places_source_references_on_sr_id_and_p_id"
+  end
+
+  create_table "source_dates", force: :cascade do |t|
+    t.integer "start_year"
+    t.integer "end_year"
+    t.boolean "circa"
+    t.boolean "estimate"
+    t.bigint "source_reference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_searches_on_user_id"
+    t.index ["source_reference_id"], name: "index_source_dates_on_source_reference_id"
+  end
+
+  create_table "source_excerpts", force: :cascade do |t|
+    t.bigint "source_reference_id"
+    t.integer "volume_start"
+    t.integer "volume_end"
+    t.integer "page_start"
+    t.integer "page_end"
+    t.string "archival_ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "note"
+    t.index ["source_reference_id"], name: "index_source_excerpts_on_source_reference_id"
   end
 
   create_table "source_materials", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "ref"
     t.string "original_ref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.integer "source_type"
+    t.string "archive"
+    t.boolean "done"
+    t.boolean "archive_checked"
+  end
+
+  create_table "source_references", force: :cascade do |t|
+    t.bigint "definition_id"
+    t.bigint "source_material_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["definition_id"], name: "index_source_references_on_definition_id"
+    t.index ["source_material_id"], name: "index_source_references_on_source_material_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -117,4 +141,10 @@ ActiveRecord::Schema.define(version: 2018_05_31_095207) do
     t.index ["text"], name: "index_words_on_text"
   end
 
+  add_foreign_key "alt_spellings", "definitions"
+  add_foreign_key "definitions", "words"
+  add_foreign_key "source_dates", "source_references"
+  add_foreign_key "source_excerpts", "source_references"
+  add_foreign_key "source_references", "definitions"
+  add_foreign_key "source_references", "source_materials"
 end

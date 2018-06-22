@@ -6,10 +6,10 @@ class Definition < ApplicationRecord
 
   has_many :alt_spellings
 
-  has_many :definition_sources
+  has_many :source_references
 
-  has_many :source_materials, through: :definition_sources
-  has_many :places, -> { distinct }, through: :definition_sources
+  has_many :source_materials, through: :source_references
+  has_many :places, -> { distinct }, through: :source_references
 
   # Associations for related definitions
   has_many :definition_relations
