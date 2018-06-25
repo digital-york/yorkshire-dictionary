@@ -90,7 +90,6 @@ group :test do
 end
 
 # Performance monitoring
-gem 'newrelic_rpm'
 gem 'bullet', group: 'development'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
