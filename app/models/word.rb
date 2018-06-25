@@ -4,10 +4,11 @@
 class Word < ApplicationRecord
   has_many :definitions
 
-  has_many :definition_sources, through: :definitions
+  has_many :source_references, through: :definitions
   has_many :alt_spellings, through: :definitions
-  has_many :places, through: :definition_sources
-  has_many :source_materials, through: :definition_sources
+  has_many :source_dates, through: :definitions
+  has_many :places, through: :definitions
+  has_many :source_materials, through: :definitions
 
   # Use the Word text as the param for the URL
   # https://apidock.com/rails/ActiveRecord/Base/to_param

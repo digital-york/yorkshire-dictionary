@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_132428) do
+ActiveRecord::Schema.define(version: 2018_06_25_112629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,18 +31,6 @@ ActiveRecord::Schema.define(version: 2018_06_14_132428) do
     t.datetime "updated_at", null: false
     t.index ["definition_id"], name: "index_definition_relations_on_definition_id"
     t.index ["related_definition_id"], name: "index_definition_relations_on_related_definition_id"
-  end
-
-  create_table "definition_sources", force: :cascade do |t|
-    t.bigint "definition_id"
-    t.bigint "source_material_id"
-    t.bigint "place_id"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["definition_id"], name: "index_definition_sources_on_definition_id"
-    t.index ["place_id"], name: "index_definition_sources_on_place_id"
-    t.index ["source_material_id"], name: "index_definition_sources_on_source_material_id"
   end
 
   create_table "definitions", force: :cascade do |t|

@@ -29,9 +29,6 @@ module Import
       # Map of place_name -> Place
       @places = {}
 
-      # Map of Definition -> DefinitionSource[]
-      @definition_sources = {}
-
       # Map of source_ref : Source(obj.)
       @all_sources = {}
     end

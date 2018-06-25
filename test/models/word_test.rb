@@ -39,7 +39,7 @@ class WordTest < ActiveSupport::TestCase
 
     sm = SourceMaterial.create original_ref: 'test', ref: 'test'
 
-    def_source = definition.definition_sources.create source_material: sm
+    def_source = definition.source_materials.create source_material: sm
 
     assert SourceMaterial.all.size == 1
     assert def_source.definition == definition
@@ -53,14 +53,14 @@ class WordTest < ActiveSupport::TestCase
     word = get_word
     definitions = get_definitions word
 
-    def_source = definitions[0].definition_sources.create source_material: sm, place: place
+    def_source_ref = definitions[0].source_references.create source_material: sm, place: place
 
-    assert place.definition_sources.size == 1
+    assert place.source_references.size == 1
     assert place.source_materials.size == 1
     assert place.definitions.size == 1
     assert place.words.size == 1
 
-    assert place.definition_sources.first == def_source
+    assert place.source_references.first == def_source_ref
     assert place.source_materials.first == sm
     assert place.definitions.first == definitions[0]
     assert place.words.first == word
@@ -73,7 +73,7 @@ class WordTest < ActiveSupport::TestCase
     word = get_word
     definitions = get_definitions word
 
-    definitions[0].definition_sources.create source_material: sm, place: place
+    definitions[0].source_references.create source_material: sm, place: place
 
     sm.places.size == 1
     sm.places.first == place
