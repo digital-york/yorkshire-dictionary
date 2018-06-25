@@ -46,8 +46,10 @@ class WordsController < ApplicationController
                text: params[:search],
                places: params[:place],
                letter: params[:letter],
+               start_year: params[:start_year],
+               end_year: params[:end_year],
                source_material_ids: params[:source],
-               def_text: params[:search_definition_text],
+               def_text: params[:definition_text],
                any: params[:any]
              )
              .order(sort_order)

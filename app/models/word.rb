@@ -24,14 +24,21 @@ class Word < ApplicationRecord
       places = search[:places]
       source_ids = search[:source_material_ids]
       def_text = search[:def_text]
+      start_year = search[:start_year]
+      end_year = search[:end_year]
       letter = search[:letter]
       any = search[:any]
 
       # Build a join on the tables of interest
-      query = joins(:definitions, :places, :source_materials)
-        .includes(definitions: [{related_definitions: :word}, :places, :alt_spellings])
+      query = joins(:definitions, :places, :source_materials, :source_dates)
+              .includes(
+                definitions: [
+                  { related_definitions: :word },
+                  :places,
+                  :alt_spellings
+                ]
+              )
 
-      
       # Clean up 2 array params, as they can equal [''], which should be classed as empty
       source_ids = check_empty_search_arrays source_ids
       places = check_empty_search_arrays places
@@ -69,9 +76,15 @@ class Word < ApplicationRecord
       # Search by source IDs
       query.where!('source_materials.id in (?)', source_ids) if source_ids&.present?
 
+      # If there is a start date set, end date must be before it
+      query.where!('source_dates.end_year > ?', start_year) if start_year&.present?
+      
+      # If there is an end date set, start date must be after it
+      query.where!('source_dates.start_year < ?', end_year) if end_year&.present?
+
       # Only return each word once
       results = query.distinct
-    else
+    else 
       # If no search specified, return all words
       results = all
     end
@@ -82,6 +95,6 @@ class Word < ApplicationRecord
     if array&.size == 1 && array&.first == ''
       array = nil
     end
-    return array
+    array
   end
 end

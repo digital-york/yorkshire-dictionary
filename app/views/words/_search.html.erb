@@ -24,7 +24,10 @@
 							<a class="nav-link" id="place-tab" data-toggle="tab" href="#place" role="tab" aria-controls="profile" aria-selected="false">Place</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="text-tab" data-toggle="tab" href="#source" role="tab" aria-controls="contact" aria-selected="false">Source</a>
+							<a class="nav-link" id="text-tab" data-toggle="tab" href="#source" role="tab" aria-controls="source" aria-selected="false">Source</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="text-tab" data-toggle="tab" href="#date" role="tab" aria-controls="date" aria-selected="false">Date</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="source-tab" data-toggle="tab" href="#text" role="tab" aria-controls="contact" aria-selected="false">Containing text</a>
@@ -43,6 +46,17 @@
 								<%= render 'letter_selection' %>
 							</div>
 						</div>
+						<div class="tab-pane" id="date" role="tabpanel" aria-labelledby="search-date-tab">
+							<div class="form-group">
+								<%= label_tag :search, "Active in date range:" %>
+								<% #TODO: get min date from DB and max from current time %>
+								<%#= range_field_tag :search_dates, params[:search_dates], class: "form-control", min: 1000, max: 2020, step: 1 %>
+								<div id="search_dates"></div>
+								<div id="selected_date_range"></div>
+								<input type="hidden" id="start_year" name="start_year"></input>
+								<input type="hidden" id="end_year" name="end_year"></input>
+							</div>
+						</div>
 						
 						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
 							<div class="form-group">
@@ -56,8 +70,8 @@
 						
 						<div class="tab-pane" id="text" role="tabpanel" aria-labelledby="search-text-tab">
 							<div class="form-group">
-								<%= label_tag :search_definition_text, "Definition/discussion phrase" %>
-								<%= text_field_tag :search_definition_text, params[:search_definition_text], class: "form-control", placeholder: "-" %>
+								<%= label_tag :definition_text, "Definition/discussion phrase" %>
+								<%= text_field_tag :definition_text, params[:definition_text], class: "form-control", placeholder: "-" %>
 							</div>
 						</div>
 

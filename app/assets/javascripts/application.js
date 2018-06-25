@@ -16,6 +16,7 @@
 //
 //= require jquery3
 //= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/slider
 //= require popper
 //= require bootstrap-sprockets
 //= require leaflet
