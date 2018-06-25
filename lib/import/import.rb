@@ -328,8 +328,9 @@ module Import
           source_reference_obj.source_material = source_material
           save_source_excerpts(source_number, source_material, excerpt_reference, source_reference_obj)
         end
-      end
 
+        source_reference_obj.save
+      end
     end
 
     def save_dates(source_number, date_string, source_reference)
