@@ -26,5 +26,20 @@
 	<% if definition&.places&.any? %>
 		<%= render partial: 'words/word_list/places', object: definition.places %>
 	<% end %>
+	
+	<!-- render sources -->
+	<% if definition&.source_references&.any? %>
+		<div class="sources-div">
+			<span class="sources-prefix">
+				sources
+			</span>
+			<% definition.source_references.each do  |reference| %>
+				<span class="source">
+					<%= reference&.source_material&.title || "Untitled source" %>
+				</span>
+			<% end %>
+		</div>
+	<% end %>
+
 	<hr />
 </div>

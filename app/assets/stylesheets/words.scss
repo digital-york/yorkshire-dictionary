@@ -2,7 +2,7 @@
     margin: 0 5em;
 }
 
-.alt-spellings-prefix, .related-word-prefix, .places-prefix{
+.alt-spellings-prefix, .related-word-prefix, .places-prefix, .sources-prefix{
 	text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 1px;
@@ -21,17 +21,17 @@
     font-size: 1.7em;
 }
 
-.alt-spelling, .related, .place {
+.alt-spelling, .related, .place, .source {
     margin-left: 0.3em;
     font-style: italic;
     text-transform: lowercase;
 }
 
-.alt-spelling-div, .related-div, .places-div {
+.alt-spelling-div, .related-div, .places-div, .sources-div{
 	margin-top: 0.5em;
 }
 
-.place {
+.place, .source {
 	background-color: #efefef;
     padding: 0.2em 0.4em;
     border-radius: 0.3em;
