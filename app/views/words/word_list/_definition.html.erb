@@ -35,7 +35,12 @@
 			</span>
 			<% definition.source_references.each do  |reference| %>
 				<span class="source">
-					<%= reference&.source_material&.title || "Untitled source" %>
+					<% source_title = reference&.source_material&.title %>
+					<% if source_title&.present? %>
+						<%= source_title&.truncate 15 %>
+					<% else %>
+						Untitled source
+					<% end %>
 				</span>
 			<% end %>
 		</div>

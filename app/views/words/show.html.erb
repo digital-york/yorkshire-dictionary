@@ -12,12 +12,30 @@
           </em></strong>
           </br>
           <% if definition.discussion %>
-          <% end %>
             <% definition&.discussion&.split(";")&.each do |disc|%>
               <p class="mb-0 mt-3 ml-4">
                 <%= sanitize disc %>
               </p>
             <% end %> 
+          <% end %>
+
+          <% if definition&.source_references&.any? %>
+            <div class="sources-div mx-4">
+              <span class="sources-prefix">
+                sources
+              </span>
+              <% definition.source_references.each do  |reference| %>
+                <span class="source">
+                  <% source_title = reference&.source_material&.title %>
+                  <% if source_title&.present? %>
+                    <%= source_title&.truncate 15 %>
+                  <% else %>
+                    Untitled source
+                  <% end %>
+                </span>
+              <% end %>
+            </div>
+          <% end %>
       </div>
     </div>
   <% end %>
