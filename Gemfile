@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 
-# Used for typeahead
+# Used for autocomplete
 gem 'jquery-ui-rails'
 
 # User auth

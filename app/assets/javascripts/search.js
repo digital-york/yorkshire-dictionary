@@ -13,6 +13,28 @@ function createSlider() {
     setDateRangeHiddenFields(startYear, endYear);
   }
 
+  function getInitialDateRange() {
+    const minYear = 1000;
+    const maxYear = 2020;
+
+    const params = new URLSearchParams(window.location.search);
+
+    const start = params.get('start_year');
+    const end = params.get('end_year');
+
+    const values = [minYear, maxYear];
+
+    if (start) {
+      values[0] = start;
+    }
+    if (end) {
+      values[1] = end;
+    }
+    return values;
+  }
+
+  const values = getInitialDateRange();
+
   $('#search_dates').slider({
     range: true,
 
@@ -20,7 +42,7 @@ function createSlider() {
     min: 1000,
     max: 2020,
 
-    values: [1500, 1750],
+    values,
 
     slide(event, ui) {
       setDateRange(ui.values[0], ui.values[1]);

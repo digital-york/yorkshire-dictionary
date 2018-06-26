@@ -63,25 +63,29 @@ class SourceMaterialsController < ApplicationController
 
   def search
     term = params[:term] || nil
-    sources = SourceMaterial.where('original_ref ILIKE ?', "%#{term}%").order(:original_ref) if term
-    render json: sources
+    @source_materials = SourceMaterial.where('title ILIKE ?', "%#{term}%").order(:title) if term
+    respond_to do |format|
+      format.json { render 'source_materials/index.json' }
+    end
   end
 
   def id_search
     ids = params[:ids]
-    sources = SourceMaterial.where(id: ids)
-    render json: sources
+    @source_materials = SourceMaterial.where(id: ids)
+    respond_to do |format|
+      format.json { render 'source_materials/index.json' }
+    end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_source_material
-      @source_material = SourceMaterial.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def source_material_params
-      params.fetch(:source_material, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_source_material
+    @source_material = SourceMaterial.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def source_material_params
+    params.fetch(:source_material, {})
+  end
 end

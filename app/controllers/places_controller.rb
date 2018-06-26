@@ -7,10 +7,10 @@ class PlacesController < ApplicationController
   # GET /places.json
   def index
     @places = Place
-                .all
-                .includes(:definitions, :words)
-                .order(:name)
-                .paginate(page: params[:page], per_page: 50)
+              .all
+              .includes(:definitions, :words)
+              .order(:name)
+              .paginate(page: params[:page], per_page: 50)
 
     # Set @map_places to a hash with data for the map with all places
     @map_places = map_places
@@ -60,14 +60,18 @@ class PlacesController < ApplicationController
 
   def search
     term = params[:term] || nil
-    places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
-    render json: places
+    @places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
+    respond_to do |format|
+      format.json { render 'places/index.json' }
+    end
   end
 
   def id_search
     ids = params[:ids]
-    places = Place.where(id: ids)
-    render json: places
+    @places = Place.where(id: ids)
+    respond_to do |format|
+      format.json { render 'places/index.json' }
+    end
   end
 
   # DELETE /places/1
@@ -95,7 +99,7 @@ class PlacesController < ApplicationController
   def map_places
     # Get all places, filter fields
     temp_map_places = Place.all.select(:latitude, :longitude, :name, :id)
-    
+
     # New arr. to store data for the map, derived from above db query
     map_places = []
 
@@ -103,15 +107,15 @@ class PlacesController < ApplicationController
     temp_map_places.each do |place|
       # Get hash of place data
       hash = place.attributes
-      
+
       # Add link to hash
       hash['link'] = url_for place
-      
+
       # Put hash in var
       map_places << hash
     end
-    
+
     # Return the array of hashes
-    return map_places
+    map_places
   end
 end

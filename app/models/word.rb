@@ -39,7 +39,7 @@ class Word < ApplicationRecord
                 ]
               )
 
-      # Clean up 2 array params, as they can equal [''], which should be classed as empty
+      # Clean up 2 array params, as they can equal [''], which should be classed as empty
       source_ids = check_empty_search_arrays source_ids
       places = check_empty_search_arrays places
 
@@ -50,7 +50,7 @@ class Word < ApplicationRecord
           OR definitions.discussion ILIKE :any
           OR words.text ILIKE :any
           OR places.name LIKE :any
-          OR source_materials.original_ref ILIKE :any',
+          OR source_materials.title ILIKE :any',
           any: "%#{any}%"
         )
       end
@@ -78,7 +78,7 @@ class Word < ApplicationRecord
 
       # If there is a start date set, end date must be before it
       query.where!('source_dates.end_year > ?', start_year) if start_year&.present?
-      
+
       # If there is an end date set, start date must be after it
       query.where!('source_dates.start_year < ?', end_year) if end_year&.present?
 

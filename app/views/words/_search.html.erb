@@ -61,7 +61,7 @@
 						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
 							<div class="form-group">
 								<%= label_tag :search_places, "Places" %>
-								<%= text_field_tag :search_places, nil, id: "place_typeahead", class: "typeahead form-control" %>
+								<%= text_field_tag :search_places, nil, id: "word_search_place_autocomplete", class: "autocomplete form-control" %>
 								<div id='selected-places'>
 
 								</div>
@@ -78,7 +78,7 @@
 						<div class="tab-pane" id="source" role="tabpanel" aria-labelledby="search-source-tab">
 							<div class="form-group">
 								<%= label_tag :search_source_materials, "Source ref" %>
-								<%= text_field_tag :search_source_materials, nil, id: "source_typeahead", class: "typeahead form-control" %>
+								<%= text_field_tag :search_source_materials, nil, id: "word_search_source_autocomplete", class: "autocomplete form-control" %>
 								<div id='selected-sources'>
 
 								</div>
