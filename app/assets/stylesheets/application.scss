@@ -35,9 +35,13 @@ html, body {
 }
 
 .container {
-	padding-top: 2em;
+	padding: 1.5rem 4rem;
 	min-height: 100%;
 	background-color: white;
+}
+
+.row {
+	margin-bottom: 1rem;
 }
 	
 .background {
