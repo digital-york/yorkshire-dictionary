@@ -4,7 +4,7 @@
 	</span>
 	<% places.each do  |place| %>
 		<span class="place">
-		<%= place.name %>
+			<%= link_to  place.name, place %>
 		</span>
 	<% end %>
 </div>
