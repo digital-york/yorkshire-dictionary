@@ -1,0 +1,18 @@
+<div class="sources-div">
+	<span class="sources-prefix">
+		sources
+	</span>
+	<% sources.each do  |source| %>
+		<span class="source">
+			<% source_title = source&.title %>
+			<% display_title = nil %>
+			<% if source_title&.present? %>
+				<% display_title = source_title&.truncate 15 %>
+			<% else %>
+				<% display_title = 'Untitled source' %>
+			<% end %>
+
+			<%= link_to display_title, source %>
+		</span>
+	<% end %>
+</div>
