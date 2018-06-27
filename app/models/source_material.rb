@@ -7,12 +7,11 @@ class SourceMaterial < ApplicationRecord
 
   has_many :source_references
 
-  has_many :definitions, through: :source_references
-
+  has_many :definitions, -> { distinct }, through: :source_references
   has_many :source_dates, through: :source_references
-
   has_many :source_reference_places, through: :source_references
-  has_many :places, through: :source_reference_places
+  
+  has_many :places, -> { distinct }, through: :source_reference_places
 
-  has_many :words, through: :definitions
+  has_many :words, -> { distinct }, through: :definitions
 end

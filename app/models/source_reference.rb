@@ -6,7 +6,7 @@ class SourceReference < ApplicationRecord
   belongs_to :source_material, optional: true
 
   has_many :places_source_references
-  has_many :places, through: :places_source_references
+  has_many :places, -> { distinct }, through: :places_source_references
 
   has_many :source_dates
   has_many :source_excerpts

@@ -9,7 +9,7 @@ class Definition < ApplicationRecord
   has_many :source_references
   has_many :source_dates, through: :source_references
 
-  has_many :source_materials, through: :source_references
+  has_many :source_materials, -> { distinct }, through: :source_references
   has_many :places, -> { distinct }, through: :source_references
 
   # Associations for related definitions
