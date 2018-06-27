@@ -41,19 +41,19 @@ class WordsController < ApplicationController
 
   def search
     # Uses will_paginate gem
-    @words = Word
-             .search(
-               text: params[:search],
-               places: params[:place],
-               letter: params[:letter],
-               start_year: params[:start_year],
-               end_year: params[:end_year],
-               source_material_ids: params[:source],
-               def_text: params[:definition_text],
-               any: params[:any]
-             )
-             .order(sort_order)
-             .paginate(page: params[:page], per_page: 50)
+    @words =  Word
+              .search(
+                text: params[:search],
+                places: params[:place],
+                letter: params[:letter],
+                start_year: params[:start_year],
+                end_year: params[:end_year],
+                source_material_ids: params[:source],
+                def_text: params[:definition_text],
+                any: params[:any]
+              )
+              .order(sort_order)
+              .paginate(page: params[:page], per_page: 50)
     render 'index'
   end
 
