@@ -2,17 +2,31 @@
 	<div class="row">
 		<div class="col">
 			<h1><%= @place.name %></h1>
-			<%= content_tag "div", id:"map", class:'map', data:{place: @place} do %><% end %>
+			
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col">
+			<%= content_tag "div", 
+							id:"map",
+							class:'map',
+							data:{ place: @place } do %>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col">
 			<h2>Associated Definitions</h2>
 			<% @place.definitions.each do |definition|%>
 				<p><%= link_to definition.word.text, definition.word %></p>
 			<% end %>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col">
-		<%#= link_to 'Edit', edit_place_path(@place) %> |
 		<%= link_to 'Back', places_path %>
 		</div>
 	</div>

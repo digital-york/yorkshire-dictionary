@@ -1,36 +1,34 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
+      <div class="form-group place-index-search">
+        <%= label_tag :search_places, "Search" %>
+        <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
+      </div>
     </div>
-  </div>
- 
-  <div class="form-group">
-    <%= label_tag :search_places, "Places" %>
-    <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
   </div>
 
   <div class="row">
     <div class="col">
-      <% @places.each do |place| %>
-          <h2><%= link_to place.name, place %></h2>
-          <% place.definitions.each do |definition|%>
-            <span class="place-word"><%= link_to definition.word.text, definition.word %></span>
-          <% end %>
-          <% #link_to 'Edit', edit_place_path(place) %>
-          <% # link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-      <br>
-      <% #link_to 'New Place', new_place_path %>
+      <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
     </div>
-
   </div>
+ 
+  <% @places.each do |place| %>
+    <div class="row">
+      <div class="col">
+        <h2><%= link_to place.name, place %></h2>
+        <% place.words.each do |word|%>
+          <span class="place-word"><%= link_to word.text, word %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col">
       <%= will_paginate @words, class: "justify-content-center pagination"%>
     </div>
   </div>
-
 </div>
 

@@ -11,13 +11,12 @@
             <%= index + 1 %>)  <%= definition.text || "No definition available" %>
           </em></strong>
           </br>
-          <% if definition.discussion %>
-            <% definition&.discussion&.split(";")&.each do |disc|%>
-              <p class="mb-0 mt-3 ml-4">
-                <%= sanitize disc %>
-              </p>
-            <% end %> 
-          <% end %>
+          <div class="mb-0 mt-3 ml-4">
+            <% if definition.discussion %>
+              <% definition&.discussion&.split(";")&.each do |disc|%>
+                  <p><%= sanitize disc %></p>
+              <% end %> 
+            <% end %>
 
             <% if definition&.source_references&.any? %>
               <%= render partial: 'words/word_list/sources', object: definition.source_materials %>
