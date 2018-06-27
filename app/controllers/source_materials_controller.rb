@@ -4,7 +4,10 @@ class SourceMaterialsController < ApplicationController
   # GET /source_materials
   # GET /source_materials.json
   def index
-    @source_materials = SourceMaterial.all
+    @source_materials = SourceMaterial
+                        .all
+                        .order(:title)
+                        .paginate(page: params[:page], per_page: 50)
   end
 
   # GET /source_materials/1

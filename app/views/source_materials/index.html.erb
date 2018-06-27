@@ -1,25 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Source Materials</h1>
+  <div class="row">
+    <div class="col">
+      <% @source_materials.each do |source_material| %>
+          <p><%= link_to source_material.title, source_material %><p>
+          <% if source_material.description.present? %>
+            <p><%= source_material.description %><p>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= will_paginate @source_materials, class: "justify-content-center pagination"%>
+    </div>
+  </div>
 
-<h1>Source Materials</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @source_materials.each do |source_material| %>
-      <tr>
-        <td><%= link_to 'Show', source_material %></td>
-        <td><%= link_to 'Edit', edit_source_material_path(source_material) %></td>
-        <td><%= link_to 'Destroy', source_material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Source Material', new_source_material_path %>
