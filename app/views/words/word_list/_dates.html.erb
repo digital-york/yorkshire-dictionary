@@ -1,0 +1,18 @@
+<% date_strings = [] %>
+<% dates.each do  |date| %>
+	<% same_start_end = date.end_year == date.start_year %>
+	<% date_string = date.start_year if same_start_end %>
+	<% date_string = "#{date.start_year}-#{date.end_year}" unless same_start_end %>
+	<% date_strings << date_string %>
+<% end %>
+
+<div class="dates-div">
+	<span class="dates-prefix">
+		dates
+	</span>
+	<% date_strings.to_set.each do  |date| %>
+		<span class="date">
+			<%= date %>
+		</span>
+	<% end %>
+</div>

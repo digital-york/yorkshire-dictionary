@@ -1,6 +1,6 @@
 <div class="words-list-entry">
-	<div id="header-line">
-		<span class="lead word-title">
+	<div class="header-line">
+		<span class="h2 word-title">
 		<%= link_to word.text, word unless word.definitions.size > 1 %>
 		<%= link_to(word.text + '(' + (definition_counter+1).to_s + ')', word) if word.definitions.size > 1 %>
 		</span>
@@ -30,6 +30,11 @@
 	<!-- render sources -->
 	<% if definition&.source_references&.any? %>
 		<%= render partial: 'words/word_list/sources', object: definition.source_materials %>
+	<% end %>
+	
+	<!-- render dates -->
+	<% if definition&.source_dates&.any? %>
+		<%= render partial: 'words/word_list/dates', object: definition.source_dates %>
 	<% end %>
 
 	<hr />
