@@ -5,6 +5,7 @@ $(document).on("turbolinks:load", function() {
 		let longitude = place_data.longitude;
 		
 		if (longitude && latitude) {
+			$('#map').show();
 
 			var map = L.map('map');
 		
