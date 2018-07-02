@@ -22,9 +22,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
-
-# Used for autocomplete
 gem 'jquery-ui-rails'
+
+gem "js-routes"
+
+gem 'vis-gem'
 
 # User auth
 gem 'devise'

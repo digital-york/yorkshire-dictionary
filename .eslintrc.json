@@ -6,6 +6,7 @@
         "jquery": true
     },
     "globals": {
-        "Turbolinks" : true
+        "Turbolinks" : true,
+        "Routes" : true
     }
 }

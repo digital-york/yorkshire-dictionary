@@ -1,0 +1,14 @@
+<div id='network-graph-container'
+	>
+	<strong>
+		Network
+	</strong>
+
+	<div id="network-graph-loading-message">
+		<h2>Loading</h2>
+    </div>
+
+	<%= content_tag "div", id:"network-graph", class:'network-graph', 
+		style: "height: 600px", data:{'definition-id': definition_id} do %>
+	<% end %>
+</div>

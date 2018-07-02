@@ -22,8 +22,10 @@
               <%= render partial: 'words/word_list/sources', object: definition.source_materials %>
             <% end %>
           </div>
+      <%= render partial: 'words/network', locals: { definition_id: definition.id } %>
       </div>
     </div>
+
   <% end %>
   <div class="row mt-4">
     <div class="col">

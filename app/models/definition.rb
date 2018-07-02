@@ -21,7 +21,7 @@ class Definition < ApplicationRecord
 
   has_many :related_definitions,
            through: :definition_relations, class_name: 'Definition'
-
+  
   has_many :inverse_related_definitions,
            through: :inverse_definition_relations, source: :definition,
            class_name: 'Definition'

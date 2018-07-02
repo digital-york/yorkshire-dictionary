@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get 'random', on: :collection
   end
 
+  resources :network_graphs
+
   resources :places do
     get 'search', on: :collection
     get 'id_search', on: :collection
