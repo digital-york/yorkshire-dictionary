@@ -16,7 +16,7 @@ class Place < ApplicationRecord
   has_many :source_references, through: :places_source_references
 
   has_many :definitions, -> { distinct }, through: :source_references
-  has_many :source_materials, through: :source_references
+  has_many :source_materials, -> { distinct }, through: :source_references
 
   # Mapped through other mapping
   has_many :words, -> { distinct }, through: :definitions

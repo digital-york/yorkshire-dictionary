@@ -9,9 +9,9 @@ class SourceMaterial < ApplicationRecord
 
   has_many :definitions, -> { distinct }, through: :source_references
   has_many :source_dates, through: :source_references
-  has_many :source_reference_places, through: :source_references
+  has_many :places_source_references, through: :source_references
   
-  has_many :places, -> { distinct }, through: :source_reference_places
+  has_many :places, -> { distinct }, through: :places_source_references
 
   has_many :words, -> { distinct }, through: :definitions
 end
