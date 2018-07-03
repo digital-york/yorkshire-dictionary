@@ -12,7 +12,11 @@
     if (params.nodes.length) {
       const selectedNode = params.nodes[0];
       const data = nodeData[selectedNode];
-      window.location.replace(data.url);
+      if (Turbolinks) {
+        Turbolinks.visit(data.url);
+      } else {
+        window.location = data.url;
+      }
     }
   }
 

@@ -105,7 +105,7 @@ function setupAutocomplete(acData) {
         } else if (Turbolinks) {
           Turbolinks.visit(url);
         } else {
-          window.location.replace(url);
+          window.location = url;
         }
 
         // Clear text box on selection
