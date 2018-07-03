@@ -6,19 +6,36 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Words", words_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Places", places_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sources", source_materials_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Contact", contact_path, class: "nav-link" %>
-      </li>
+      <% nav_links = [
+        {
+          name: "Words",
+          link: words_path,
+        },
+        {
+          name: "Places",
+          link: places_path,
+        },
+        {
+          name: "Sources",
+          link: source_materials_path,
+        },
+        {
+          name: "Contact",
+          link: contact_path,
+        },
+      ]
+      %>
+
+      <% nav_links.each do |tab| %>
+        <% class_string = "nav-link" %>
+        <% class_string = class_string + " active" if request.path.starts_with? tab[:link] %>
+        <% puts request.path + "     " + tab[:link] %>
+        <li class="nav-item">
+          <%= link_to tab[:name], tab[:link], class: class_string %>
+        </li>
+      <% end %>
     </ul>
+    
     <span class="navbar-text pull-right">
       <% if user_signed_in? %>
         <strong><%= current_user.email %></strong>.
