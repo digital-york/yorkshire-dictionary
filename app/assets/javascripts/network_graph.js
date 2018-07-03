@@ -43,7 +43,9 @@
     const data = { nodes, edges };
 
     // Save node data since it's used to lookup data for a node when clicked
-    nodeData = data.nodes;
+    nodes.forEach((node) => {
+      nodeData[node.id] = node;
+    });
 
     // initialize your network!
     const network = new vis.Network(container, data, options);
