@@ -29,7 +29,6 @@
       <% nav_links.each do |tab| %>
         <% class_string = "nav-link" %>
         <% class_string = class_string + " active" if request.path.starts_with? tab[:link] %>
-        <% puts request.path + "     " + tab[:link] %>
         <li class="nav-item">
           <%= link_to tab[:name], tab[:link], class: class_string %>
         </li>

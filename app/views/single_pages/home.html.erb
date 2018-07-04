@@ -1,23 +1,78 @@
-<div class="homepage-container">
-	<div id="homepage-flexbox" class="mx-auto">
-		<div id="homepage-search-div">
-			<%= form_with url: search_words_path, local: true, method: 'get' do |form|%>
-				<%= form.text_field :any,
-					id:"homepage-search-text",
-					placeholder:"Search for a word...",
-					class:"form-control form-control-lg" %>
+<!DOCTYPE html>
+  <head>
 
-			<div class="d-flex justify-content-center">
-				<div class="btn-toolbar mt-2">
-					<div class="btn-group mr-2">
-						<%= form.submit 'Search', name: nil, class: "btn btn-secondary" %>
-					</div>
-					<div class="btn-group mr-2">
-						<%= link_to "Random Word", random_words_url, class:"btn btn-secondary" %>
-					</div>
-				</div>
-			</div>
-			<% end %>
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+    <title>Yorkshire Historic Dictionary</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render "shared/navbar" %>
+    <div class="container-fluid">
+      <% flash.each do |key, value| %>
+        <!--Use flash_class helper from ApplicationHelper -->
+        <div class="<%= flash_class(key) %>"><%= value %>
+        </div>
+      <% end %>
+    </div>
+    <div id="homepage-banner">
+		<div class="homepage-banner-text">
+			<h1>
+				The Yorkshire Historic Dictionary is a collection of over 4,000 words, tracking the
+				development of regional language in Yorkshire.
+			</h1>
 		</div>
 	</div>
-</div>
+	<div class="homepage-container">
+		<h1>Explore</h1>
+		<div id="homepage-categories">
+			<div class="homepage-category">
+				<h2>Words</h2>
+				<p>
+					Browse the full collection of words, or start with a random words
+				</p>
+			</div>
+			<div class="homepage-category">
+				<h2>Places</h2>
+				<p>
+					Explore the locations which shaped the vocabulary of Yorkshire
+				</p>
+			</div>
+			<div class="homepage-category">
+				<h2>Sources</h2>
+				<p>
+					Find references for thousands of documents, including 'Interesting Yorkshire Stuff' and
+					'Crazy source material'
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="homepage-search-container" class="homepage-container">
+		<h1 class="text-shadowed">Search</h1>
+		<%= form_with url: search_words_path, local: true, method: 'get' do |form|%>
+			<%= form.text_field :any,
+				id:"homepage-search-text",
+				placeholder:"Try Leeds, farrier, horse-box or coal stick",
+				class:"form-control form-control-lg" %>
+		<% end %>
+	</div>
+
+	<div class="homepage-container">
+		<h1>Contribute</h1>
+		<p>
+			Be a part of Yorkshire's lingual history. <a href='#'>Email us</a> with sources, references or even new words to have them added to the dictionary.
+		</p>
+	</div>
+
+	<!--<div class="homepage-container">
+		<div id="homepage-flexbox" class="mx-auto">
+		</div>
+	</div>-->
+  </body>
+</html>
