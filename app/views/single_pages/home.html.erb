@@ -20,17 +20,53 @@
         </div>
       <% end %>
     </div>
-    <div id="homepage-banner">
-		<div class="homepage-banner-text">
-			<h1>
-				The Yorkshire Historic Dictionary is a collection of over 4,000 words, tracking the
-				development of regional language in Yorkshire.
-			</h1>
+		<div id="homepage-banner" class="homepage-section">
+			<div class="section-contents-container">
+				<div class="homepage-section-text">
+					<h1>
+						The Yorkshire Historic Dictionary is a collection of over 4,000 words, tracking the
+						development of regional language in Yorkshire.
+					</h1>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="homepage-container">
+		<div id="homepage-places" class="homepage-section">
+			<div class="section-contents-container">
+				<div class="homepage-section-text">
+					<h1>
+						Discover the places that shaped Yorkshire's vocabulary
+					</h1>
+				</div>
+			</div>
+			<!--<button class="btn btn-primary">Places</button>-->
+		</div>
+		<div id="homepage-explore" class="homepage-section">
+			<div class="section-contents-container">
+				<div class="homepage-section-text">
+					<h1>
+						Explore thousands of source materials, meticulously catalogued over decades.
+					</h1>
+				</div>
+			</div>
+			<!--<button class="btn btn-primary">Sources</button>-->
+		</div>
+		<div id="homepage-search" class="homepage-section">
+			<div class="section-contents-container">
+				<div class="homepage-section-text">
+					<h1>Search the dictionary</h1>
+				</div>
+				<%= form_with url: search_words_path, local: true, method: 'get', class: 'homepage-search-form' do |form|%>
+					<%= form.text_field :any,
+						id:"homepage-search-text",
+						placeholder:"Try Leeds, farrier, horse-box or coal stick",
+						class:"form-control form-control-lg" %>
+				<% end %>
+			</div>
+		</div>
+	
+	<!--<div class="homepage-container">
 		<h1>Explore</h1>
-		<div id="homepage-categories">
+		<div id="homepage-categories" class="text-shadowed">
 			<div class="homepage-category">
 				<h2>Words</h2>
 				<p>
@@ -68,7 +104,7 @@
 		<p>
 			Be a part of Yorkshire's lingual history. <a href='#'>Email us</a> with sources, references or even new words to have them added to the dictionary.
 		</p>
-	</div>
+	</div>-->
 
 	<!--<div class="homepage-container">
 		<div id="homepage-flexbox" class="mx-auto">

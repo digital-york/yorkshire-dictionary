@@ -2,6 +2,52 @@ body {
 	background: none;
 }
 
+#homepage-banner {
+	background: linear-gradient(to right, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url('swaledale_md.jpg') left;
+	.homepage-section-text {
+		@media only screen and (min-width: 1000px) {
+			text-align: left;
+		}
+	}
+	background-position: center;
+	background-size: cover;
+}
+
+#homepage-explore {
+	background: linear-gradient(to right, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("janets.jpg") left;
+	background-position: center;
+	background-size: cover;
+	.homepage-section-text {
+		@media only screen and (min-width: 1000px) {
+			text-align: left;
+		}
+	}
+}
+
+#homepage-places {
+	justify-content: end;
+	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("minster.jpg") left;
+	.homepage-section-text {
+		@media only screen and (min-width: 1000px) {
+			text-align: right;
+		}
+	}
+	background-position: center;
+	background-size: cover;
+}
+
+#homepage-search {
+	justify-content: end;
+	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("bolton-abbey.jpg") left;
+	.homepage-section-text {
+		@media only screen and (min-width: 1000px) {
+			text-align: right;
+		}
+	}
+	background-position: center;
+	background-size: cover;
+}
+
 .homepage {
 	height:90%;
 	display:flex;
@@ -9,93 +55,53 @@ body {
 	justify-content: center;
 }
 
-#homepage-flexbox {
-	text-align: center;
-	width: 80%;
-	max-width: 800px;
-}
-
-#homepage-search-div {
-	background-color: rgba(0,0,0,0.6);
-	padding: 1em 1em 1em 1em;
-	border-radius: .5em;
+.homepage-section {
+	min-height: 40vh;
+	display: flex;
+	flex-direction: row;
+	background-position: center;
+	background-size: cover;
+	background-position: center;
+	background-size: cover;
 	color: white;
+	font-family: 'Bree Serif';
 }
 
-#homepage-search-text {
-	color:black;
-	text-align: center;
+.homepage-search-form {
+	width:100%;
 }
 
-.homepage-banner-text {
-	text-shadow: 0 0 8px grey;
+.section-contents-container {
 	padding: 3rem;
-	text-align: center;
+	width: 100%;
+	@media screen and (min-width: 1000px) {
+		width: 60%;
+	}
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.homepage-section-text {
+	text-shadow: 1px 1px 10px black;
 	color: white;
-	font-family: 'Bree Serif'
+	text-align: center;
 }
 
 .homepage-container {
 	background-color: white;
 	text-align: center;
-	// min-height: 300px;
+	min-height: 300px;
 	padding: 1rem;
 	font-family: 'Bree Serif';
 	padding: 2rem 1rem;
 }
 
-#homepage-categories {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-}
-
 .text-shadowed {
-	text-shadow: 0 0 6px #232323;
+	text-shadow: 0 0 30px #232323;
 }
 
-.homepage-category {
-	box-shadow: 0px 5px 18px 0px rgba(112, 112, 112, 0.36);
-	padding: 1rem;
-	text-align: center;
-	margin: 1rem;
-	flex-basis: 0;
-	flex-grow: 1;
-	min-height: 50px;
-	// @media only screen and (min-width: 1920px) {
-	// 	background-image: image-url("swaledale_md.jpg");
-	// }
-	// @media only screen and (min-width: 4608px) {
-	// 	background-image: image-url("minster.jpg");
-	// }
-	background-image: image-url("minster.jpg");
-	background-size: cover;
-	color: white;
-}
-
-#homepage-banner {
-	// @media only screen and (min-width: 1920px) {
-	// 	background-image: image-url("swaledale_md.jpg");
-	// }
-	// @media only screen and (min-width: 4608px) {
-	// 	background-image: image-url("swaledale_lg.jpg");
-	// }
-	background: linear-gradient(black, grey, transparent),url("swaledale_md.jpg") top;
-	// background-image: image-url("swaledale_sm.jpg");
-	background-size: cover;
-	// background-position: top;
-	color: white;
-}
-
-#homepage-search-container {
-	@media only screen and (min-width: 1920px) {
-		background-image: image-url("swaledale_md.jpg");
-	}
-	@media only screen and (min-width: 4608px) {
-		background-image: image-url("swaledale_lg.jpg");
-	}
-	background-image: image-url("swaledale_sm.jpg");
-	background-size: cover;
-	background-position: top;
-	color: white;
+// TODO: get this method working
+@function gradiented-image($image-url, $dir) {
+	@return linear-gradient(to $dir, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url($image-url) left;
 }
