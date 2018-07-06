@@ -25,7 +25,7 @@ body {
 }
 
 #homepage-places {
-	justify-content: end;
+	justify-content: flex-end;
 	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("minster.jpg") left;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
@@ -37,7 +37,7 @@ body {
 }
 
 #homepage-search {
-	justify-content: end;
+	justify-content: flex-end;
 	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("bolton-abbey.jpg") left;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
@@ -55,8 +55,13 @@ body {
 	justify-content: center;
 }
 
+.homepage-sections {
+	display: flex;
+	min-height: 100%;
+	flex-direction: column;
+}
 .homepage-section {
-	min-height: 40vh;
+	min-height: 25rem;
 	display: flex;
 	flex-direction: row;
 	background-position: center;
@@ -65,6 +70,7 @@ body {
 	background-size: cover;
 	color: white;
 	font-family: 'Bree Serif';
+	flex-grow: 1;
 }
 
 .homepage-search-form {
@@ -76,6 +82,7 @@ body {
 	width: 100%;
 	@media screen and (min-width: 1000px) {
 		width: 60%;
+     	max-width: 705px;
 	}
 	display: flex;
 	justify-content: center;
