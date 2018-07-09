@@ -20,4 +20,7 @@
 #map {
     // Set z-index so map is shown _under_ the autocomplete results
     z-index: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }

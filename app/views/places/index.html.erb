@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col">
       <div class="form-group place-index-search">
         <%= label_tag :search_places, "Search" %>
         <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
@@ -8,12 +14,6 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
-    </div>
-  </div>
- 
   <% @places.each do |place| %>
     <div class="row">
       <div class="col">

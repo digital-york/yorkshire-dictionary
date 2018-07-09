@@ -3,10 +3,10 @@ body {
 }
 
 #homepage-banner {
-	background: linear-gradient(to right, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url('swaledale_md.jpg') left;
+	background: image-url('swaledale_md.jpg') left;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
-			text-align: left;
+			// text-align: left;
 		}
 	}
 	background-position: center;
@@ -14,22 +14,22 @@ body {
 }
 
 #homepage-explore {
-	background: linear-gradient(to right, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("janets.jpg") left;
+	background: image-url("janets.jpg") left;
 	background-position: center;
 	background-size: cover;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
-			text-align: left;
+			// text-align: left;
 		}
 	}
 }
 
 #homepage-places {
-	justify-content: flex-end;
-	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("minster.jpg") left;
+	// justify-content: flex-end;
+	background: image-url("minster.jpg") left;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
-			text-align: right;
+			// text-align: right;
 		}
 	}
 	background-position: center;
@@ -37,11 +37,11 @@ body {
 }
 
 #homepage-search {
-	justify-content: flex-end;
-	background: linear-gradient(to left, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url("bolton-abbey.jpg") left;
+	// justify-content: flex-end;
+	background: image-url("bolton-abbey.jpg") left;
 	.homepage-section-text {
 		@media only screen and (min-width: 1000px) {
-			text-align: right;
+			// text-align: right;
 		}
 	}
 	background-position: center;
@@ -64,17 +64,62 @@ body {
 	min-height: 25rem;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	background-position: center;
 	background-size: cover;
 	background-position: center;
 	background-size: cover;
 	color: white;
-	font-family: 'Bree Serif';
 	flex-grow: 1;
 }
 
+.homepage-button {
+	margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 1.5;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-top: 1rem;
+    border-radius: 0.34rem !important;
+    color: white;
+	background-color: #000000a8;
+	border-color: #000000a8;
+    letter-spacing: 0.03rem;
+    border: none;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 21px;
+    padding: 0.5rem 1rem;
+	font-family: 'Bree Serif';
+}
+
+.homepage-button:hover {
+	color: white;
+	background-color: #000000c9;
+	border-color: #000000a8;
+	text-decoration: none;
+}
+
+.homepage-button:not(:disabled):not(.disabled) {
+	cursor: pointer;
+}
+
 .homepage-search-form {
+	display: flex;
+    flex-direction: column;
 	width:100%;
+}
+
+.homepage-sections input {
+	font-family: 'Bree Serif';
+	text-align: center;
 }
 
 .section-contents-container {
@@ -90,7 +135,8 @@ body {
 }
 
 .homepage-section-text {
-	text-shadow: 1px 1px 10px black;
+      text-shadow: 0 0 1em black;
+	font-family: 'Bree Serif';
 	color: white;
 	text-align: center;
 }
@@ -110,5 +156,5 @@ body {
 
 // TODO: get this method working
 @function gradiented-image($image-url, $dir) {
-	@return linear-gradient(to $dir, rgba(#000006, 0.4),rgba(#000006, 0.2),rgba(#000006, 0.1),rgba(#000006, 0),rgba(#000006, 0.3)), image-url($image-url) left;
+	@return image-url($image-url) left;
 }

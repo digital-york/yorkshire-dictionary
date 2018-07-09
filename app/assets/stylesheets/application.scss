@@ -27,22 +27,32 @@
 
  */
 
+$font-family-serif: 'Bree Serif', Georgia, "Times New Roman", Times, serif;
+$font-family-sans: 'Heebo', Georgia, "Times New Roman", Times, serif;
+$headings-font-family: 'Bree Serif', Georgia, "Times New Roman", Times, serif;
+
 @import "bootstrap";
 
 @import "vis";
 
-navbar, .nav-item {
-	font-family: 'Bree Serif'
-}
 html, body {
 	 min-height: 100%;
-	 height:100%
+	 height:100%;
+	 font-family: $font-family-base;
+}
+
+label, navbar, .nav-item {
+	font-family: 'Bree Serif';
 }
 
 .container {
-	padding: 1.5rem 4rem;
+	// padding: 1.5rem 4rem;
+    padding: 3em;
 	min-height: 100%;
 	background-color: white;
+	margin-top: 3em;
+    box-shadow: 0em 0em 4em #00000085;
+    border-radius: 0.3em;
 }
 
 .row {

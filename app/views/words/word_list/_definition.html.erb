@@ -1,41 +1,43 @@
 <div class="words-list-entry">
 	<div class="header-line">
-		<span class="h2 word-title">
+		<h1 class="word-title">
 		<%= link_to word.text, word unless word.definitions.size > 1 %>
 		<%= link_to(word.text + '(' + (definition_counter+1).to_s + ')', word) if word.definitions.size > 1 %>
-		</span>
+		</h1>
 	</div>
-	
-	<!-- render alt spells -->
-	<% if definition&.alt_spellings&.any? %>
-		<%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
-	<% end %>
-	
-	<% if definition&.text %>
-		<div class="definition-text">
-			<%= sanitize definition.text%>
-		</div>
-	<% end %>
-	
-	<!-- render related defs -->
-	<% if definition&.related_definitions&.any? %>
-		<%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
-	<% end %>
 
-	<!-- render definition places -->
-	<% if definition&.places&.any? %>
-		<%= render partial: 'words/word_list/places', object: definition.places %>
-	<% end %>
-	
-	<!-- render sources -->
-	<% if definition&.source_references&.any? %>
-		<%= render partial: 'words/word_list/sources', object: definition.source_materials %>
-	<% end %>
-	
-	<!-- render dates -->
-	<% if definition&.source_dates&.any? %>
-		<%= render partial: 'words/word_list/dates', object: definition.source_dates %>
-	<% end %>
+	<div class="word-content">
+		<!-- render alt spells -->
+		<% if definition&.alt_spellings&.any? %>
+			<%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
+		<% end %>
+		
+		<% if definition&.text %>
+			<div class="definition-text">
+				<%= sanitize definition.text%>
+			</div>
+		<% end %>
+		
+		<!-- render related defs -->
+		<% if definition&.related_definitions&.any? %>
+			<%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
+		<% end %>
+
+		<!-- render definition places -->
+		<% if definition&.places&.any? %>
+			<%= render partial: 'words/word_list/places', object: definition.places %>
+		<% end %>
+		
+		<!-- render sources -->
+		<% if definition&.source_references&.any? %>
+			<%= render partial: 'words/word_list/sources', object: definition.source_materials %>
+		<% end %>
+		
+		<!-- render dates -->
+		<% if definition&.source_dates&.any? %>
+			<%= render partial: 'words/word_list/dates', object: definition.source_dates %>
+		<% end %>
+	</div>
 
 	<hr />
 </div>

@@ -12,6 +12,8 @@
   </head>
 
   <body>
+	<div class="homepage-first-background">
+	</div>
     <%= render "shared/navbar" %>
     <div class="container-fluid">
       <% flash.each do |key, value| %>
@@ -25,10 +27,11 @@
 			<div class="section-contents-container">
 				<div class="homepage-section-text">
 					<h1>
-						The Yorkshire Historic Dictionary is a collection of over 4,000 words, tracking the
-						development of regional language in Yorkshire.
+						The <span id="yhd-text">Yorkshire Historic Dictionary</span> is a collection of over 4,000 words, tracking the
+						development of regional language in Yorkshire
 					</h1>
 				</div>
+				<%= link_to 'Learn more', about_path, class: 'homepage-button' %>
 			</div>
 		</div>
 		<div id="homepage-places" class="homepage-section">
@@ -38,29 +41,30 @@
 						Discover the places that shaped Yorkshire's vocabulary
 					</h1>
 				</div>
+				<%= link_to 'Places', places_path, class: 'homepage-button' %>
 			</div>
-			<!--<button class="btn btn-primary">Places</button>-->
 		</div>
 		<div id="homepage-explore" class="homepage-section">
 			<div class="section-contents-container">
 				<div class="homepage-section-text">
 					<h1>
-						Explore thousands of source materials, meticulously catalogued over decades.
+						Explore thousands of source materials, meticulously catalogued over decades
 					</h1>
 				</div>
+				<%= link_to 'Sources', source_materials_path, class: 'homepage-button' %>
 			</div>
-			<!--<button class="btn btn-primary">Sources</button>-->
 		</div>
 		<div id="homepage-search" class="homepage-section">
 			<div class="section-contents-container">
 				<div class="homepage-section-text">
-					<h1>Search the dictionary</h1>
+					<h1>Search for a word</h1>
 				</div>
 				<%= form_with url: search_words_path, local: true, method: 'get', class: 'homepage-search-form' do |form|%>
 					<%= form.text_field :any,
 						id:"homepage-search-text",
 						placeholder:"Try Leeds, farrier, horse-box or coal stick",
 						class:"form-control form-control-lg" %>
+					<%= form.submit 'Search', name: nil, class: "homepage-button" %>
 				<% end %>
 			</div>
 		</div>
