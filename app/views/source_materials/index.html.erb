@@ -4,9 +4,6 @@
     <div class="col">
       <% @source_materials.each do |source_material| %>
           <p><%= link_to source_material.title, source_material %><p>
-          <% if source_material.description.present? %>
-            <p><%= source_material.description %><p>
-          <% end %>
       <% end %>
     </div>
   </div>
