@@ -12,9 +12,9 @@
           </em></strong>
           </br>
           <div class="mb-0 mt-3 ml-4">
-            <% if definition.discussion %>
-              <% definition&.discussion&.split(";")&.each do |disc|%>
-                  <p><%= sanitize disc %></p>
+            <% if definition&.discussion&.present? %>
+              <% definition.discussion.split(";")&.each do |disc|%>
+                <p><%= sanitize disc.gsub /\s?\([^\)]+\)/, '' %></p>
               <% end %> 
             <% end %>
 
