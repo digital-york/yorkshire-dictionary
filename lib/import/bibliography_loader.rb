@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'csv_loader'
 require_relative '../../config/environment'
-
 
 # frozen_string_literal: true
 class BibliographyLoader
   def load
-
     # Instantiate hash of source objects, keyed by original (GRD) reference
     source_objs = {}
 
@@ -46,7 +46,6 @@ class BibliographyLoader
 
     # For each source in bib, create source material obj
     bibliography[1..-1].each do |source|
-
       orig_ref = source[bib_field_indexes[:orig_ref]]&.downcase
 
       next unless orig_ref
@@ -78,17 +77,22 @@ class BibliographyLoader
     end
 
     reference_regex = reference_regex(source_objs.keys)
-    return {
+    {
       source_materials: source_objs,
       reference_regex: reference_regex
     }
   end
 
   def reference_regex(sources)
-    sorted = sources.map{|x| Regexp.escape x}.map(&:strip).sort_by(&:length).reverse
-    joined = sorted.join "|"
-    regex = Regexp.new "^(#{joined})(.*)", "i"
-    return regex
+    sorted =  sources
+              .map { |x| Regexp.escape x }
+              .map(&:strip)
+              .sort_by(&:length)
+              .reverse
+
+    joined = sorted.join '|'
+    regex = Regexp.new "^(#{joined})(.*)", 'i'
+    regex
   end
 end
 

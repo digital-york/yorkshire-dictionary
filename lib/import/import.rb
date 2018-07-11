@@ -83,7 +83,7 @@ module Import
         norm_headers[i] = normalised_header
       end
 
-      return norm_headers
+      norm_headers
     end
 
     # Normalise a single header
@@ -101,7 +101,7 @@ module Import
       normalised_header ||= normalise_source_header(header_name)
 
       # If nothing matched thus far, use header_name as is
-      return normalised_header || header_name
+      normalised_header || header_name
     end
 
     # Loop through the rows, extract data from each and save it
@@ -190,7 +190,7 @@ module Import
       # Add special fields to all others
       all_fields = special_fields.merge fields
 
-      return all_fields
+      all_fields
     end
 
     # Save the data from the rows, incl. words
@@ -298,7 +298,7 @@ module Import
         report_error  definition,
                       "Source #{source_number}: No source record in bibliography matched for #{source_ref_string}",
                       'error'
-        return
+        return []
       end
 
       # Extract the reference from the regex match
@@ -313,7 +313,7 @@ module Import
 
       unless source_materials.any?
         report_error  definition,
-                      "Source #{source_number}: No source material loaded from bibliography for #{source_material_reference}", 
+                      "Source #{source_number}: No source material loaded from bibliography for #{source_material_reference}",
                       'error'
       end
 
@@ -334,9 +334,7 @@ module Import
     end
 
     def save_dates(source_number, date_string, source_reference)
-      if DateExtractor.nd_regex.match? date_string
-        return
-      end
+      return if DateExtractor.nd_regex.match? date_string
 
       # Check for date, attempt to get date from field if match
       # TODO: handle date_string being nil, empty
@@ -466,7 +464,7 @@ module Import
         if match
           sub_reference = match[1]
         else
-          report_error definition, "Invalid archival excerpt reference - '#{excerpt_reference}'. Using anyway, but check. Expected format is source_reference/excerpt_reference (with slash) e.g. BIA/3/4/2.", "warn"
+          report_error definition, "Invalid archival excerpt reference - '#{excerpt_reference}'. Using anyway, but check. Expected format is source_reference/excerpt_reference (with slash) e.g. BIA/3/4/2.", 'warn'
           sub_reference = excerpt_reference
         end
 
@@ -475,7 +473,7 @@ module Import
                               archival_ref: sub_reference
 
       else
-        report_error definition, "Unknown source type: #{source_type}", "error"
+        report_error definition, "Unknown source type: #{source_type}", 'error'
       end
     end
 
@@ -486,7 +484,7 @@ module Import
         see_also << see_also_word.downcase.strip
       end
 
-      return see_also
+      see_also
     end
 
     # Create the associations between definitons (see_also in CSV)
@@ -502,8 +500,8 @@ module Import
           # Get the definition for the word and word index
           related_def = @word_definitions.dig(word.downcase, word_index)
           unless related_def
-            # Missing related definition - report error, skip 
-            report_error(definition, "'see_also' word not found: #{see_also_word}", 'error') 
+            # Missing related definition - report error, skip
+            report_error(definition, "'see_also' word not found: #{see_also_word}", 'error')
             next
           end
 
@@ -539,7 +537,7 @@ module Import
       end
 
       # example result: {word: 'example', index: 0}
-      return result
+      result
     end
 
     # Normalise a single alt spelling header
@@ -551,7 +549,7 @@ module Import
         norm_header_name = 'altspelling' + spell_match[1]
         return norm_header_name
       end
-      return nil
+      nil
     end
 
     # Normalise a source header field
@@ -572,7 +570,7 @@ module Import
 
         return norm_header_name
       end
-      return nil
+      nil
     end
 
     def report_error(definition, message, type)
@@ -590,7 +588,7 @@ module Import
 
     # Matches a source-related header, such as 'source 1 place' or 'source 2 ref'
     # Group 1: source number e.g. 1 or 2
-    # Group 2: source part (ref, place or date. 
+    # Group 2: source part (ref, place or date.
     # If the source part is missing, the header refers to George's original reference, which we refer to in the code as 'original_ref')
     # Since archival ref == ref, the regex includes a non-capturing group to ignore archival and just capture ref in group 2
     def self.source_header_regex
@@ -627,7 +625,7 @@ module Import
       /([a-zA-Z\-\s]+)\s*(?:\((\d*)\))?/
     end
 
-    # Matches the page numbers at the end of an archival reference. 
+    # Matches the page numbers at the end of an archival reference.
     # Also works for roman nums.
     # arch.ref 'a/b/c/1,3' matches '1,3'
     # arch.ref '1-5' matches '1-5'
@@ -647,8 +645,8 @@ if $PROGRAM_NAME == __FILE__
   data = {
     definition: Definition.first,
     sources: [
-      {orig_reference: "YAJ12/102", place: "leeds; shef", date: 'c. 1335-45'},
-      {orig_reference: "YAJ12/102", place: "leeds; shef", date: 'nd[1335-45]'},
+      { orig_reference: 'YAJ12/102', place: 'leeds; shef', date: 'c. 1335-45' },
+      { orig_reference: 'YAJ12/102', place: 'leeds; shef', date: 'nd[1335-45]' }
     ]
   }
 
