@@ -7,9 +7,9 @@
   <% @word.definitions.each_with_index do |definition, index| %>
     <div class="row">
       <div class="col">
-          <strong><em>
+          <p><strong><em>
             <%= index + 1 %>)  <%= definition.text || "No definition available" %>
-          </em></strong>
+          </em></strong></p>
           </br>
           <div class="mb-0 mt-3 ml-4">
             <% if definition&.discussion&.present? %>
