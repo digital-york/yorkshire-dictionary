@@ -203,22 +203,25 @@ module Import
       # Create new word obj. if not found
       unless word_obj
         # TODO: Could use 'new' instead of 'create' here and batch save at end
-        word_obj = Word.create text: word
+        word_obj = Word.where(text: word).first_or_create
         @word_objs[word] = word_obj
         puts word_obj.errors.full_messages
       end
 
       # TODO: Could use 'new' instead of 'create' here and batch save at end
       # Create definition obj & save
-      definition = word_obj.definitions.create text: data[:definition],
-                                               discussion: data[:discussion]
+      definition = word_obj.definitions
+                           .where(text: data[:definition])
+                           .first_or_create
+
+      definition.update(discussion: data[:discussion])
 
       # Report any errors with save
       puts definition.errors.full_messages
 
       # Create alt_spellings
       data[:alt_spellings].each do |alt|
-        alt_obj = definition.alt_spellings.create text: alt
+        alt_obj = definition.alt_spellings.where(text: alt).first_or_create
         puts alt_obj.errors.full_messages
       end
 
@@ -245,50 +248,42 @@ module Import
     end
 
     def save_sources(definition, sources)
-      # Loop through each source to check it has values for all 3 fields (ref, place, date)
-      sources.each do |source|
-        # If any fields have no value, add error and return immediately
-        # unless source&.values && source.values.size >= 3 && source.values.all?
-        #   report_error definition, 'Sources are missing fields. No sources saved.', 'error'
-        #   return
-        # end
-      end
+      # Remove existing source references for the current def.
+      SourceReference.where(definition: definition).destroy_all
 
       # Save each source otherwise
       sources.each_with_index do |source, index|
-        save_source(definition, source, index+1) unless source.nil?
+        next unless source
+
+        source_number = index + 1
+
+        # Get original source reference (GRD)
+        ref = source[:orig_reference]
+
+        next unless ref
+
+        source_references = handle_source_ref_related_saves source_number, ref, definition
+
+        source_references.each do |ref|
+          date_string = source[:date]
+          save_dates(source_number, date_string, ref)
+
+          # Get place name associated with source instance
+          places_string = source[:place]
+          save_places(source_number, places_string, ref)
+        end
       end
     end
 
-    def save_source (definition, source, source_number)
-      # TODO: Check each component matches top level regex
-      # TODO: move source saving bits to method/class
-      # TODO: need to go over error handling here, and consider possibility that a reference may have no source
-
-      # TODO: could replace create here with new, and a boolean to track if there is any data added to the reference. Then only save if that boolean is true, to avoid empty refs.
-      source_reference_obj = SourceReference.create definition: definition
-
-      # Get original source reference (GRD)
-      ref = source[:orig_reference]
-      handle_source_ref_related_saves source_number, ref, source_reference_obj
-
-      date_string = source[:date]
-      save_dates(source_number, date_string, source_reference_obj)
-
-      # Get place name associated with source instance
-      places_string = source[:place]
-      save_places(source_number, places_string, source_reference_obj)
-    end
-
-    def handle_source_ref_related_saves(source_number, source_ref_string, source_reference_obj)
-      definition = source_reference_obj.definition
+    def handle_source_ref_related_saves(source_number, source_ref_string, definition)
+      definition = definition
 
       # No ref found in the source data
       unless source_ref_string && self.class.source_ref_regex.match?(source_ref_string)
         report_error  definition,
                       "Source #{source_number}: Source reference '#{source_ref_string}' doesn't match expected format. Skipping.",
                       'error'
-        return
+        return []
       end
 
       # Run regex to match components of the source reference string
@@ -321,16 +316,14 @@ module Import
       # (volume and/or page number, or arch. ref)
       excerpt_reference = source_reference_match[2]
 
-      if excerpt_reference&.present?
-        # Create a SourceReference object representing this reference to the
-        # source for the def
-        source_materials.each do |source_material|
-          source_reference_obj.source_material = source_material
-          save_source_excerpts(source_number, source_material, excerpt_reference, source_reference_obj)
-        end
-
-        source_reference_obj.save
+      source_references = []
+      source_materials.each do |source_material|
+        # save_source(definition, source, index+1) unless source.nil?
+        source_reference_obj = SourceReference.create definition: definition, source_material: source_material
+        save_source_excerpts(source_number, source_material, excerpt_reference, source_reference_obj)
+        source_references << source_reference_obj
       end
+      source_references
     end
 
     def save_dates(source_number, date_string, source_reference)
@@ -350,7 +343,7 @@ module Import
 
       dates.each do |date|
         # TODO: add all model save errors to errors output
-        source_date = source_reference.source_dates.create(date)
+        source_date = source_reference.source_dates.where(date).first_or_create
         puts source_date.errors.full_messages
       end
     end
@@ -383,8 +376,7 @@ module Import
         # Place not yet saved:
         unless place
           # TODO: Could use 'new' instead of 'create' here and batch save at end
-          place = Place.create name: place_name.strip
-          place.save
+          place = Place.where(name: place_name.strip).first_or_create
 
           # Add to map of place_name -> Places
           @places[place_name.downcase] = place
@@ -469,8 +461,11 @@ module Import
         end
 
         # page_regex_match = ImportHelper.archival_pages_regex.match sub_reference
-        SourceExcerpt.create  source_reference: source_reference,
-                              archival_ref: sub_reference
+        SourceExcerpt.where(
+          source_reference: source_reference,
+          archival_ref: sub_reference
+        )
+        .first_or_create
 
       else
         report_error definition, "Unknown source type: #{source_type}", 'error'
@@ -507,9 +502,14 @@ module Import
 
           # TODO: Could use 'new' instead of 'create' here and batch save at end
           # Add association to related def and report errors
-          relation = DefinitionRelation.create definition: definition,
-                                               related_definition: related_def,
-                                               relation_type: 'see_also'
+          relation =  DefinitionRelation
+                      .where(
+                        definition: definition,
+                        related_definition: related_def,
+                        relation_type: 'see_also'
+                      )
+                      .first_or_create
+
           puts relation.errors.full_messages
         end
       end

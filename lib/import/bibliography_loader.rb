@@ -59,14 +59,17 @@ class BibliographyLoader
       source_type = source[bib_field_indexes[:source_type]]&.downcase
 
       # Create source obj
-      sm = SourceMaterial.create  original_ref: orig_ref,
-                                  title: title,
-                                  description: description,
-                                  done: done,
-                                  ref: archival_ref,
-                                  archive: archive,
-                                  archive_checked: archive_checked,
-                                  source_type: source_type.downcase
+      sm = SourceMaterial.where(original_ref: orig_ref).first_or_create
+      sm.update(
+        original_ref: orig_ref,
+        title: title,
+        description: description,
+        done: done,
+        ref: archival_ref,
+        archive: archive,
+        archive_checked: archive_checked,
+        source_type: source_type.downcase # TODO: what about if no source type?
+      )
 
       # Report errors
       puts sm.errors.full_messages
