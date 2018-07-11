@@ -10,8 +10,7 @@
           <p><strong><em>
             <%= index + 1 %>)  <%= definition.text || "No definition available" %>
           </em></strong></p>
-          </br>
-          <div class="mb-0 mt-3 ml-4">
+          <div class="mb-0 ml-4">
             <% if definition&.discussion&.present? %>
               <% definition.discussion.split(";")&.each do |disc|%>
                 <p><%= sanitize disc.gsub /\s?\([^\)]+\)/, '' %></p>
