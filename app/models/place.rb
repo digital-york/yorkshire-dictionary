@@ -2,10 +2,6 @@
 
 # Class for places, which are used by Sources
 class Place < ApplicationRecord
-  # See geocoder gem @ https://github.com/alexreisner/geocoder
-  # Set bounds to yorkshire and region to GB
-  # geocoded_by :name, params: { countrycode: 'gb' }
-
   after_validation :geocode, if: ->(place) { place.name.present? && place.latitude.nil? }
 
   # Join table

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# See geocoder gem @ https://github.com/alexreisner/geocoder
+# Set bounds to yorkshire and region to GB
+# geocoded_by :name, params: { countrycode: 'gb' }
 class YhdGeocodeService
   def self.geocode(place_name)
     results = geocode_results(place_name, true)
