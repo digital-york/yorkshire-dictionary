@@ -314,7 +314,12 @@ module Import
 
       # Extract the reference to the excerpt
       # (volume and/or page number, or arch. ref)
-      excerpt_reference = source_reference_match[2]
+      preset_archival_ref = @bibliography_data[:archival_refs][source_ref_string.downcase]
+      excerpt_reference = if preset_archival_ref&.present?
+                            preset_archival_ref
+                          else
+                            source_reference_match[2]
+                          end
 
       source_references = []
       source_materials.each do |source_material|

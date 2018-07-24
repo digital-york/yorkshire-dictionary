@@ -9,6 +9,8 @@ class BibliographyLoader
     # Instantiate hash of source objects, keyed by original (GRD) reference
     source_objs = {}
 
+    archival_refs = {}
+
     # Load CSV rows from bibliography
     bibliography = CsvLoader.load_csv 'bibliography.csv'
 
@@ -58,18 +60,19 @@ class BibliographyLoader
       archive_checked = source[bib_field_indexes[:archive_checked]]
       source_type = source[bib_field_indexes[:source_type]]&.downcase
 
-      # Create source obj
-      sm = SourceMaterial.where(original_ref: orig_ref).first_or_create
-      sm.update(
-        original_ref: orig_ref,
-        title: title,
-        description: description,
-        done: done,
-        ref: archival_ref,
-        archive: archive,
-        archive_checked: archive_checked,
-        source_type: source_type.downcase # TODO: what about if no source type?
-      )
+      # Create source obj, set values if new only
+      sm = SourceMaterial.where(title: title).first_or_create do |new_record|
+        new_record.update(
+          original_ref: orig_ref,
+          title: title,
+          description: description,
+          done: done,
+          ref: archival_ref,
+          archive: archive,
+          archive_checked: archive_checked,
+          source_type: source_type.downcase # TODO: what about if no source type?
+        )
+      end
 
       # Report errors
       puts sm.errors.full_messages
@@ -77,11 +80,14 @@ class BibliographyLoader
       # Add new obj to map of sources
       source_objs[orig_ref] = [] unless source_objs[orig_ref]
       source_objs[orig_ref] << sm
+
+      archival_refs[orig_ref] = archival_ref if archival_ref&.present?
     end
 
     reference_regex = reference_regex(source_objs.keys)
     {
       source_materials: source_objs,
+      archival_refs: archival_refs,
       reference_regex: reference_regex
     }
   end
