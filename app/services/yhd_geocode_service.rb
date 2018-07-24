@@ -76,6 +76,8 @@ class YhdGeocodeService
       closest_result = nil
 
       results.each do |result|
+        next if result.data&.dig('components','_type') == 'county'
+
         distance = get_distance_from_york result
 
         if closest_result.nil? || distance < closest_distance

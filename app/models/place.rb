@@ -18,6 +18,9 @@ class Place < ApplicationRecord
 
   def geocode
     lat_long = YhdGeocodeService.geocode(name)
+
+    return unless lat_long
+
     self.latitude = lat_long[:latitude]
     self.longitude = lat_long[:longitude]
   end
