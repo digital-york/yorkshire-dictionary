@@ -15,6 +15,7 @@ Geocoder.configure(
     api_key: Rails.application.credentials.maps[:opencage_api_key]
   }
 
+
   # cache: nil,                 # cache object (must respond to #[], #[]=, and #del)
   # cache_prefix: 'geocoder:',  # prefix (string) to use for all cache keys
 
