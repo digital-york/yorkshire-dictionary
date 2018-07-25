@@ -2,7 +2,8 @@ require 'test_helper'
 
 class SourceMaterialsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @source_material = source_materials(:one)
+    # TODO: could use fixtures
+    @source_material = SourceMaterial.create original_ref: 'test', ref: 'test'
   end
 
   test "should get index" do

@@ -39,21 +39,22 @@ class WordTest < ActiveSupport::TestCase
 
     sm = SourceMaterial.create original_ref: 'test', ref: 'test'
 
-    def_source = definition.source_materials.create source_material: sm
+    definition.source_materials << sm
 
     assert SourceMaterial.all.size == 1
-    assert def_source.definition == definition
-    assert def_source.definition.word == word
-    def_source.source_material == sm
+    assert sm.definitions.include? definition
+    assert definition.source_materials.include? sm
   end
 
   test 'places can be associated with other records' do
-    place = Place.create name:"Test place"
+    place = Place.create name: 'Test place'
     sm = SourceMaterial.create original_ref: 'test', ref: 'test'
+
     word = get_word
     definitions = get_definitions word
 
-    def_source_ref = definitions[0].source_references.create source_material: sm, place: place
+    def_source_ref = definitions[0].source_references.create source_material: sm
+    def_source_ref.places << place
 
     assert place.source_references.size == 1
     assert place.source_materials.size == 1
@@ -68,20 +69,21 @@ class WordTest < ActiveSupport::TestCase
 
   test 'source materials can be created and linked to other records' do
     sm = SourceMaterial.create original_ref: 'test', ref: 'test'
-    place = Place.create name:"Test place"
+    place = Place.create name: 'Test place'
 
     word = get_word
     definitions = get_definitions word
 
-    definitions[0].source_references.create source_material: sm, place: place
+    ref = definitions[0].source_references.create source_material: sm
+    ref.places << place
 
-    sm.places.size == 1
-    sm.places.first == place
-    sm.definitions.size == 1
-    sm.definitions.first == definitions[0]
+    assert sm.places.size == 1
+    assert sm.places.first == place
+    assert sm.definitions.size == 1
+    assert sm.definitions.first == definitions[0]
 
-    sm.words.size == 1
-    sm.words.first == word
+    assert sm.words.size == 1
+    assert sm.words.first == word
   end
 
   private
