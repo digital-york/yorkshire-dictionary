@@ -2,6 +2,8 @@
 
 # Word class, which has many definitions
 class Word < ApplicationRecord
+  validates :text, presence: true
+
   has_many :definitions
 
   has_many :source_references, through: :definitions
