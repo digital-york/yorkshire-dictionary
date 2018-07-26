@@ -17,17 +17,17 @@ class PlaceTest < ActiveSupport::TestCase
     word = words(:one)
     definitions = word.definitions
 
-    def_source_ref = definitions[0].source_references.create source_material: sm
+    def_source_ref = definitions.first.source_references.create source_material: sm
     def_source_ref.places << place
 
-    assert place.source_references.size == 1
-    assert place.source_materials.size == 1
-    assert place.definitions.size == 1
-    assert place.words.size == 1
+    assert place.source_references.size.positive?
+    assert place.source_materials.size.positive?
+    assert place.definitions.size.positive?
+    assert place.words.size.positive?
 
     assert place.source_references.first == def_source_ref
     assert place.source_materials.first == sm
-    assert place.definitions.first == definitions[0]
+    assert place.definitions.first == definitions.first
     assert place.words.first == word
   end
 end

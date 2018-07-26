@@ -8,15 +8,15 @@ class SourceMaterialTest < ActiveSupport::TestCase
     word = words(:one)
     definitions = word.definitions
 
-    ref = definitions[0].source_references.create source_material: sm
+    ref = definitions.first.source_references.create source_material: sm
     ref.places << place
 
-    assert sm.places.size == 1
+    assert sm.places.size.positive?
     assert sm.places.first == place
-    assert sm.definitions.size == 1
-    assert sm.definitions.first == definitions[0]
+    assert sm.definitions.size.positive?
+    assert sm.definitions.first == definitions.first
 
-    assert sm.words.size == 1
+    assert sm.words.size.positive?
     assert sm.words.first == word
   end
 end

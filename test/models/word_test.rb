@@ -8,23 +8,18 @@ class WordTest < ActiveSupport::TestCase
 
     definitions = word.definitions
 
-    assert Definition.all.size == 2
-    assert definitions[0].word == word
-    assert definitions[1].word == word
-    assert word.definitions[0] == definitions[0]
-    assert word.definitions[1] == definitions[1]
+    assert Definition.all.size >= 2
+    assert definitions.first.word == word
+    assert definitions.second.word == word
+    assert word.definitions.first == definitions.first
+    assert word.definitions.second == definitions.second
   end
 
   test 'word should require text' do
     word = Word.create
-    assert word.save == false
+    assert word.errors[:text].any?
 
     word.text = 'Test text'
-    assert word.save
+    assert word.valid?
   end
-
-  # test 'sources can be browsed from a word' do
-  #   word = words(:one)
-
-  # end
 end

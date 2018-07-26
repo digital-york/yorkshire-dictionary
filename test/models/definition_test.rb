@@ -4,34 +4,32 @@ class DefinitionTest < ActiveSupport::TestCase
 
   test 'definitions should require text' do
     defi = words(:one).definitions.create
-    assert defi.save == false
+    assert defi.errors[:text].any?
 
     defi.text = 'Test text'
-    assert defi.save
+    assert defi.valid?
   end
 
   test 'word definitions can have alternate spellings' do
     word = words(:one)
-    definitions = word.definitions
-    definition = definitions[0]
+    definition = word.definitions.first
 
     alt = definition.alt_spellings.create text: 'Test alt spelling'
-    assert AltSpelling.all.size == 1
+    assert AltSpelling.all.size.positive?
     assert alt.definition == definition
     assert alt.definition.word == word
+    assert word.alt_spellings.include? alt
   end
 
   test 'word definitions can have sources' do
     word = words(:one)
-    definitions = word.definitions
-
-    definition = definitions[0]
+    definition = word.definitions.first
 
     sm = SourceMaterial.create original_ref: 'test', ref: 'test'
 
     definition.source_materials << sm
 
-    assert SourceMaterial.all.size == 1
+    assert SourceMaterial.all.size.positive?
     assert sm.definitions.include? definition
     assert definition.source_materials.include? sm
   end
