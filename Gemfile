@@ -11,8 +11,6 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -21,57 +19,46 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 4.3.3'
+gem 'jquery-ui-rails', '~> 6.0.1'
 
-gem "js-routes"
+gem "js-routes", '~> 1.4.4'
 
-gem 'vis-gem'
+gem 'vis-gem', '~> 4.21.0.0'
 
 # User auth
-gem 'devise'
+gem 'devise', '~> 4.4.3'
 gem 'devise-guests', '~> 0.6'
-gem 'devise-bootstrap-views'
+gem 'devise-bootstrap-views', '~> 0.0.11'
 
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
 
 # Geocoding
-gem 'geocoder'
+gem 'geocoder', '~> 1.4.8'
 
 # Mapping
-gem 'leaflet-rails'
+gem 'leaflet-rails', '~> 1.3.1'
 
 group :production, :staging do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 end
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', '~> 4.1.1'
 
-gem 'sprockets-rails'
+gem 'sprockets-rails', '~> 3.2.1'
 
-gem 'pg'
+gem 'pg', '~> 1.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'ruby-debug-ide'
-  gem 'debase'
-  gem 'xray-rails'
+  gem 'byebug', '~> 10.0.2', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'ruby-debug-ide', '~> 0.6.1'
+  gem 'debase', '~> 0.2.2'
+  gem 'xray-rails', '~> 0.3.1'
 end
 
 group :development do
@@ -79,21 +66,21 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
   
   # Performance monitoring
-  gem 'bullet'
+  gem 'bullet', '~> 5.7.5'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.11.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '~> 1.2.0'
 end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', '~> 1.2.5', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
