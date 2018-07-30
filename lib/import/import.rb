@@ -205,7 +205,7 @@ module Import
         # TODO: Could use 'new' instead of 'create' here and batch save at end
         word_obj = Word.where(text: word).first_or_create
         @word_objs[word] = word_obj
-        puts word_obj.errors.full_messages
+        puts "Error with word '#{word}': #{word_obj.errors.full_messages}" if word_obj.errors.present?
       end
 
       # TODO: Could use 'new' instead of 'create' here and batch save at end
@@ -217,12 +217,12 @@ module Import
       definition.update(discussion: data[:discussion])
 
       # Report any errors with save
-      puts definition.errors.full_messages
+      puts "Error with definition '#{word.downcase}': #{definition.errors.full_messages}" if definition.errors.present?
 
       # Create alt_spellings
       data[:alt_spellings].each do |alt|
         alt_obj = definition.alt_spellings.where(text: alt).first_or_create
-        puts alt_obj.errors.full_messages
+        puts "Error with alternate spelling '#{alt}': #{alt_obj.errors.full_messages}" if alt_obj.errors.present?
       end
 
       # Save source data
@@ -349,7 +349,7 @@ module Import
       dates.each do |date|
         # TODO: add all model save errors to errors output
         source_date = source_reference.source_dates.where(date).first_or_create
-        puts source_date.errors.full_messages
+        puts "Error with source date '#{alt}': #{source_date.errors.full_messages}" if source_date.errors.present?
       end
     end
 
@@ -387,7 +387,7 @@ module Import
           @places[place_name.downcase] = place
 
           # Report errors
-          puts place.errors.full_messages
+          puts "Error with place '#{place_name.downcase}': #{place.errors.full_messages}" if place.errors.present?
         end
 
         # TODO: need to use link table here if not implicity done?
@@ -448,6 +448,7 @@ module Import
               excerpt.volume_start = vol_range[:start_num]
               excerpt.volume_end = vol_range[:end_num]
             end
+            # FIXME: errors on following save?
             excerpt.save
           end
         end
@@ -515,7 +516,7 @@ module Import
                       )
                       .first_or_create
 
-          puts relation.errors.full_messages
+          puts "Error with def relation '#{word.downcase}': #{relation.errors.full_messages}" if relation.errors.present?
         end
       end
     end
