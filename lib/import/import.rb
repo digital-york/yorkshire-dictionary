@@ -210,11 +210,12 @@ module Import
 
       # TODO: Could use 'new' instead of 'create' here and batch save at end
       # Create definition obj & save
-      definition = word_obj.definitions
-                           .where(text: data[:definition])
-                           .first_or_create
 
-      definition.update(discussion: data[:discussion])
+      existing_defs = word_obj.definitions
+      def_index = data[:index]
+      definition = existing_defs[def_index] if existing_defs.size >= (def_index - 1)
+      definition = existing_defs.create if definition.nil?
+      definition.update(discussion: data[:discussion], text: data[:definition])
 
       # Report any errors with save
       puts "Error with definition '#{word.downcase}': #{definition.errors.full_messages}" if definition.errors.present?
