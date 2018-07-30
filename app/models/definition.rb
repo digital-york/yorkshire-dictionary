@@ -2,8 +2,6 @@
 
 # Definition of a word in a dictionary
 class Definition < ApplicationRecord
-  validates :text, presence: true
-
   belongs_to :word
 
   has_many :alt_spellings
