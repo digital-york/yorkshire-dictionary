@@ -59,9 +59,9 @@ class Word < ApplicationRecord
 
       # Search definition text
       if def_text.present?
-        query
-          .where!('definitions.text ILIKE \'%%%s%%\'', def_text)
-          .or!(
+        query = query
+          .where('definitions.text ILIKE \'%%%s%%\'', def_text)
+          .or(
             query.where('definitions.discussion ILIKE \'%%%s%%\'', def_text)
           )
       end
