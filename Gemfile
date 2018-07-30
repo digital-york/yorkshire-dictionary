@@ -59,6 +59,7 @@ group :development, :test do
   gem 'ruby-debug-ide', '~> 0.6.1'
   gem 'debase', '~> 0.2.2'
   gem 'xray-rails', '~> 0.3.1'
+  gem 'jasmine-rails', '~> 0.14.8' 
 end
 
 group :development do
