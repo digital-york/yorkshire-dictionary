@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_112629) do
+ActiveRecord::Schema.define(version: 2018_07_31_150014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,7 +130,11 @@ ActiveRecord::Schema.define(version: 2018_06_25_112629) do
   end
 
   add_foreign_key "alt_spellings", "definitions"
+  add_foreign_key "definition_relations", "definitions"
+  add_foreign_key "definition_relations", "definitions", column: "related_definition_id"
   add_foreign_key "definitions", "words"
+  add_foreign_key "places_source_references", "places"
+  add_foreign_key "places_source_references", "source_references"
   add_foreign_key "source_dates", "source_references"
   add_foreign_key "source_excerpts", "source_references"
   add_foreign_key "source_references", "definitions"

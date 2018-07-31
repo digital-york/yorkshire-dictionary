@@ -6,7 +6,7 @@ class CreateDefinitionRelations < ActiveRecord::Migration[5.2]
       t.string :relation_type
 
       t.timestamps
-      
+
       t.index ["definition_id"], name: "index_definition_relations_on_definition_id"
       t.index ["related_definition_id"], name: "index_definition_relations_on_related_definition_id"
     end
