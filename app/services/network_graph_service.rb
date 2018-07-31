@@ -125,12 +125,16 @@ class NetworkGraphService
   end
 
   def generic_node(id, bold, type, url, label)
-    truncated = label.truncate 15
+    truncated = if label
+                  label.truncate 15
+                else
+                  'No name'
+                end
     label_text = if bold
                    "<b>#{truncated}</b>"
                  else
                    truncated
-                  end
+                 end
     {
       id: id, type: type,
       url: url, label: label_text
