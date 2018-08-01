@@ -31,7 +31,11 @@
     const options = {
       interaction: { hover: true, hoverConnectedEdges: false },
       nodes: {
-        font: { size: 20, multi: true },
+        font: {
+          size: 20,
+          multi: true,
+          face: 'Heebo'
+        },
       },
       edges: {
         chosen: false,
