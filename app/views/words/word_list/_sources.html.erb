@@ -2,9 +2,10 @@
 	<span class="sources-prefix">
 		sources
 	</span>
-	<% sources.each do  |source| %>
+	<% sources.each do |source_reference| %>
+		<% source_material = source_reference.source_material %>
 		<span class="source">
-			<% source_title = source&.title %>
+			<% source_title = source_material&.title %>
 			<% display_title = nil %>
 			<% if source_title&.present? %>
 				<% display_title = source_title&.truncate 15 %>
@@ -12,13 +13,18 @@
 				<% display_title = 'Untitled source' %>
 			<% end %>
 
-			<%= link_to display_title, source, 'data-placement': "top", 'data-toggle': "tooltip", title: source_title %>
+			<%= link_to "#{display_title}:#{source_reference.excerpts_string}",
+				source_material,
+				'data-placement': "top",
+				'data-toggle': "tooltip",
+				title: source_title 
+			%>
 		</span>
 	<% end %>
 </div>
 
 <script>
 	$(function () {
-	$('[data-toggle="tooltip"]').tooltip()
+		$('[data-toggle="tooltip"]').tooltip()
 	})
 </script>

@@ -30,7 +30,7 @@
 		
 		<!-- render sources -->
 		<% if definition&.source_references&.any? %>
-			<%= render partial: 'words/word_list/sources', object: definition.source_materials %>
+			<%= render partial: 'words/word_list/sources', object: definition.source_references %>
 		<% end %>
 		
 		<!-- render dates -->
