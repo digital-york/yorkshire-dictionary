@@ -12,7 +12,13 @@
 				<% display_title = 'Untitled source' %>
 			<% end %>
 
-			<%= link_to display_title, source %>
+			<%= link_to display_title, source, 'data-placement': "top", 'data-toggle': "tooltip", title: source_title %>
 		</span>
 	<% end %>
 </div>
+
+<script>
+	$(function () {
+	$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
