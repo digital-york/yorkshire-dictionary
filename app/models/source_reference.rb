@@ -10,4 +10,12 @@ class SourceReference < ApplicationRecord
 
   has_many :source_dates, dependent: :delete_all
   has_many :source_excerpts, dependent: :delete_all
+
+  def excerpts_string
+    s = StringIO.new
+    source_excerpts.each do |ex|
+      s << ex.excerpt_string
+    end
+    s.string
+  end
 end
