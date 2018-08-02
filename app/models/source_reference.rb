@@ -4,7 +4,9 @@
 class SourceReference < ApplicationRecord
   belongs_to :definition
   belongs_to :source_material, optional: true
-  
+
+  has_one :word, through: :definition
+
   has_many :places_source_references, dependent: :delete_all
   has_many :places, -> { distinct }, through: :places_source_references
 

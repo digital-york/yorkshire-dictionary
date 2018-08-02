@@ -7,7 +7,9 @@ class SourceMaterial < ApplicationRecord
 
   has_many :source_references
 
+  # TODO: dependents
   has_many :definitions, -> { distinct }, through: :source_references
+  has_many :source_excerpts, through: :source_references
   has_many :source_dates, through: :source_references
   has_many :places_source_references, through: :source_references
 
