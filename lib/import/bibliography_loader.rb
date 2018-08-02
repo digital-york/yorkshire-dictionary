@@ -49,10 +49,18 @@ class BibliographyLoader
     # For each source in bib, create source material obj
     bibliography[1..-1].each do |source|
       orig_ref = source[bib_field_indexes[:orig_ref]]&.downcase
-
-      next unless orig_ref
-
       title = source[bib_field_indexes[:title]]
+
+      unless orig_ref
+        puts "Skipped bibliography entry for having no reference."
+        next
+      end
+      
+      unless title
+        puts "Skipped bibliography entry for having no title (#{orig_ref})"
+        next
+      end
+
       description = source[bib_field_indexes[:description]]
       done = source[bib_field_indexes[:done]]
       archival_ref = source[bib_field_indexes[:archival_ref]]

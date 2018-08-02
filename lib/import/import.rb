@@ -171,6 +171,7 @@ module Import
 
           # Add current field to source obj
           current_source[source_component.to_sym] = field_value
+          current_source[:source_num] = source_num
           next
         end
 
@@ -252,30 +253,101 @@ module Import
       # Remove existing source references for the current def.
       SourceReference.where(definition: definition).destroy_all
 
+      source_material_refs = Hash.new { |h, k| h[k] = [] }
+
       # Save each source otherwise
       sources.each_with_index do |source, index|
-        next unless source
+        definition = definition
 
-        source_number = index + 1
+        if source.nil?
+          report_error  definition,
+                        "Source #{index+1}: Source is missing - should move subsequent sources to fill missing source.",
+                        'error'
+          next
+        end
 
-        # Get original source reference (GRD)
-        ref = source[:orig_reference]
+        source_ref_string = source[:orig_reference]
 
-        next unless ref
+        # No ref found in the source data
+        unless source_ref_string && self.class.source_ref_regex.match?(source_ref_string)
+          report_error  definition,
+                        "Source #{source[:source_number]}: Source reference '#{source_ref_string}' doesn't match expected format. Skipping.",
+                        'error'
+          return []
+        end
 
-        source_references = handle_source_ref_related_saves source_number, ref, definition
+        # Run regex to match components of the source reference string
+        source_reference_match = @bibliography_data[:reference_regex].match source_ref_string
 
-        source_references.each do |ref|
-          date_string = source[:date]
-          save_dates(source_number, date_string, ref)
+        unless source_reference_match
+          report_error  definition,
+                        "Source #{source[:source_number]}: No source record in bibliography matched for #{source_ref_string}",
+                        'error'
+          return []
+        end
+
+        # Extract the reference from the regex match
+        source_material_reference = source_reference_match[1]
+
+        unless source_material_reference
+          # TODO: error, no source reference found in source string
+        end
+
+        # Retrieve the corresponding source material
+        source_materials = @bibliography_data[:source_materials][source_material_reference.downcase] || []
+
+        # FIXME: this next error check was moved, might not make sense here
+        unless source_materials.any?
+          report_error  definition,
+                        "Source #{source[:source_number]}: No source material loaded from bibliography for #{source_material_reference}",
+                        'error'
+        end
+
+        source_materials.each do |sm|
+          source_material_refs[sm] << source
+        end
+      end
+
+      source_material_refs.each do |source_material, sources|
+        source_reference_obj = SourceReference.create definition: definition, source_material: source_material
+
+        existing_excerpts = []
+
+        # TODO: need to check if each excerpt is the same as one that's already been created, and re-use that if so
+        sources.each do |source_hash|
+          source_ref_string = source_hash[:orig_reference]
+
+          # Run regex to match components of the source reference string
+          source_reference_match = @bibliography_data[:reference_regex].match source_ref_string
+
+          # Extract the reference to the excerpt
+          # (volume and/or page number, or arch. ref)
+          preset_archival_ref = @bibliography_data[:archival_refs][source_ref_string.downcase]
+          excerpt_reference = if preset_archival_ref&.present?
+                                preset_archival_ref
+                              else
+                                source_reference_match[2]
+                              end
+
+          next if existing_excerpts.include? excerpt_reference
+          existing_excerpts << excerpt_reference
+
+          # save_source(definition, source, index+1) unless source.nil?
+          save_source_excerpts(source_hash[:source_number], source_material, excerpt_reference, source_reference_obj)
+
+          date_string = source_hash[:date]
+          save_dates(source_hash[:source_number], date_string, source_reference_obj)
 
           # Get place name associated with source instance
-          places_string = source[:place]
-          save_places(source_number, places_string, ref)
+          places_string = source_hash[:place]
+          save_places(source_hash[:source_number], places_string, source_reference_obj)
         end
       end
     end
 
+    # Matches the source reference, and retrieves the relevant source materials
+    # for that reference. The sub-reference is parsed, and a SourceReference &
+    # SourceExcerpt objects created.
     def handle_source_ref_related_saves(source_number, source_ref_string, definition)
       definition = definition
 
