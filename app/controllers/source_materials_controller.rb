@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SourceMaterialsController < ApplicationController
-  before_action :set_source_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_source_material, only: %i[show edit update destroy]
 
   # GET /source_materials
   # GET /source_materials.json
@@ -12,8 +14,7 @@ class SourceMaterialsController < ApplicationController
 
   # GET /source_materials/1
   # GET /source_materials/1.json
-  def show
-  end
+  def show; end
 
   # GET /source_materials/new
   def new
@@ -21,8 +22,7 @@ class SourceMaterialsController < ApplicationController
   end
 
   # GET /source_materials/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /source_materials
   # POST /source_materials.json
@@ -84,7 +84,12 @@ class SourceMaterialsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_source_material
-    @source_material = SourceMaterial.find(params[:id])
+    @source_material = SourceMaterial
+                       .includes(
+                         source_references:
+                          %i[source_excerpts definition word]
+                        )
+                       .find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
