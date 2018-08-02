@@ -6,16 +6,20 @@
 		</div>
 	</div>
 
-	<% if @source_material.words.present? %>
+	<% if @source_material.source_references.present? %>
 		<h2>Associated words</h2>
-		<div class="row">
-			<div class="col">
-				<% @source_material.words.each do |word| %>
-					<%= link_to word.text, word, class: 'place-word' %>
-				<% end %>
-			</div>
-		</div>
+		<% excerpt_strings = Hash.new { |h, k| h[k] = [] } %>
+		<% @source_material.source_references.each do |reference| %>
+			<% excerpt_strings[reference.excerpts_string] << reference %>
+		<% end %>
+		<% excerpt_strings.each do |key, references| %>
+			<h3><%= key.presence || 'Whole source' %></h3>
+			<% references.each do |reference| %>
+				<%= link_to reference.word.text, reference.word, class: 'place-word' %>
+			<% end %>
+		<% end %>
 	<% end %>
+
 
 	<div class="row">
 		<div class="col">
