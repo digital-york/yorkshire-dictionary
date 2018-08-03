@@ -7,7 +7,7 @@ class Definition < ApplicationRecord
   has_many :alt_spellings
 
   has_many :source_references
-  has_many :source_dates, through: :source_references
+  has_many :source_dates, -> { order start_year: :asc }, through: :source_references
 
   has_many :source_materials, -> { distinct }, through: :source_references
   has_many :places, -> { distinct }, through: :source_references
