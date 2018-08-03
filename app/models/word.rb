@@ -21,6 +21,12 @@ class Word < ApplicationRecord
   # Search for words
   def self.search(search)
     if search
+      # Remove anything that isn't a letter or hyphen
+      search.each do |k,v|
+        next if search.nil?
+        v.gsub!(/[^a-zA-Z\-\s]+/, '')
+      end
+
       # Pull out individual params from the search parameter
       text = search[:text]
       places = search[:places]
