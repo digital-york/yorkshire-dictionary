@@ -17,8 +17,27 @@
             <% end %> 
           <% end %>
 
+          <% if definition&.alt_spellings&.any? %>
+            <%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
+          <% end %>
+
+          <!-- render related defs -->
+          <% if definition&.related_definitions&.any? %>
+            <%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
+          <% end %>
+
+          <!-- render definition places -->
+          <% if definition&.places&.any? %>
+            <%= render partial: 'words/word_list/places', object: definition.places %>
+          <% end %>
+          
           <% if definition&.source_references&.any? %>
             <%= render partial: 'words/word_list/source_excerpts', locals: {sources: definition.source_references} %>
+          <% end %>
+          
+          <!-- render dates -->
+          <% if definition&.source_dates&.any? %>
+            <%= render partial: 'words/word_list/dates', object: definition.source_dates %>
           <% end %>
         </div>
         <%= render partial: 'words/network', locals: { definition_id: definition.id } %>
