@@ -13,7 +13,7 @@
 				<% display_title = 'Untitled source' %>
 			<% end %>
 
-			<%= link_to display_title,
+			<%= link_to "#{display_title}:#{source_reference.excerpts_string}",
 				source_material,
 				'data-placement': "top",
 				'data-toggle': "tooltip",
