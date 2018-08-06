@@ -56,6 +56,17 @@ label, navbar, .nav-item {
     border-radius: 0.3em;
 }
 
+.flash-container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.alert {
+	text-align: center;
+    font-weight: bold;
+    border-radius: 0;
+}
+
 .row {
 	margin-bottom: 1rem;
 }

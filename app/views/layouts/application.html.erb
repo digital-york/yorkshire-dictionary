@@ -14,7 +14,7 @@
 
   <body class="background">
     <%= render "shared/navbar" %>
-    <div class="container-fluid">
+    <div class="container-fluid flash-container">
       <% flash.each do |key, value| %>
         <!--Use flash_class helper from ApplicationHelper -->
         <div class="<%= flash_class(key) %>"><%= value %>
