@@ -23,7 +23,7 @@ class Word < ApplicationRecord
     if search
       # Remove anything that isn't a letter or hyphen
       search.each do |k,v|
-        next if search.nil?
+        next if v.nil?
         v.gsub!(/[^a-zA-Z\-\s]+/, '')
       end
 
