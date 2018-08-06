@@ -6,9 +6,6 @@ class WordsController < ApplicationController
   before_action :set_word, only: %i[show update]
   before_action :set_sort_options, only: %i[index search]
 
-  before_action :authenticate_user!, except: %i[index search show random]
-  before_action :authenticate_admin, except: %i[index search show random]
-
   # GET /words
   # GET /words.json
   def index
@@ -124,11 +121,4 @@ class WordsController < ApplicationController
     params.require(:word).permit(:word)
   end
 
-  # Check if user is an admin and error/redirect if not
-  def authenticate_admin
-    return if current_user.admin?
-
-    flash[:error] = "You're not authenticated to access that page."
-    redirect_to root_path
-  end
 end

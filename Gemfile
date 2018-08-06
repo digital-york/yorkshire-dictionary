@@ -26,11 +26,6 @@ gem "js-routes", '~> 1.4.4'
 
 gem 'vis-gem', '~> 4.21.0.0'
 
-# User auth
-gem 'devise', '~> 4.4.3'
-gem 'devise-guests', '~> 0.6'
-gem 'devise-bootstrap-views', '~> 0.0.11'
-
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
 
