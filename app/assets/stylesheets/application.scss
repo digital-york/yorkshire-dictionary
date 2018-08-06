@@ -16,7 +16,6 @@
  *= require 'footer'
  *= require 'homepage'
  *= require 'navbar'
- *= require 'pagination'
  *= require 'places'
  *= require 'search'
  *= require 'network-graph'
@@ -32,6 +31,7 @@ $font-family-sans: 'Heebo', Georgia, "Times New Roman", Times, serif;
 $headings-font-family: 'Bree Serif', Georgia, "Times New Roman", Times, serif;
 
 @import "bootstrap";
+@import "pagination";
 
 @import "vis";
 
@@ -51,6 +51,7 @@ label, navbar, .nav-item {
 	min-height: 100%;
 	background-color: white;
 	margin-top: 3em;
+	margin-bottom: 3em;
     box-shadow: 0em 0em 4em #00000085;
     border-radius: 0.3em;
 }

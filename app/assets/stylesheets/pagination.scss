@@ -1,11 +1,7 @@
-/* TODO: add CSS for pagination controls */
-.pagination {
-	padding-bottom: 1.5em;
-}
-
 .pagination a, .pagination span, .pagination .current {
 	padding:0.5em;
 	font-style: normal;
+	font-family: $font-family-sans;
 }
 
 .pagination .disabled {
