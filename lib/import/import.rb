@@ -547,7 +547,7 @@ module Import
         .first_or_create
 
       else
-        report_error definition, "Unknown source type: #{source_type}", 'error'
+        report_error definition, "Unknown source type: #{source_material.source_type}", 'error'
       end
     end
 

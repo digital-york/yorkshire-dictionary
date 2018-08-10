@@ -27,9 +27,9 @@ class BibliographyLoader
       case bib_header
       when 'GRD Ref'
         sym = :orig_ref
-      when 'Title'
+      when 'Source Title'
         sym = :title
-      when 'Description'
+      when 'Excerpt Description'
         sym = :description
       when 'Done?'
         sym = :done
@@ -55,7 +55,7 @@ class BibliographyLoader
         puts "Skipped bibliography entry for having no reference."
         next
       end
-      
+
       unless title
         puts "Skipped bibliography entry for having no title (#{orig_ref})"
         next
@@ -78,7 +78,7 @@ class BibliographyLoader
           ref: archival_ref,
           archive: archive,
           archive_checked: archive_checked,
-          source_type: source_type.downcase # TODO: what about if no source type?
+          source_type: source_type # TODO: what about if no source type?
         )
       end
 
