@@ -1,7 +1,7 @@
 $(document).on("turbolinks:load", function() {
 	let place_data = $('#map').data('places');
 	if (place_data && place_data.length) {
-		var map = L.map('map');
+		var map = L.map('map', { scrollWheelZoom: false });
 	
 		// create the tile layer with correct attribution
 		var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
