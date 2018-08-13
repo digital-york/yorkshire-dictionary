@@ -23,8 +23,8 @@ class Word < ApplicationRecord
     if search
       # Remove anything that isn't a letter or hyphen from fields which contain
       # free text.
-      cleanable_fields = [search[:def_text], search[:text]];
-      cleanable_fields.each do |k,v|
+      cleanable_fields = [search[:def_text], search[:text]]
+      cleanable_fields.each do |_k, v|
         next if v.nil?
         v.gsub!(/[^a-zA-Z\-\s]+/, '')
       end
@@ -68,10 +68,10 @@ class Word < ApplicationRecord
       # Search definition text
       if def_text.present?
         query = query
-          .where('definitions.text ILIKE \'%%%s%%\'', def_text)
-          .or(
-            query.where('definitions.discussion ILIKE \'%%%s%%\'', def_text)
-          )
+                .where('definitions.text ILIKE \'%%%s%%\'', def_text)
+                .or(
+                  query.where('definitions.discussion ILIKE \'%%%s%%\'', def_text)
+                )
       end
 
       # Search by first letter
@@ -94,17 +94,15 @@ class Word < ApplicationRecord
 
       # Only return each word once
       results = query.distinct
-    else 
+    else
       # If no search specified, return all words
       results = all
     end
-    return results
+    results
   end
 
   def self.check_empty_search_arrays(array)
-    if array&.size == 1 && array&.first == ''
-      array = nil
-    end
+    array = nil if array&.size == 1 && array&.first == ''
     array
   end
 end
