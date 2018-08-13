@@ -21,8 +21,10 @@ class Word < ApplicationRecord
   # Search for words
   def self.search(search)
     if search
-      # Remove anything that isn't a letter or hyphen
-      search.each do |k,v|
+      # Remove anything that isn't a letter or hyphen from fields which contain
+      # free text.
+      cleanable_fields = [search[:def_text], search[:text]];
+      cleanable_fields.each do |k,v|
         next if v.nil?
         v.gsub!(/[^a-zA-Z\-\s]+/, '')
       end
