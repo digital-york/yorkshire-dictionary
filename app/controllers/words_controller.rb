@@ -11,7 +11,6 @@ class WordsController < ApplicationController
   def index
     # Uses will_paginate gem
     @words = Word
-             .select(:text)
              .includes(
                definitions: [
                  { related_definitions: :word },
