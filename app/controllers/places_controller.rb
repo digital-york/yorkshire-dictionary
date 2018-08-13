@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
               .includes(:words)
               .order(:name)
               .paginate(page: params[:page], per_page: 50)
+              .load
 
     # Set @map_places to a hash with data for the map with all places
     @map_places = map_places

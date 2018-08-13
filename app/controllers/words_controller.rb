@@ -11,17 +11,19 @@ class WordsController < ApplicationController
   def index
     # Uses will_paginate gem
     @words = Word
+             .select(:text)
              .includes(
                definitions: [
-                 {related_definitions: :word}, 
+                 { related_definitions: :word },
                  :places,
                  :alt_spellings,
                  :source_materials,
                  :source_dates
-                ]
-              )
+               ]
+             )
              .order(sort_order)
              .paginate(page: params[:page], per_page: 50)
+             .load
   end
 
   # Get a random word and go to its show page
@@ -120,5 +122,4 @@ class WordsController < ApplicationController
   def word_params
     params.require(:word).permit(:word)
   end
-
 end
