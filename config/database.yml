@@ -26,6 +26,4 @@ staging:
 
 production:
   <<: *default
-  host: pgyhd.york.ac.uk
-  database: yhd_staging
-  password: <%= Rails.application.credentials.database[:staging_pw] %>
+  url: <%= ENV['DATABASE_URL'] %>
