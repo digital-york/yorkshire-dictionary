@@ -48,8 +48,8 @@ gem 'pg', '~> 1.0.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 10.0.2', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'ruby-debug-ide', '~> 0.6.1'
-  gem 'debase', '~> 0.2.2'
+  gem 'ruby-debug-ide', '~> 0.7.0.beta6'
+  gem 'debase', '~> 0.2.3.beta2'
   gem 'xray-rails', '~> 0.3.1'
   gem 'jasmine-rails', '~> 0.14.8' 
 end
