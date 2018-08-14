@@ -1,0 +1,35 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>Submit a new word or correction</h1>
+			<%= form_tag("/submissions", method: "post", class: "submissions-form") do %>
+				<div class="submission-instructions">
+					<p>
+					If you find a mistake or you have new information for the dictionary, please submit it below.
+					</p>
+					
+					<p>
+					Please include any source information, related words, and associated places, if possible.
+					</p>
+			
+					<p>
+					You may provide an email address for us to contact you when your information is added.</p>
+					</p>
+				</div>
+		
+				<div class="form-group">
+					<label for="content">Submission</label>
+					<textarea name="content" class="form-control"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="email_address">Email address (if you want to be updated when your submission is added)</label>
+					<input name="email_address" class="form-control"/> 
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			<% end %>
+		</div>
+	</div>
+</div>

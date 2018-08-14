@@ -1,0 +1,19 @@
+New information submitted for the YHD
+-----------
+<% if @email_address.present? %>
+  From: <%= @email_address %>
+<% else %>
+  No email address provided
+<% end %>
+-----------
+Submission:
+<% if @content&.present? %>
+  <%= @content %>
+<% else %>
+  Empty
+<% end %>
+
+
+
+
+ 

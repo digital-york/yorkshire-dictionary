@@ -1,0 +1,19 @@
+<h1>New information submitted for the YHD</h1>
+<% if @email_address.present? %>
+  <h2>From: <%= @email_address %> </h2>
+<% else %>
+  <h3>No email address provided</h3>
+<% end %>
+<p>
+  <h2>Submission:</h2>
+  <% if @content&.present? %>
+    <%= @content %>
+  <% else %>
+    Empty
+  <% end %>
+</p>
+
+
+
+
+ 
