@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   def contact
     render 'single_pages/contact'
@@ -10,5 +12,4 @@ class PagesController < ApplicationController
   def about
     render 'single_pages/about'
   end
-
 end
