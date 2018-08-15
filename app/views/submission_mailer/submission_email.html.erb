@@ -1,19 +1,51 @@
 <h1>New information submitted for the YHD</h1>
-<% if @email_address.present? %>
-  <h2>From: <%= @email_address %> </h2>
-<% else %>
-  <h3>No email address provided</h3>
-<% end %>
+<h2>From:</h2>
 <p>
-  <h2>Submission:</h2>
-  <% if @content&.present? %>
-    <%= @content %>
-  <% else %>
-    Empty
-  <% end %>
+<% if @email_address.present? %>
+  <%= @email_address %>
+<% else %>
+  No email address provided
+<% end %>
 </p>
 
+<% if @word.present? %>
+  <h2>Word: </h2>
+  <p>
+     <%= @word %>
+    <% if @new.present? %>
+      <% if @new %>
+        (New)
+      <% else %>
+        (Existing)
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
 
+<% if @sources.present? %>
+  <h2>Sources: </h2>
+  <p>
+    <%= @sources %>
+  </p>
+<% end %>
 
+<% if @quotes.present? %>
+  <h2>Quotes: </h2>
+  <p>
+    <%= @quotes %>
+  </p>
+<% end %>
 
- 
+<% if @dates.present? %>
+  <h2>Dates: </h2>
+  <p>
+    <%= @dates %>
+  </p>
+<% end %>
+
+<% if @notes.present? %>
+  <h2>Notes: </h2>
+  <p>
+    <%= @notes %>
+  </p>
+<% end %>
