@@ -5,7 +5,6 @@ class SubmissionsController < ApplicationController
   def index;end
 
   def create
-    puts params
     SubmissionMailer
       .with(
         email_address: params[:email_address],

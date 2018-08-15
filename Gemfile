@@ -66,6 +66,11 @@ group :development do
   gem 'bullet', '~> 5.7.5'
 end
 
+group :heroku do
+  gem 'sendgrid-ruby'
+end
+
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
