@@ -64,6 +64,8 @@ group :development do
   
   # Performance monitoring
   gem 'bullet', '~> 5.7.5'
+
+  gem 'puma'
 end
 
 group :heroku do
