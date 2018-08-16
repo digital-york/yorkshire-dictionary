@@ -11,7 +11,6 @@ mailer_creds = Rails.application.credentials.mailer
 # Always try to configure the mailer outside test and dev envs
 # If the mailer creds are present, configure it in those two envs too
 if (!Rails.env.development? && !Rails.env.test?) || mailer_creds.present?
-  puts "Configuring mailer"
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
