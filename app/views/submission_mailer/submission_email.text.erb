@@ -1,43 +1,47 @@
 New information submitted for the YHD
-
 From:
+
 <% if @email_address.present? %>
   <%= @email_address %>
 <% else %>
   No email address provided
 <% end %>
 
+
 <% if @word.present? %>
   Word: 
-  <%= @word %>
-  <% if @new.present? %>
-    <% if @new %>
-      (New)
+    <%= @word %>
+    <% unless @new_entry.nil? %>
+    <% if @new_entry %>
+      (new word)
     <% else %>
-      (Existing)
+      (existing word)
     <% end %>
-  <% end %>
+    <% end %>
   
 <% end %>
 
 <% if @sources.present? %>
-  Sources: 
-  <%= @sources %>
+  Source(s): 
+    <%= @sources %>
 <% end %>
 
 <% if @quotes.present? %>
-  Quotes: 
-  <%= @quotes %>
-  
+  Quote(s): 
+    <%= @quotes %>
+<% end %>
+
+<% if @places.present? %>
+  Place(s): 
+    <%= @places %>
 <% end %>
 
 <% if @dates.present? %>
-  Dates: 
-  <%= @dates %>
-  
+  Date(s): 
+    <%= @dates %>
 <% end %>
 
 <% if @notes.present? %>
-  Notes: 
-  <%= @notes %>
+  Note(s): 
+    <%= @notes %>
 <% end %>
