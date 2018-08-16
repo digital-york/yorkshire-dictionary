@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubmissionMailer < ActionMailer::Base
   default from: 'yhd@york.ac.uk'
   layout 'mailer'
@@ -13,13 +15,12 @@ class SubmissionMailer < ActionMailer::Base
     @places = params[:places]
     @word = params[:word]
     new_entry_param = params[:new_entry]
-    if new_entry_param.present?
-      if new_entry_param === 'true'
-        @new_entry = true
-      else
-        @new_entry = false
-      end
-    end
+
+    # Checks if new_entry_param is true, only if there is a value present
+    # @new_entry will be true if new_entry_param == 'true', false if it's
+    # 'false', and nil otherwise.
+    @new_entry = new_entry_param == 'true' if new_entry_param.present?
+
     mail(to: SUBMISSION_EMAIL_ADDRESS, subject: 'YHD Submission Form Entry')
   end
 end
