@@ -12,3 +12,22 @@
 	-o-transition: -o-stroke-dashoffset 0.3s ease-out, -o-stroke-opacity 0.3s ease-in;
 	transition: stroke-dashoffset 0.3s ease-out, stroke-opacity 0.3s ease-in;
 }
+
+.marker-cluster {
+  background-color: rgba(40, 128, 202, 0.39);
+}
+.marker-cluster div {
+  background-color: rgba(35, 124, 201, 0.87);
+}
+
+.leaflet-marker-pane > div > div > span {
+    color: white;
+}
+
+/* IE 6-8 fallback colors */
+.leaflet-oldie .marker-cluster {
+  background-color: rgba(40, 128, 202, 0.39);
+}
+.leaflet-oldie .marker-cluster div {
+  background-color: rgba(35, 124, 201, 0.87);
+}
