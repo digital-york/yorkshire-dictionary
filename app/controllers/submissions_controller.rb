@@ -17,7 +17,7 @@ class SubmissionsController < ApplicationController
         notes: params[:notes]
       )
       .submission_email.deliver_now
-    flash[:notice] = 'Submission sent. Thanks for your contribution!'
+    flash[:success] = 'Submission sent. Thanks for your contribution!'
     redirect_to :root
   end
 end
