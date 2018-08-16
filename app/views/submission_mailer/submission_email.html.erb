@@ -12,8 +12,8 @@
   <h2>Word: </h2>
   <p>
      <%= @word %>
-    <% if @new.present? %>
-      <% if @new %>
+    <% unless @new_entry.nil? %>
+      <% if @new_entry %>
         (New)
       <% else %>
         (Existing)
@@ -23,28 +23,35 @@
 <% end %>
 
 <% if @sources.present? %>
-  <h2>Sources: </h2>
+  <h2>Source(s): </h2>
   <p>
     <%= @sources %>
   </p>
 <% end %>
 
 <% if @quotes.present? %>
-  <h2>Quotes: </h2>
+  <h2>Quote(s): </h2>
   <p>
     <%= @quotes %>
   </p>
 <% end %>
 
+<% if @places.present? %>
+  <h2>Place(s): </h2>
+  <p>
+    <%= @places %>
+  </p>
+<% end %>
+
 <% if @dates.present? %>
-  <h2>Dates: </h2>
+  <h2>Date(s): </h2>
   <p>
     <%= @dates %>
   </p>
 <% end %>
 
 <% if @notes.present? %>
-  <h2>Notes: </h2>
+  <h2>Note(s): </h2>
   <p>
     <%= @notes %>
   </p>
