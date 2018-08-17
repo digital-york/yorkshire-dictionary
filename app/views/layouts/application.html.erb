@@ -4,7 +4,8 @@
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
 
-    <title>Yorkshire Historic Dictionary</title>
+    <title><%= "#{yield(:title)} - " if content_for?(:title) %> Yorkshire Historic Dictionary </title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

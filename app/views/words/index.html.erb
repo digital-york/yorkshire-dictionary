@@ -1,3 +1,9 @@
+<% if request.original_url.include? '/search?' %>
+  <% content_for(:title) { 'Search words' } %>
+<% else %>
+  <% content_for(:title) { "Words" } %>
+<% end %>
+
 <div class="container">
   <%= render 'words/search' %>
   <%= render 'words/word_list/word_list' %>
