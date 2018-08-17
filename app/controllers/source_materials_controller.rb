@@ -32,6 +32,11 @@ class SourceMaterialsController < ApplicationController
     end
   end
 
+  # Get a random source material obj and go to its show page
+  def random
+    redirect_to_random(SourceMaterial)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -21,9 +21,16 @@
   </div>
     <% unless @words&.any? %>
       <div class="row">
-        <div class="col">
-          <h2 class="text-center">No words found</h2>
-          <h3 class="text-center">Try a <%= link_to "random word", random_words_url %> instead!</h3>
+        <div class="col text-center">
+          <h2>No words found</h2>
+          <h3>
+            Why not try a random  
+            <%= link_to "word", random_words_url %>,
+            <%= link_to "place", random_places_url %>,
+            or
+            <%= link_to "source", random_source_materials_url %> 
+            instead!
+          </h3>
         </div>
       </div>
     <% end %>

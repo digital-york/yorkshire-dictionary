@@ -33,6 +33,11 @@ class PlacesController < ApplicationController
     end
   end
 
+  # Get a random place and go to its show page
+  def random
+    redirect_to_random(Place)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

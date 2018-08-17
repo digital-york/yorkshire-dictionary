@@ -27,13 +27,7 @@ class WordsController < ApplicationController
 
   # Get a random word and go to its show page
   def random
-    # Get random num between 0 and num words
-    offset = rand(Word.count)
-
-    # Get word record at random offset
-    @word = Word.offset(offset).first
-
-    redirect_to @word
+    redirect_to_random(Word)
   end
 
   # GET /words/1

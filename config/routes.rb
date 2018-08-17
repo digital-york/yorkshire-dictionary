@@ -15,11 +15,14 @@ Rails.application.routes.draw do
   resources :places do
     get 'search', on: :collection
     get 'id_search', on: :collection
+    get 'random', on: :collection
+
   end
 
   resources :source_materials do
     get 'search', on: :collection
     get 'id_search', on: :collection
+    get 'random', on: :collection
   end
 
   get 'contact', to: 'pages#contact'
