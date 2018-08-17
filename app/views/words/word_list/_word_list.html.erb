@@ -6,10 +6,10 @@
 
 <div class="row" style="margin-top: 1em;">
     <div class="col">
-    <div class="sort">
-      <%= label_tag :sort, "Sort by:" %>
-      <%= select_tag :sort, options_for_select(@sort_orders, params[:sort]), class: "custom-select" %>
-    </div>
+      <div class="sort">
+        <%= label_tag :sort, "Sort by:" %>
+        <%= select_tag :sort, options_for_select(@sort_orders, params[:sort]), class: "custom-select" %>
+      </div>
       <% if @words&.any? %>
         <div class="words-list">
           <!-- Render word list entry with @words collection -->
@@ -17,12 +17,16 @@
         </div>
       <% end %>
 
-      <% unless @words&.any? %>
-        <h2 class="text-center">No words found</h2>
-      <% end %>
-
     </div>
   </div>
+    <% unless @words&.any? %>
+      <div class="row">
+        <div class="col">
+          <h2 class="text-center">No words found</h2>
+          <h3 class="text-center">Try a <%= link_to "random word", random_words_url %> instead!</h3>
+        </div>
+      </div>
+    <% end %>
   
   <div class="row">
     <div class="col">
