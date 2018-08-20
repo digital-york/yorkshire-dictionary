@@ -86,8 +86,31 @@ label, navbar, .nav-item {
 	background-image: image-url("swaledale_sm.jpg");
 	background-attachment: fixed;
 	background-size: cover;
+	position: relative;
 }
 
 a {
 	color: #025dc5;
+}
+
+.attribution {
+	background-color: #000000ad;
+	padding: 3px;
+	font-size: smaller;
+	color: white;
+	a {
+		color:white;
+	}
+}
+
+.homepage-attribution {
+	position: absolute;
+    bottom: 0;
+	right: 0;
+}
+
+.background-attribution {
+	position: fixed;
+    bottom: 0;
+    right: 0;
 }
