@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load", function() {
 	let place_data = $('#map').data('place');
-	if (place_data) {
+	if (place_data && place_data.length) {
 		let latitude = place_data.latitude;
 		let longitude = place_data.longitude;
 		
