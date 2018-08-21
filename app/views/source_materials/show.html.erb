@@ -10,10 +10,15 @@
 
 	<% if @source_material.source_references.present? %>
 		<h2>Associated words</h2>
+		<%# Create a new hash with an empty array as default value%>
 		<% excerpt_strings = Hash.new { |h, k| h[k] = [] } %>
+
+		<%# Add source reference to array, indexed by the excerpt string %>
 		<% @source_material.source_references.each do |reference| %>
 			<% excerpt_strings[reference.excerpts_string] << reference %>
 		<% end %>
+
+		<%# Loop through excerpt string arrays %>
 		<% excerpt_strings.each do |key, references| %>
 			<h3><%= key.presence || 'Whole source' %></h3>
 			<% references.each do |reference| %>
