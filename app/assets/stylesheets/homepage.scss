@@ -124,18 +124,25 @@ body {
 
 .section-contents-container {
 	padding: 3rem;
-	width: 100%;
-	@media screen and (min-width: 1000px) {
-		width: 60%;
-     	max-width: 705px;
-	}
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 }
 
+.limited-width-section {
+	width: 100%;
+	@media screen and (min-width: 1000px) {
+		width: 60%;
+		max-width: 705px;
+	}
+}
+
+.full-width-section {
+	width: 100%;
+}
+
 .homepage-section-text {
-      text-shadow: 0 0 1em black;
+	text-shadow: 0 0 1em black;
 	font-family: 'Bree Serif';
 	color: white;
 	text-align: center;
@@ -157,4 +164,34 @@ body {
 // TODO: get this method working
 @function gradiented-image($image-url, $dir) {
 	@return image-url($image-url) left;
+}
+
+#homepage-funding {
+	// justify-content: flex-end;
+	background: image-url("malham-tarn.jpg") left;
+	.homepage-section-text {
+		@media only screen and (min-width: 1000px) {
+			// text-align: right;
+		}
+	}
+	background-position: center;
+	background-size: cover;
+}
+
+.funding-logo {
+	img {
+		max-width: 12rem;
+	}
+	display: flex;
+	justify-content: center;
+	margin: 1rem 3rem;
+    flex-direction: column;
+}
+
+#funding-logo-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 1rem;
 }
