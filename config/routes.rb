@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'id_search', on: :collection
     get 'random', on: :collection
-
   end
 
   resources :source_materials do

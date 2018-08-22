@@ -30,7 +30,9 @@ function deleteAutocompleteSelection(element) {
   $(element).closest('.ac_selected').remove();
 }
 
+// TODO: use destructuring to document input params
 function setupAutocomplete(acData) {
+  // Check there is a field matching the field specified
   const fieldExists = $(acData.autocompleteFieldSelector).length;
 
   if (!fieldExists) {
@@ -38,8 +40,8 @@ function setupAutocomplete(acData) {
   }
 
   // Get the IDs for the current query
-  const urlParams = new URLSearchParams(window.location.search);
-  const existingIds = urlParams.getAll(`${acData.acIdentifier}[]`).map(Number);
+  const params = new URLSearchParams(window.location.search);
+  const existingIds = params.getAll(`${acData.acIdentifier}[]`).map(Number);
 
   if (existingIds && existingIds.length) {
     (function setup(data) {
