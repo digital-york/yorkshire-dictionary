@@ -1,26 +1,28 @@
 $(document).on("turbolinks:load", function() {
+	// Get place data from data attr. on #map div
 	let place_data = $('#map').data('place');
-	if (place_data && place_data.length) {
+
+	if (place_data) {
 		let latitude = place_data.latitude;
 		let longitude = place_data.longitude;
 		
 		if (longitude && latitude) {
+			// Show map if there is place data available
 			$('#map').show();
 
-			var map = L.map('map', { scrollWheelZoom: false });
+			// Disable map zoom on scroll
+			let map = L.map('map', { scrollWheelZoom: false });
 		
 			// create the tile layer with correct attribution
-			var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-			var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
-			var osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 20, attribution: osmAttrib});		
+			let osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+			let osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+			let osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 20, attribution: osmAttrib});		
+			map.addLayer(osm);
 
+			// Center map around place, set zoom level to 9
 			map.setView(new L.LatLng(latitude, longitude), 9);
 
-			var marker = L.marker([latitude, longitude]).addTo(map);
-
-			//marker.bindPopup("<b>"+place_data.name+"</b>").openPopup();
-
-			map.addLayer(osm);
+			L.marker([latitude, longitude]).addTo(map);
 		}
 	}	
 });

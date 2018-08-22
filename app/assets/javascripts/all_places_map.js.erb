@@ -1,16 +1,23 @@
 $(document).on("turbolinks:load", function() {
+
+	// Get place data from data attr. on #map div
 	let place_data = $('#map').data('places');
+
 	if (place_data && place_data.length) {
-		var map = L.map('map', { scrollWheelZoom: false });
+
+		// Instantiate map
+		let map = L.map('map', { scrollWheelZoom: false });
 	
 		// create the tile layer with correct attribution
-		var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-		var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
-		var osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 20, attribution: osmAttrib});		
+		let osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		let osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+		let osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 20, attribution: osmAttrib});		
 		map.addLayer(osm);
 
-		var markers = L.markerClusterGroup();
+		// Instantiate markers cluster (empty)
+		let markers = L.markerClusterGroup();
 
+		// Loop through place data and create a marker for each, and add to markers
 		for(let i=0;i<place_data.length;i++) {
 			let current_place = place_data[i];
 			let latitude = current_place.latitude;
@@ -18,14 +25,14 @@ $(document).on("turbolinks:load", function() {
 			
 			if (longitude && latitude) {
 				let marker = L.marker([latitude, longitude]);
-				//marker.addTo(map);
 				markers.addLayer(marker);
 				let markerText = `<b><a href=${current_place.link}>${current_place.name}</a></b>`;
 				marker.bindPopup(markerText).openPopup();
 			}
 		}
-
 		map.addLayer(markers);
-		map.setView(new L.LatLng(53.95763, -1.08271), 8); // Center on york
+
+		// Center on york
+		map.setView(new L.LatLng(53.95763, -1.08271), 8);
 	}	
 });
