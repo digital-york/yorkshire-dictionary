@@ -4,21 +4,22 @@
 # Set bounds to yorkshire and region to GB
 # geocoded_by :name, params: { countrycode: 'gb' }
 class YhdGeocodeService
-  def self.geocode(place_name)
-    results = geocode_results(place_name, true)
-    results = geocode_results(place_name, false) if results&.empty?
-
-    closest_result = closest_result(results)
-
-    return nil unless closest_result
-
-    {
-      latitude: closest_result.latitude,
-      longitude: closest_result.longitude
-    }
-  end
-
   class << self
+
+    def geocode(place_name)
+      results = geocode_results(place_name, true)
+      results = geocode_results(place_name, false) if results&.empty?
+
+      closest_result = closest_result(results)
+
+      return nil unless closest_result
+
+      {
+        latitude: closest_result.latitude,
+        longitude: closest_result.longitude
+      }
+    end
+
     private
 
     def york
@@ -76,7 +77,7 @@ class YhdGeocodeService
       closest_result = nil
 
       results.each do |result|
-        next if result.data&.dig('components','_type') == 'county'
+        next if result.data&.dig('components', '_type') == 'county'
 
         distance = get_distance_from_york result
 

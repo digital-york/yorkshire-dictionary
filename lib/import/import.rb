@@ -54,6 +54,7 @@ module Import
       # Define data rows as the rest of the CSV
       row_range = 1..data.size
 
+      # Get data from each row (process it line at a time)
       puts 'Loading data...'
       load_data_from_rows(norm_headers, data[row_range])
 
@@ -261,7 +262,7 @@ module Import
 
         if source.nil?
           report_error  definition,
-                        "Source #{index+1}: Source is missing - should move subsequent sources to fill missing source.",
+                        "Source #{index + 1}: Source is missing - should move subsequent sources to fill missing source.",
                         'error'
           next
         end
@@ -535,24 +536,29 @@ module Import
         if match
           sub_reference = match[1]
         else
-          report_error definition, "Invalid archival excerpt reference - '#{excerpt_reference}'. Using anyway, but check. Expected format is source_reference/excerpt_reference (with slash) e.g. BIA/3/4/2.", 'warn'
+          report_error(
+            definition,
+            "Invalid archival excerpt reference - '#{excerpt_reference}'. Using anyway, but check. Expected format is source_reference/excerpt_reference (with slash) e.g. BIA/3/4/2.",
+            'warn'
+          )
           sub_reference = excerpt_reference
         end
 
         # page_regex_match = ImportHelper.archival_pages_regex.match sub_reference
-        SourceExcerpt.where(
-          source_reference: source_reference,
-          archival_ref: sub_reference
-        )
-        .first_or_create
+        SourceExcerpt
+          .where(
+            source_reference: source_reference,
+            archival_ref: sub_reference
+          )
+          .first_or_create
 
       else
         report_error definition, "Unknown source type: #{source_material.source_type}", 'error'
       end
     end
 
+    # Splits 'see also' field by semi-colon, returns all resulting terms
     def see_also_from_string(string)
-      # Splits 'see also' field by semi-colon, adds all resulting terms to see_also array
       see_also = []
       string.split(';').each do |see_also_word|
         see_also << see_also_word.downcase.strip
@@ -652,6 +658,7 @@ module Import
       nil
     end
 
+    # Add an error message for a definition to be printed after import
     def report_error(definition, message, type)
       return if type.nil?
       @errors << {
@@ -660,7 +667,7 @@ module Import
       }
     end
 
-    # Matches an alt-spelling header, capturing the number in group 1
+    # Matches an alt-spelling header (e.g. alt spelling 3), capturing the number in capture group 1
     def self.alt_spelling_header_regex
       /alt\s?spelling\s?(\d+)/
     end
@@ -673,24 +680,6 @@ module Import
     def self.source_header_regex
       /source\s?(\d+)\s?(?:archival)?\s?(\w+)*/
     end
-
-    # TODO: this method was declared as well as the one below with same name. Check still works with this commented out.
-    # def self.source_ref_regex
-    #   %r{\w+\/\d+}
-    # end
-
-    # Regular date - 1805
-    # Circa dates - c. 1805
-    # Unknown date with range - nd [1805-1905]
-    # Date range - 1805-1905 or 1805-6 or 1805-10
-    # Multiple dates - 1805, 1806 or 1805 1806 1807-8 (spaces vs commas)
-    # Decade - 1430s
-    # Circa range - c.1300-1350
-
-    # ^\d{4}$  // Regular date
-    # ^c\.\d{4}$   // c.date
-    # ^nd\s*\[.*\]$   // Estimates, need to process contained date as a regular date and set flag to estimate. Ranges or c.dates
-    # ^(\d{4})-(\d+)$   // Ranges. Need to get length of second group, subtract that from 1st group, append second group, set as later Ranges
 
     # Match any source reference
     def self.source_ref_regex
