@@ -2,14 +2,6 @@ require 'test_helper'
 
 class DefinitionTest < ActiveSupport::TestCase
 
-  test 'definitions should require text' do
-    defi = words(:one).definitions.create
-    assert defi.errors[:text].any?
-
-    defi.text = 'Test text'
-    assert defi.valid?
-  end
-
   test 'word definitions can have alternate spellings' do
     word = words(:one)
     definition = word.definitions.first
