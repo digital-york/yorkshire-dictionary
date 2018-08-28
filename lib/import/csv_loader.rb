@@ -4,7 +4,6 @@ require 'find'
 class CsvLoader
   # Locate the CSV in the project directory and read it
   def self.load_csv(filename)
-
     # Regex to match the filename at the end of the current path
     csv_file_regex = /.*#{Regexp.quote(filename)}$/
 
@@ -15,7 +14,7 @@ class CsvLoader
       # Check if path matches file
       if csv_file_regex.match?(path)
         puts "\tFound #{filename} at #{path}. Reading..."
-        return CSV.read(path, 'r:bom|utf-8')\
+        return CSV.read(path, 'r:bom|utf-8')
       end
     end
     puts "ERROR: Couldn't find #{filename} anywhere."
