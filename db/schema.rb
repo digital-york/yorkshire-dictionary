@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_103741) do
+ActiveRecord::Schema.define(version: 2018_08_23_132704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2018_08_06_103741) do
     t.index ["source_reference_id"], name: "index_source_excerpts_on_source_reference_id"
   end
 
+  create_table "source_material_relations", force: :cascade do |t|
+    t.integer "source_material_id"
+    t.integer "parent_source_material_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_source_material_id"], name: "index_source_material_relations_on_parent_source_material_id"
+    t.index ["source_material_id"], name: "index_source_material_relations_on_source_material_id"
+  end
+
   create_table "source_materials", force: :cascade do |t|
     t.string "title"
     t.string "ref"
@@ -93,6 +102,8 @@ ActiveRecord::Schema.define(version: 2018_08_06_103741) do
     t.string "archive"
     t.boolean "done"
     t.boolean "archive_checked"
+    t.integer "parent_id"
+    t.string "short_title"
   end
 
   create_table "source_references", force: :cascade do |t|
