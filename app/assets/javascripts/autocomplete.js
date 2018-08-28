@@ -43,6 +43,7 @@ function setupAutocomplete(acData) {
   const params = new URLSearchParams(window.location.search);
   const existingIds = params.getAll(`${acData.acIdentifier}[]`).map(Number);
 
+  // Add pills for any pre-selected values
   if (existingIds && existingIds.length) {
     (function setup(data) {
       // Retrieve the records for the IDs
