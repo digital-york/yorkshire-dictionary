@@ -1,0 +1,14 @@
+﻿GRD Ref,Parent,Source Title,Short Source Title,Source Description,Done?,Archival Ref,Archive,Checked with archive,Library Ref,Type
+AF,,parent,Swaledale,,FALSE,,,,online resource,Book
+AGD,parent,child,Lollards and Protestants,,,,,,C74.274DIC,Book
+TEST REF,test parent (non-existent),test title,test short title,test description,test done,test archival ref,test archive,test checked,test library ref,Book
+BAS,,"The Bradford Antiquary, the journal of the Bradford Historical & Antiquarian Society. This is in three series but they are treated here as a sequence with references drawn from twelve volumes issued between 1888 and 1982, with the page number.",Bradford Antiquary,,,,,,YML Lower Stack Periodicals PER:BRA,Book
+BCP,,"Purvis, J.S. (ed.) Bridlington Charters, Court Rolls and Papers XVI-XIXth Century, London (1926).",Bridlington Charters,,,,,,Staff Lib Q42.74 BRI,Book
+BJHK,,"Jennings, B. (ed.) A History of Harrogate and Knaresborough, Huddersfield (1970).",HIstory of Harrogate and Knaresborough,,,,,,Q42.74 HAR,Book
+BM46,,"Gill, M.C. ‚ÄòThe Grassington Mines‚Äô, British Mining, 46, Keighley (1993).",Grassington Mines,,,,,,YML SC Y/Z 22.34 GIL,Book
+BN2,,"Nuttall, B.H. Life at Thornhill Hall in the Reign of Charles I, Leeds (1986).",Life at Thornhill Hall,,,,,,KM Guide Book Collection,Book
+BTD,,"Leach, A.F. Beverley Town Documents, London (1900).",Beverley Town Documents,,,,,,"Compact Store 2, J Reports",Book
+CAM,,"Crossley, D.W. Sidney Ironworks Accounts 1541-73, Camden Fourth Series, vol. 15, Royal Historical Society (1975).",Sidney Ironworks Accounts,,,,,,Elton Collection Z.4.22,Book
+AW2,,Duplicate Source,Harvest of the Hills,,,,,,? [Requested],Book
+AW,,Duplicate Source,Harvest of the Hills,,,,,,? [Requested],Book
+Clay79,Halifax Wills 1389-1544,"Will of Brian Otes, Halifax, 4 August 1529",Brian Otes 1529,,,Prob Reg 9 f. 455,Borthwick Institute for Archives,,,Archival
