@@ -15,14 +15,14 @@ For reference, the process was completed on a 2012 Macbook Pro running `OSX 10.1
  1. Using the source .xlsx document, enable the developer tab	
 	 - `File->Options->Customize ribbon->Customize the Ribbon->Main Tabs->Developer` at time of writing, Google it if not
 2. Go to `Developer` tab, select `Visual Basic`
-3. File -> Import file, browse to `import_files` in the YHD directory & select `YHD_Excel_Tab_Merger.bas`
+3. In the opened window, `File -> Import file`, browse to `import_files` in the YHD directory & select `YHD_Excel_Tab_Merger.bas`
 4. **OSX ONLY** 
 	- `File -> Import`, browse to `import_files` in the YHD directory and select Dictionary.cls from `VBA-Dictionary-1.4.1` directory
 	- *This emulates Microsoft VBA functionality which is not included in OSX Excel version*
 5. Returning to the regular Excel window, select developer tab
 6. Click `Macros` in ribbon at the top
-7. Select `CombineTabs` and press `Run`
-8. The macro will run and create a new tab. This process may take several minutes, and will display a pop up message when complete
+7. Select `CombineSheetsWithDifferentHeaders` and press `Run`
+8. The macro will run and create a new tab. This process may take several minutes, and probably won't appear to be doing anything whilst it runs. When it completes, it will display a pop up message
 9. Switch to the new, merged tab
 10. Save the merged tab to a CSV:
 	- `File->Save As`
