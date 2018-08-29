@@ -257,7 +257,7 @@ module Import
           )
           .first_or_create
       else
-        @error_reporter.report_error definition, "Unknown source type: #{source_material.source_type}", 'error'
+        @error_reporter.report_error definition.word.text, "Unknown source type: #{source_material.source_type}", 'error'
       end
       end
 

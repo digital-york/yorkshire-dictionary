@@ -32,7 +32,7 @@ module Import
       # Map of source_ref : Source(obj.)
       @all_sources = {}
 
-      @source_saver = SourceSaver.new
+      @source_saver = SourceSaver.new(error_reporter)
     end
 
     # Top level method which runs the import
@@ -271,7 +271,10 @@ module Import
           related_def = @word_definitions.dig(word.downcase, word_index)
           unless related_def
             # Missing related definition - report error, skip
-            @error_reporter.report_error(definition.word.text, "'see_also' word not found: #{see_also_word}", 'error')
+            @error_reporter.report_error(definition.word.text, 
+              "'see_also' word not found: #{see_also_word}",
+              'error'
+            )
             next
           end
 
@@ -285,7 +288,11 @@ module Import
                       )
                       .first_or_create
 
-          puts "Error with def relation '#{word.downcase}': #{relation.errors.full_messages}" if relation.errors.present?
+          if relation.errors.present?
+            error_reporter.report_error word,
+                                        "Error with def relation '#{word.downcase}': #{relation.errors.full_messages}",
+                                        'error'
+          end
         end
       end
     end

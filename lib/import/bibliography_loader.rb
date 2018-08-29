@@ -84,6 +84,13 @@ class BibliographyLoader
       archive_checked = source[bib_field_indexes[:archive_checked]]
       source_type = source[bib_field_indexes[:source_type]]&.downcase
 
+      unless source_type
+        @error_reporter.report_error "Source #{orig_ref}",
+                                     'Skipped bibliography entry for having no source type',
+                                     'error'
+        next
+      end
+
       # Create source obj, set values if new only
       sm = SourceMaterial.where(title: title).first_or_create do |new_record|
         new_record.update(
