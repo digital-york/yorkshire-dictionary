@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class SubmissionMailer < ActionMailer::Base
-  default from: 'yhd@york.ac.uk'
+  default from: 'infodir-digital@york.ac.uk'
   layout 'mailer'
 
-  SUBMISSION_EMAIL_ADDRESS = 'rainer.hind@york.ac.uk'
+  SUBMISSION_EMAIL_ADDRESS = 'infodir-digital@york.ac.uk'
 
   def submission_email
     @email_address = params[:email_address]

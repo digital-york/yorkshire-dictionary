@@ -1,5 +1,5 @@
 # Importing Dictionary Data from Microsoft Excel 
-*Author: Rainer Hind (rainer.hind@york.ac.uk, rainerhind@gmail.com)*
+*Author: Rainer Hind (rainerhind@gmail.com)*
 
 The goal of this process is to take the XLSX document provided by Alex Medcalfe at the Borthwick, which has a tab for each dictionary letter, and export it to a CSV with all the entries. This is problematic since the ordering/naming of the headers in each tab is inconsistent. The VBA script mentioned below takes the set of all header names, and puts them in a single tab, and then places the fields from the rows in the appropriate column.
 
