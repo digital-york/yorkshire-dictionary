@@ -5,19 +5,11 @@
 	<% sources.each do |source_reference| %>
 		<% source_material = source_reference.source_material %>
 		<span class="source">
-			<% source_title = source_material&.title %>
-			<% display_title = nil %>
-			<% if source_title&.present? %>
-				<% display_title = source_title&.truncate 15 %>
-			<% else %>
-				<% display_title = 'Untitled source' %>
-			<% end %>
-
-			<%= link_to "#{display_title}:#{source_reference.excerpts_string}",
+			<%= link_to (source_material.short_display_title.truncate 30),
 				source_material,
 				'data-placement': "top",
 				'data-toggle': "tooltip",
-				title: source_title 
+				title: source_reference.reference_string
 			%>
 		</span>
 	<% end %>

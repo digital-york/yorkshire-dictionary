@@ -7,6 +7,11 @@ class SourceMaterial < ApplicationRecord
 
   has_many :source_references
 
+  belongs_to :parent, class_name: 'SourceMaterial', foreign_key: 'parent_id',
+                      optional: true
+
+  has_many :children, class_name: 'SourceMaterial', foreign_key: 'parent_id'
+
   # TODO: dependents
   has_many :definitions, -> { distinct }, through: :source_references
   has_many :source_excerpts, through: :source_references
@@ -16,4 +21,20 @@ class SourceMaterial < ApplicationRecord
   has_many :places, -> { distinct }, through: :places_source_references
 
   has_many :words, -> { distinct }, through: :definitions
+
+  def short_display_title
+    if short_title.present?
+      short_title
+    else
+      display_title
+    end
+  end
+
+  def display_title
+    if title.present?
+      title
+    else
+      'Untitled Source'
+    end
+  end
 end
