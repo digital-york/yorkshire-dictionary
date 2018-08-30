@@ -68,14 +68,26 @@ If deploying to production on a university server, a `production` entry will nee
 
 Once you've configured the app, it will need uploading to the server. Currently, the University server uses Passenger to serve the app, and everything is configured using Puppet. For more information, speak to Jim Adamson (*jim.adamson {at} york ac uk*). To trigger Passenger to reload the app after an update, you can use the `sudo passenger-config restart-app` command, and select the YHD app from the list.
 
-Before running the app on production/stagin, you will also want to precompile the app's assets. For a production environment, you can use the following command:
+Before running the app on production or staging, you will also want to precompile the app's assets. For a production environment, you can use the following command:
 
 `RAILS_ENV=production bin/rails assets:precompile`
 
 This compiles the assets into single files where possible. See [here](https://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets) for more information on the process.
 
+In order for the encrypted credentials to be readable, the `RAILS_MASTER_KEY` environment variable needs to be set. The existing value is available in Lastpass under the YHD directory in the 'Shared Digital Library' section. Alternatively, running `bin/rails credentials:edit` without a `master.key` file being present will generate a new one, and you will need to re-set the credentials.
+
+Next, set up the schema with the following command:
+
+`bin/rails db:schema:load`
+
+You can now run the import process with:
+
+`bin/rails yhd:import`
+
+See the 'Importing Data' section for further information on the import process.
+
 #### Heroku
-For a heroku deployment, begin by installing the Heroku command line tools. Create a new project using `heroku create` on the command line. You can also do this through the Heroku website, but doing so through the command line automatically configures the Git remote server which you will deploy to.  
+For a heroku deployment, begin by installing the Heroku command line tools. Create a new project using `heroku create --region eu` on the command line in the YHD folder. You can also do this through the Heroku website, but doing so through the command line automatically configures the Git remote server which you will deploy to.  
 
 To use Heroku's Postgres service, you'll need to configure the Postgres add on. Since the free tier of Heroku postgres only supports 10k rows, an upgrade to a higher plan is necessary. The 'hobby basic' plan allows up to 10M rows, and the performance should be adequate. There is more information available here: https://www.heroku.com/pricing. You can configure the service through the web interface, or by running `heroku addons:create heroku-postgresql:hobby-basic` (notice the 'hobby-basic' plan choice). Further information is available [here](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres).
 
@@ -95,6 +107,10 @@ heroku:
     url: <%= ENV['DATABASE_URL'] %>
 ```
 
+Set the master key using the following command: ``heroku config:set RAILS_MASTER_KEY=<your-master-key>`
+
+For university staff, the master key used throughout development is available in Lastpass under the YHD directory in the 'Shared Digital Library' section. Alternatively, you can regenerate a new master key and use `bin/rails credentials:edit` to re-set the credentials.
+
 Now, the app should be ready to deploy. In order to do this, simply push to the **master** branch of the Heroku remote Git server. This should have been configured when running `heroku create`, but if not, you can follow the instructions here: https://devcenter.heroku.com/articles/git#creating-a-heroku-remote. 
 
 Typically, the command looks like this:
@@ -108,6 +124,16 @@ This pushes the local master branch to the heroku remote master branch. Alternat
 For more information on the deployment process, see [here](https://devcenter.heroku.com/articles/git#deploying-code).
 
 Asset precompilation is automatically executed during the push stage if deploying to Heroku, as long as no precompiled assets are included in the app directory. See [here](https://devcenter.heroku.com/articles/rails-asset-pipeline#compiling-assets-during-slug-compilation) for more information.
+
+Once the push is successful, you can set up the data. First of all, set up the schema with the following command:
+
+`heroku run rails db:schema:load`
+
+You can now run the import process with:
+
+`heroku run rails yhd:import`
+
+See the 'Importing Data' section for further information on the import process.
 
 ## Importing data
 _See `import_readme.md` for more information_
