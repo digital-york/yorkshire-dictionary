@@ -89,7 +89,7 @@ See the 'Importing Data' section for further information on the import process.
 #### Heroku
 For a heroku deployment, begin by installing the Heroku command line tools. Create a new project using `heroku create --region eu` on the command line in the YHD folder. You can also do this through the Heroku website, but doing so through the command line automatically configures the Git remote server which you will deploy to.  
 
-To use Heroku's Postgres service, you'll need to configure the Postgres add on. Since the free tier of Heroku postgres only supports 10k rows, an upgrade to a higher plan is necessary. The 'hobby basic' plan allows up to 10M rows, and the performance should be adequate. There is more information available here: https://www.heroku.com/pricing. You can configure the service through the web interface, or by running `heroku addons:create heroku-postgresql:hobby-basic` (notice the 'hobby-basic' plan choice). Further information is available [here](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres).
+To use Heroku's Postgres service, you'll need to configure the Postgres add on. Since the free tier of Heroku postgres only supports 10k rows, an upgrade to a higher plan is necessary. The 'hobby basic' plan allows up to 10M rows, and the performance should be adequate. There is more information available [here](https://www.heroku.com/pricing). You can configure the service through the web interface, or by running `heroku addons:create heroku-postgresql:hobby-basic` (notice the 'hobby-basic' plan choice). Further information is available [here](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres).
 
 Once you have your project set up with an adequate Postgres plan, the database needs to be linked to the new app. Traditionally, Heroku assumes a 'production' environment name. Since `database.yml` is configured to use 'heroku' as the environment name, you need to update the environment name, or update the database config. So either use the following command to set the Rails environment to 'heroku':
 
@@ -111,7 +111,7 @@ Set the master key using the following command: ``heroku config:set RAILS_MASTER
 
 For university staff, the master key used throughout development is available in Lastpass under the YHD directory in the 'Shared Digital Library' section. Alternatively, you can regenerate a new master key and use `bin/rails credentials:edit` to re-set the credentials.
 
-Now, the app should be ready to deploy. In order to do this, simply push to the **master** branch of the Heroku remote Git server. This should have been configured when running `heroku create`, but if not, you can follow the instructions here: https://devcenter.heroku.com/articles/git#creating-a-heroku-remote. 
+Now, the app should be ready to deploy. In order to do this, simply push to the **master** branch of the Heroku remote Git server. This should have been configured when running `heroku create`, but if not, you can follow the instructions [here](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote). 
 
 Typically, the command looks like this:
 
