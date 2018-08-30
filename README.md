@@ -17,9 +17,7 @@ Database dumps of the final imported data are available, but due to a number of 
 ### Credentials
 There are a number of credentials which should be set to run the app, relating to external services. Credentials can be set using `bin/rails credentials:edit`. It may be impossible to run this command outside of the development/test environment. See the note at the end of this document for more information on this issue, and how to solve it.
 
-For a guide on how encrypted credentials functions, see the following URL: 
-
-https://edgeguides.rubyonrails.org/security.html#custom-credentials
+For a guide on how encrypted credentials functions, see [this URL](https://guides.rubyonrails.org/security.html#custom-credentials).
 
 You can use the following template if recreating the credentials file:
 
@@ -119,7 +117,7 @@ Typically, the command looks like this:
 
 This pushes the local master branch to the heroku remote master branch. Alternatively, you can use the following to push a specific local branch to heroku's master branch:
 
-`git push heroku local_branch_name:master` (where `local_branch_name` is the local branch name).
+`git push heroku local_branch_name:master` *(where `local_branch_name` is the local branch name)*.
 
 For more information on the deployment process, see [here](https://devcenter.heroku.com/articles/git#deploying-code).
 
