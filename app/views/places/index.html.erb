@@ -1,36 +1,60 @@
 <% content_for(:title) { "Places" } %>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
-    </div>
+<div class="row">
+  <div class="col">
+    <%= content_tag "div", id:"map", class:'map', data:{places: @map_places} do %><% end %>
   </div>
- 
-  <div class="row">
-    <div class="col">
-      <div class="form-group place-index-search">
-        <%= label_tag :search_places, "Search" %>
-        <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
-      </div>
-    </div>
-  </div>
+</div>
 
-  <% @places.each do |place| %>
-    <div class="row">
-      <div class="col">
-        <h2><%= link_to place.name, place %></h2>
-        <% place.words.each do |word|%>
-          <span class="place-word"><%= link_to word.text, word %></span>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col">
-      <%= will_paginate @words, class: "justify-content-center pagination"%>
+<div class="row">
+  <div class="col">
+    <div class="form-group place-index-search">
+      <%= label_tag :search_places, "Search" %>
+      <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
     </div>
   </div>
 </div>
+
+<% @places.each do |place| %>
+  <div class="row">
+    <div class="col">
+      <h2><%= link_to place.name, place %></h2>
+      <% place.words.each do |word|%>
+        <span class="place-word"><%= link_to word.text, word %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col">
+    <%= will_paginate @words, class: "justify-content-center pagination"%>
+  </div>
+</div>
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+    Most words in the dictionary are associated with a specific geographic
+    location. This page allows you to browse these places.
+  </p>
+  <p>
+    The map at the top of the page shows all the places that we've been able to 
+    identify on the map. If there's too many places in one area, they are grouped
+    and the number in that group shown in the icon. You can click on a group
+    to zoom in and see the individual places. There's also zoom controls in the
+    top left of the map.
+  </p>
+  <p>
+    If you click the icon for a single place, you can see the name of the place.
+    Click this to view a page dedicated to that place, including all the words
+    associated with that place.
+  </p>
+  <p>
+    In the list of places below the map, you can see the name of every place
+    in the dictionary (including ones we couldn't find on the map). Underneath
+    is a list of all the words associated with that place. Click the word to go
+    to the page for that word.
+  </p>
+<% end %>
+
 

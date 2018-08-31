@@ -1,36 +1,52 @@
 <% content_for(:title) { @source_material.title } %>
 
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<h1><%= @source_material.title %></h1>
-			<p><%= @source_material.description %></p>
-		</div>
-	</div>
-
-	<% if @source_material.source_references.present? %>
-		<h2>Associated words</h2>
-		<%# Create a new hash with an empty array as default value%>
-		<% excerpt_strings = Hash.new { |h, k| h[k] = [] } %>
-
-		<%# Add source reference to array, indexed by the excerpt string %>
-		<% @source_material.source_references.each do |reference| %>
-			<% excerpt_strings[reference.excerpts_string] << reference %>
-		<% end %>
-
-		<%# Loop through excerpt string arrays %>
-		<% excerpt_strings.each do |key, references| %>
-			<h3><%= key.presence || 'Whole source' %></h3>
-			<% references.each do |reference| %>
-				<%= link_to reference.word.text, reference.word, class: 'place-word' %>
-			<% end %>
-		<% end %>
-	<% end %>
-
-	<div class="row">
-		<div class="col">
-			<%= link_to 'Back', :back %> |
-			<%= link_to 'All Sources', source_materials_path %>
-		</div>
+<div class="row">
+	<div class="col">
+		<h1><%= @source_material.title %></h1>
+		<p><%= @source_material.description %></p>
 	</div>
 </div>
+
+<% if @source_material.source_references.present? %>
+	<h2>Associated words</h2>
+	<%# Create a new hash with an empty array as default value%>
+	<% excerpt_strings = Hash.new { |h, k| h[k] = [] } %>
+
+	<%# Add source reference to array, indexed by the excerpt string %>
+	<% @source_material.source_references.each do |reference| %>
+		<% excerpt_strings[reference.excerpts_string] << reference %>
+	<% end %>
+
+	<%# Loop through excerpt string arrays %>
+	<% excerpt_strings.each do |key, references| %>
+		<h3><%= key.presence || 'Whole source' %></h3>
+		<% references.each do |reference| %>
+			<%= link_to reference.word.text, reference.word, class: 'place-word' %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<div class="row">
+	<div class="col">
+		<%= link_to 'Back', :back %> |
+		<%= link_to 'All Sources', source_materials_path %>
+	</div>
+</div>
+
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+    This page shows information on a single source material. At the top is the
+	title of the source. Underneath, is a description (if avaialble) and a list
+	of associated words.
+  </p>
+  <p>
+  	The associated words are grouped by the part of the source material they
+	appear in. Where possible, this is a modern archival reference to allow you
+	to explore the source in full.
+  </p>
+  <p>
+	You can click on an associated word to view more information on that word.
+  </p>
+<% end %>
+

@@ -22,7 +22,10 @@
         </div>
       <% end %>
     </div>
-    <%= yield %>
+    <div class="container">
+      <%= render "shared/help_modal_button" unless @no_help %>
+      <%= yield %>
+    </div>
     <span class="attribution background-attribution">
       <a href="https://commons.wikimedia.org/w/index.php?curid=46048805">
         Photo

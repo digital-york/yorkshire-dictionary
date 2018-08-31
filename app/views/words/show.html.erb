@@ -1,55 +1,117 @@
 <% content_for(:title) { @word.text } %>
 
-<div class="container">
+<div class="row">
+  <div class="col">
+    <h1><%= @word.text %></h1>
+  </div>
+</div>
+<% @word.definitions.each_with_index do |definition, index| %>
   <div class="row">
     <div class="col">
-      <h1><%= @word.text %></h1>
+      <p><strong><em>
+        <%= index + 1 %>)  <%= definition.text || "No definition available" %>
+      </em></strong></p>
+      <div class="definition-details">
+        <% if definition&.discussion&.present? %>
+          <% definition.discussion.split(";")&.each do |disc|%>
+            <p><%= sanitize disc.gsub /\s?\([^\)]+\)/, '' %></p>
+          <% end %> 
+        <% end %>
+
+        <% if definition&.alt_spellings&.any? %>
+          <%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
+        <% end %>
+
+        <!-- render related defs -->
+        <% if definition&.related_definitions&.any? %>
+          <%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
+        <% end %>
+
+        <!-- render definition places -->
+        <% if definition&.places&.any? %>
+          <%= render partial: 'words/word_list/places', object: definition.places %>
+        <% end %>
+        
+        <% if definition&.source_references&.any? %>
+          <%= render partial: 'words/word_list/source_excerpts', locals: {sources: definition.source_references} %>
+        <% end %>
+        
+        <!-- render dates -->
+        <% if definition&.source_dates&.any? %>
+          <%= render partial: 'words/word_list/dates', object: definition.source_dates %>
+        <% end %>
+      </div>
+      <%= render partial: 'words/network', locals: { definition_id: definition.id } %>
     </div>
   </div>
-  <% @word.definitions.each_with_index do |definition, index| %>
-    <div class="row">
-      <div class="col">
-        <p><strong><em>
-          <%= index + 1 %>)  <%= definition.text || "No definition available" %>
-        </em></strong></p>
-        <div class="definition-details">
-          <% if definition&.discussion&.present? %>
-            <% definition.discussion.split(";")&.each do |disc|%>
-              <p><%= sanitize disc.gsub /\s?\([^\)]+\)/, '' %></p>
-            <% end %> 
-          <% end %>
+<% end %>
 
-          <% if definition&.alt_spellings&.any? %>
-            <%= render partial: 'words/word_list/alt_spellings', object: definition.alt_spellings %>
-          <% end %>
-
-          <!-- render related defs -->
-          <% if definition&.related_definitions&.any? %>
-            <%= render partial: 'words/word_list/related_definitions', object: definition.related_definitions %>
-          <% end %>
-
-          <!-- render definition places -->
-          <% if definition&.places&.any? %>
-            <%= render partial: 'words/word_list/places', object: definition.places %>
-          <% end %>
-          
-          <% if definition&.source_references&.any? %>
-            <%= render partial: 'words/word_list/source_excerpts', locals: {sources: definition.source_references} %>
-          <% end %>
-          
-          <!-- render dates -->
-          <% if definition&.source_dates&.any? %>
-            <%= render partial: 'words/word_list/dates', object: definition.source_dates %>
-          <% end %>
-        </div>
-        <%= render partial: 'words/network', locals: { definition_id: definition.id } %>
-      </div>
-    </div>
-  <% end %>
-  <div class="row">
-		<div class="col">
-			<%= link_to 'Back', :back %> |
-			<%= link_to 'All words', words_path %>
-		</div>
-	</div>
+<div class="row">
+  <div class="col">
+    <%= link_to 'Back', :back %> |
+    <%= link_to 'All words', words_path %>
+  </div>
 </div>
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+    This page shows all information we have for a single word. Each word can
+    have multiple definitions, and all definitions are shown in order.
+  </p>
+  <p>
+    Each definition includes the following information (if available):
+    <ul>
+      <li>
+        <strong>
+          Definition text
+        </strong>
+      </li>
+      <li>
+        <strong>
+          Description & usage:
+        </strong>
+        A passage of text explaining uses of the word, quotations and other 
+        pertinent information
+      </li>
+      <li>
+        <strong>
+          Related:
+        </strong>
+        Words that are related to the current word
+      </li>
+      <li>
+        <strong>
+          Places:
+        </strong>
+        Places that are associated with the definition - this could be the
+        location that the word originated, or a place that is mentioned
+        in conjunction with the word
+      </li>
+      <li>
+        <strong>
+          Sources:
+        </strong>
+        Pieces of source material that the word is known to be mentioned in
+      </li>
+      <li>
+        <strong>
+          Dates:
+        </strong>
+        Dates that the word was known to be active in (in our source material)
+      </li>
+    </ul>
+
+    Click a related word, place or source for more information on that specific
+    content.
+  </p>
+  <h2>
+    Network graph
+  </h2>
+  <p>
+    The network diagram shows how the current word is related to other content.
+    For example, all of the word's related words, sources and places are shown
+    connected to the word (large circle in the centre). This enables you to find
+    related words and records based on how they're used together. Click any of 
+    the circles to view more information on that topic.
+  </p>
+<% end %>

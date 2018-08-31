@@ -1,37 +1,56 @@
 <% content_for(:title) { @place.name } %>
 
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<h1><%= @place.name %></h1>
-			
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<%= content_tag "div", 
-							id:"map",
-							class:'map',
-							style: 'display:none',
-							data:{ place: @place } do %>
-			<% end %>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col">
-			<h2>Associated Definitions</h2>
-			<% @place.definitions.each do |definition|%>
-				<span class="place-word"><%= link_to definition.word.text, definition.word %></span>
-			<% end %>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<%= link_to 'Back', :back %> |
-			<%= link_to 'All places', places_path %>
-		</div>
+<div class="row">
+	<div class="col">
+		<h1><%= @place.name %></h1>
+		
 	</div>
 </div>
+
+<div class="row">
+	<div class="col">
+		<%= content_tag "div", 
+						id:"map",
+						class:'map',
+						style: 'display:none',
+						data:{ place: @place } do %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2>Associated Definitions</h2>
+		<% @place.definitions.each do |definition|%>
+			<span class="place-word"><%= link_to definition.word.text, definition.word %></span>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<%= link_to 'Back', :back %> |
+		<%= link_to 'All places', places_path %>
+	</div>
+</div>
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+	This page shows details about a single place from the dictionary. 
+  </p>
+  </p>
+	When a word is mentioned in a source material, it is often in tandem with a 
+	place. For example, the location that a word is believed to have originated 
+	in or is known to have been used.
+  </p>
+  <p>
+	A map is displayed at the top of the page if we were able to find it.
+  </p>
+  <p>
+	Underneath the map (if it's present) is a list of words associated with the
+	place. You can click the word to go to it's definition, and usually find more
+	information about the association with the place.
+  </p>
+  <p>
+  </p>
+<% end %>

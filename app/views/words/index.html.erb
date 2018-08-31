@@ -1,10 +1,50 @@
+
 <% if request.original_url.include? '/search?' %>
   <% content_for(:title) { 'Search words' } %>
 <% else %>
   <% content_for(:title) { "Words" } %>
 <% end %>
 
-<div class="container">
-  <%= render 'words/search' %>
-  <%= render 'words/word_list/word_list' %>
-</div>
+<%= render 'words/search' %>
+<%= render 'words/word_list/word_list' %>
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+    This page is the main list of words in the dictionary. Click on a word to 
+    view more information about the word and the context it's been used in.
+  </p>
+  <p>
+    Use box at the top to search for a word. You can specify a number of options:
+    <ul>
+      <li>
+        <strong>Containing text: </strong>
+        Text within the word itself (miner matches coalminer)
+      </li>
+      <li>
+        <strong>Starting with: </strong>
+        First letter of the word
+      </li>
+      <li>
+        <strong>Places: </strong>
+        Display words that are associated with one or more places
+      </li>
+      <li>
+        <strong>Sources: </strong>
+        Display words that are associated with one or more sources
+      </li>
+      <li>
+        <strong>Dates: </strong>
+        Only show words that are recorded as being active within certain dates
+      </li>
+      <li>
+        <strong>Containing Text: </strong>
+        A wider search, which will find any matches in definitions and descriptions
+        of the word
+      </li>
+    </ul>
+  </p>
+  <p>
+    Use the links at the bottom of the page to move between pages, and change 
+    the sort order using the dropdown under the search box.
+  </p>
+<% end %>

@@ -1,19 +1,27 @@
 <% content_for(:title) { "Sources" } %>
 
-<div class="container">
-  <h1>Source Materials</h1>
-  <div class="row">
-    <div class="col">
-      <% @source_materials.each do |source_material| %>
-          <p><%= link_to source_material.title, source_material %><p>
-      <% end %>
-    </div>
+<h1>Source Materials</h1>
+<div class="row">
+  <div class="col">
+    <% @source_materials.each do |source_material| %>
+        <p><%= link_to source_material.title, source_material %><p>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col">
-      <%= will_paginate @source_materials, class: "justify-content-center pagination"%>
-    </div>
-  </div>
-
 </div>
 
+<div class="row">
+  <div class="col">
+    <%= will_paginate @source_materials, class: "justify-content-center pagination"%>
+  </div>
+</div>
+
+<%= render "shared/help_modal" do |x| %>
+  <p>
+    On this page, you can find all the source materials used to create the
+    dictionary. Each one contains a reference to at least one historic word, and
+    you can find more information by clicking on a single source.
+  </p>
+  <p>
+    Use the buttons at the bottom to navigate between pages.
+  </p>
+<% end %>
