@@ -6,6 +6,11 @@
 <% end %>
 
 <%= render 'words/search' %>
+<% if @active_searches %>
+  <div class="alert alert-warning" role="alert">
+    Showing words filtered by:  <%= @active_searches %>.
+  </div>
+<% end %>
 <%= render 'words/word_list/word_list' %>
 
 <%= render "shared/help_modal" do |x| %>

@@ -49,6 +49,17 @@ class WordsController < ApplicationController
               )
               .order(sort_order)
               .paginate(page: params[:page], per_page: 50)
+
+    active_search_set = Set.new
+    active_search_set << 'text' if params[:search].presence
+    active_search_set << 'place' if params[:place].presence
+    active_search_set << 'first letter' if params[:letter].presence
+    active_search_set << 'date range' if params[:start_year].presence
+    active_search_set << 'date range' if params[:end_year].presence
+    active_search_set << 'definition text' if params[:definition_text].presence
+    active_search_set << 'wildcard' if params[:any].presence
+    @active_searches = active_search_set.to_a.join ', '
+
     render 'index'
   end
 
