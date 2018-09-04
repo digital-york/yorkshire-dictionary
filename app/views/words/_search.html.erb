@@ -11,6 +11,9 @@
 							<a class="nav-link active" id="word-tab" data-toggle="tab" href="#word" role="tab" aria-controls="home" aria-selected="true">Word</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" id="source-tab" data-toggle="tab" href="#text" role="tab" aria-controls="contact" aria-selected="false">Definition text</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" id="place-tab" data-toggle="tab" href="#place" role="tab" aria-controls="profile" aria-selected="false">Places</a>
 						</li>
 						<li class="nav-item">
@@ -19,17 +22,14 @@
 						<li class="nav-item">
 							<a class="nav-link" id="text-tab" data-toggle="tab" href="#date" role="tab" aria-controls="date" aria-selected="false">Dates</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="source-tab" data-toggle="tab" href="#text" role="tab" aria-controls="contact" aria-selected="false">Containing text</a>
-						</li>
 					</ul>
 				</div>
 
 				<div class="card-body">
-					<div class="tab-content" id="myTabContent">
+					<div class="tab-content" id="searchTabContent">
 						<div class="tab-pane show active" id="word" role="tabpanel" aria-labelledby="search-word-tab">
 							<div class="form-group">
-								<%= label_tag :search, "Containing" %>
+								<%= label_tag :search, "Word contains..." %>
 								<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "-" %>
 							</div>
 							<div class="form-group">
@@ -51,6 +51,7 @@
 						<div class="tab-pane" id="place" role="tabpanel" aria-labelledby="search-place-tab">
 							<div class="form-group">
 								<%= label_tag :search_places, "Places" %>
+								<small class="text-muted">Select one or more, then press search</small>
 								<%= text_field_tag :search_places, nil, id: "word_search_place_autocomplete", class: "autocomplete form-control" %>
 								<div id='selected-places'>
 
@@ -58,16 +59,17 @@
 							</div>
 						</div>
 						
-						<div class="tab-pane" id="text" role="tabpanel" aria-labelledby="search-text-tab">
+						<div class="tab-pane" id="text" role="tabpanel" aria-labelledby="search-definition-tab">
 							<div class="form-group">
-								<%= label_tag :definition_text, "Definition/discussion phrase" %>
+								<%= label_tag :definition_text, "Definition/discussion contains..." %>
 								<%= text_field_tag :definition_text, params[:definition_text], class: "form-control", placeholder: "-" %>
 							</div>
 						</div>
 
 						<div class="tab-pane" id="source" role="tabpanel" aria-labelledby="search-source-tab">
 							<div class="form-group">
-								<%= label_tag :search_source_materials, "Source ref" %>
+								<%= label_tag :search_source_materials, "Source materials" %>
+								<small class="text-muted">Select one or more, then press search</small>
 								<%= text_field_tag :search_source_materials, nil, id: "word_search_source_autocomplete", class: "autocomplete form-control" %>
 								<div id='selected-sources'>
 
