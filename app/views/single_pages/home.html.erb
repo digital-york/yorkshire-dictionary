@@ -48,6 +48,32 @@
 				</a>
 			</span>
 		</div>
+		<div id="homepage-search" class="homepage-section">
+			<div class="section-contents-container limited-width-section">
+				<div class="homepage-section-text">
+					<h1>Search for a word</h1>
+				</div>
+				<%= form_with url: search_words_path, local: true, method: 'get', class: 'homepage-search-form' do |form|%>
+					<%= form.text_field :any,
+						id:"homepage-search-text",
+						placeholder:"Try 'mining', 'Leeds' or 'damask'",
+						class:"form-control form-control-lg" %>
+					<%= form.submit 'Search', name: nil, class: "homepage-button" %>
+				<% end %>
+			</div>
+			<span class="homepage-attribution attribution">
+				<a href="https://www.publicdomainpictures.net/en/view-image.php?image=194622">
+					Photo
+				</a>
+				by
+				<a href="https://www.facebook.com/hodanpictures">
+					George Hodan
+				</a>
+				<a href="https://creativecommons.org/publicdomain/zero/1.0/">
+					CC0 1.0
+				</a>
+			</span>
+		</div>
 		<div id="homepage-places" class="homepage-section">
 			<div class="section-contents-container limited-width-section">
 				<div class="homepage-section-text">
@@ -91,32 +117,6 @@
 				</span>
 				<%= link_to 'Sources', source_materials_path, class: 'homepage-button' %>
 			</div>
-		</div>
-		<div id="homepage-search" class="homepage-section">
-			<div class="section-contents-container limited-width-section">
-				<div class="homepage-section-text">
-					<h1>Search for a word</h1>
-				</div>
-				<%= form_with url: search_words_path, local: true, method: 'get', class: 'homepage-search-form' do |form|%>
-					<%= form.text_field :any,
-						id:"homepage-search-text",
-						placeholder:"Try Leeds, farrier, horse-box or coal stick",
-						class:"form-control form-control-lg" %>
-					<%= form.submit 'Search', name: nil, class: "homepage-button" %>
-				<% end %>
-			</div>
-			<span class="homepage-attribution attribution">
-				<a href="https://www.publicdomainpictures.net/en/view-image.php?image=194622">
-					Photo
-				</a>
-				by
-				<a href="https://www.facebook.com/hodanpictures">
-					George Hodan
-				</a>
-				<a href="https://creativecommons.org/publicdomain/zero/1.0/">
-					CC0 1.0
-				</a>
-			</span>
 		</div>
 		<div id="homepage-funding" class="homepage-section">
 			<div class="section-contents-container">
