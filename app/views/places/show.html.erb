@@ -7,16 +7,18 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col">
-		<%= content_tag "div", 
-						id:"map",
-						class:'map',
-						style: 'display:none',
-						data:{ place: @place } do %>
-		<% end %>
+<% if @place.latitude %> 
+	<div class="row">
+		<div class="col">
+			<%= content_tag "div", 
+							id:"map",
+							class:'map',
+							style: 'display:none',
+							data:{ place: @place } do %>
+			<% end %>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="row">
 	<div class="col">
