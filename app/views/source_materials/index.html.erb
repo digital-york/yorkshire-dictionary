@@ -1,21 +1,12 @@
 <% content_for(:title) { "Sources" } %>
 
 <div class="row">
-  <div class="col">
+  <div class="col long-text">
     <h1>Source Materials</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <% @source_materials.each do |source_material| %>
-        <p><%= link_to source_material.title, source_material %><p>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <%= will_paginate @source_materials, class: "justify-content-center pagination"%>
+      <% @source_materials.each do |source_material| %>
+          <p><%= link_to source_material.title, source_material %><p>
+      <% end %>
+      <%= will_paginate @source_materials, class: "justify-content-center pagination"%>
   </div>
 </div>
 
