@@ -6,25 +6,27 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
-    <div class="form-group place-index-search">
-      <%= label_tag :search_places, "Search" %>
-      <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
-    </div>
-  </div>
-</div>
-
-<% @places.each do |place| %>
+<div class="long-text">
   <div class="row">
     <div class="col">
-      <h2><%= link_to place.name, place %></h2>
-      <% place.words.each do |word|%>
-        <span class="place-word"><%= link_to word.text, word %></span>
-      <% end %>
+      <div class="form-group place-index-search">
+        <%= label_tag :search_places, "Search" %>
+        <%= text_field_tag :search_places, nil, id: "place_autocomplete", class: "autocomplete form-control" %>
+      </div>
     </div>
   </div>
-<% end %>
+
+  <% @places.each do |place| %>
+    <div class="row">
+      <div class="col">
+        <h2><%= link_to place.name, place %></h2>
+        <% place.words.each do |word|%>
+          <span class="place-word"><%= link_to word.text, word %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <div class="row">
   <div class="col">
