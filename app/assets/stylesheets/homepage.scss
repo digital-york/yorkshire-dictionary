@@ -1,197 +1,195 @@
-body {
-	background: none;
-}
-
-#homepage-banner {
-	background: image-url('swaledale_md.jpg') left;
-	.homepage-section-text {
-		@media only screen and (min-width: 1000px) {
-			// text-align: left;
-		}
-	}
-	background-position: center;
-	background-size: cover;
-}
-
-#homepage-explore {
-	background: image-url("janets.jpg") left;
-	background-position: center;
-	background-size: cover;
-	.homepage-section-text {
-		@media only screen and (min-width: 1000px) {
-			// text-align: left;
-		}
-	}
-}
-
-#homepage-places {
-	// justify-content: flex-end;
-	background: image-url("minster.jpg") left;
-	.homepage-section-text {
-		@media only screen and (min-width: 1000px) {
-			// text-align: right;
-		}
-	}
-	background-position: center;
-	background-size: cover;
-}
-
-#homepage-search {
-	// justify-content: flex-end;
-	background: image-url("bolton-abbey.jpg") left;
-	.homepage-section-text {
-		@media only screen and (min-width: 1000px) {
-			// text-align: right;
-		}
-	}
-	background-position: center;
-	background-size: cover;
-}
-
 .homepage {
-	height:90%;
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.homepage-sections {
-	display: flex;
-	min-height: 100%;
-	flex-direction: column;
-}
-
-.homepage-section {
-	min-height: 25rem;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	background-position: center;
-	background-size: cover;
-	background-position: center;
-	background-size: cover;
-	color: white;
-	flex-grow: 1;
-	position: relative;
-}
-
-.homepage-button {
-	margin-left: auto;
-    margin-right: auto;
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    line-height: 1.5;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    margin-top: 1rem;
-    border-radius: 0.34rem !important;
-    color: white;
-	background-color: #000000a8;
-	border-color: #000000a8;
-    letter-spacing: 0.03rem;
-    border: none;
-    font-weight: bold;
-	font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-	font-family: 'Bree Serif';
-}
-
-.homepage-button:hover {
-	color: white;
-	background-color: #000000c9;
-	border-color: #000000a8;
-	text-decoration: none;
-}
-
-.homepage-button:not(:disabled):not(.disabled) {
-	cursor: pointer;
-}
-
-.homepage-search-form {
-	display: flex;
-    flex-direction: column;
-	width:100%;
-}
-
-.homepage-sections input {
-	font-family: 'Bree Serif';
-	text-align: center;
-}
-
-.section-contents-container {
-	padding: 3rem;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
-
-.limited-width-section {
-	width: 100%;
-	@media screen and (min-width: 1000px) {
-		width: 60%;
-		max-width: 705px;
+	body {
+		background: none;
+	}
+	
+	#homepage-banner {
+		background: image-url('swaledale_md.jpg') left;
+		.homepage-section-text {
+			@media only screen and (min-width: 1000px) {
+				// text-align: left;
+			}
+		}
+		background-position: center;
+		background-size: cover;
+	}
+	
+	#homepage-explore {
+		background: image-url("janets.jpg") left;
+		background-position: center;
+		background-size: cover;
+		.homepage-section-text {
+			@media only screen and (min-width: 1000px) {
+				// text-align: left;
+			}
+		}
+	}
+	
+	#homepage-places {
+		// justify-content: flex-end;
+		background: image-url("minster.jpg") left;
+		.homepage-section-text {
+			@media only screen and (min-width: 1000px) {
+				// text-align: right;
+			}
+		}
+		background-position: center;
+		background-size: cover;
+	}
+	
+	#homepage-search {
+		// justify-content: flex-end;
+		background: image-url("bolton-abbey.jpg") left;
+		.homepage-section-text {
+			@media only screen and (min-width: 1000px) {
+				// text-align: right;
+			}
+		}
+		background-position: center;
+		background-size: cover;
+	}
+	
+	.homepage {
+		height:90%;
+		display:flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	
+	.homepage-sections {
+		display: flex;
+		min-height: 100%;
+		flex-direction: column;
+	}
+	
+	.homepage-section {
+		min-height: 25rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		background-position: center;
+		background-size: cover;
+		background-position: center;
+		background-size: cover;
+		color: white;
+		flex-grow: 1;
+		position: relative;
+	}
+	
+	.homepage-button {
+		margin-left: auto;
+		margin-right: auto;
+		display: inline-block;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		line-height: 1.5;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		margin-top: 1rem;
+		border-radius: 0.34rem !important;
+		color: white;
+		background-color: #000000a8;
+		border-color: #000000a8;
+		letter-spacing: 0.03rem;
+		border: none;
+		font-weight: bold;
+		font-size: 1.5rem;
+		padding: 0.5rem 1rem;
+		font-family: 'Bree Serif';
+	}
+	
+	.homepage-button:hover {
+		color: white;
+		background-color: #000000c9;
+		border-color: #000000a8;
+		text-decoration: none;
+	}
+	
+	.homepage-button:not(:disabled):not(.disabled) {
+		cursor: pointer;
+	}
+	
+	.homepage-search-form {
+		display: flex;
+		flex-direction: column;
+		width:100%;
+	}
+	
+	.homepage-sections input {
+		font-family: 'Bree Serif';
+		text-align: center;
+	}
+	
+	.section-contents-container {
+		padding: 3rem;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+	
+	.limited-width-section {
+		width: 100%;
+		@media screen and (min-width: 1000px) {
+			width: 60%;
+			max-width: 705px;
+		}
+	}
+	
+	.full-width-section {
+		width: 100%;
+	}
+	
+	.homepage-section-text {
+		text-shadow: 0 0 1em black;
+		font-family: 'Bree Serif';
+		color: white;
+		text-align: center;
+	}
+	
+	.homepage-container {
+		background-color: white;
+		text-align: center;
+		min-height: 300px;
+		padding: 1rem;
+		font-family: 'Bree Serif';
+		padding: 2rem 1rem;
+	}
+	
+	.text-shadowed {
+		text-shadow: 0 0 30px #232323;
+	}
+	
+	#homepage-funding {
+		// justify-content: flex-end;
+		background: image-url("malham-tarn-desat.jpg") left;
+		background-position: center;
+		background-size: cover;
+	}
+	
+	.funding-logo {
+		img {
+			max-height: 10rem;
+		}
+		display: flex;
+		justify-content: center;
+		margin: 1rem 3rem;
+		flex-direction: column;
+	}
+	
+	.funding-logo.shadowed-logo {
+		filter: drop-shadow(0px 0px 7px rgba(0,0,0,2.2));
+	}
+	
+	#funding-logo-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: 1rem;
 	}
 }
 
-.full-width-section {
-	width: 100%;
-}
-
-.homepage-section-text {
-	text-shadow: 0 0 1em black;
-	font-family: 'Bree Serif';
-	color: white;
-	text-align: center;
-}
-
-.homepage-container {
-	background-color: white;
-	text-align: center;
-	min-height: 300px;
-	padding: 1rem;
-	font-family: 'Bree Serif';
-	padding: 2rem 1rem;
-}
-
-.text-shadowed {
-	text-shadow: 0 0 30px #232323;
-}
-
-// TODO: get this method working
-@function gradiented-image($image-url, $dir) {
-	@return image-url($image-url) left;
-}
-
-#homepage-funding {
-	// justify-content: flex-end;
-	background: image-url("malham-tarn-desat.jpg") left;
-	background-position: center;
-	background-size: cover;
-}
-
-.funding-logo {
-	img {
-	    max-height: 10rem;
-	}
-	display: flex;
-	justify-content: center;
-	margin: 1rem 3rem;
-    flex-direction: column;
-}
-
-.funding-logo.shadowed-logo {
-	filter: drop-shadow(0px 0px 7px rgba(0,0,0,2.2));
-}
-
-#funding-logo-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: wrap;
-	margin-top: 1rem;
-}

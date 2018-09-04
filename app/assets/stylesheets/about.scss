@@ -1,0 +1,24 @@
+.funding-logo {
+	img {
+		max-height: 7rem;
+	}
+	display: flex;
+	justify-content: center;
+	margin: 1rem 3rem;
+	flex-direction: column;
+}
+
+.funding-logo.shadowed-logo {
+	filter: drop-shadow(0px 0px 7px rgba(0,0,0,2.2));
+}
+
+#funding-logo-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 1rem;
+
+
+	background-color: #d6d6d6;
+}
