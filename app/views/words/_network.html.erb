@@ -1,13 +1,13 @@
-<div id='network-graph-container'>
-	<h2>
-		Network
+<%= content_tag "div", class:"network-graph-container", data:{'definition-id': definition_id} do %>
+	<h2 class="h5">
+		Related Content
+		<span class="network-graph-loading-message">
+			<small class="text-muted">Loading...</small>
+		</span>
+		<span class="network-graph-show-hide" style='display: none;'>
+			<small class="text-muted">Show</small>
+		</span>
 	</h2>
 
-	<div id="network-graph-loading-message">
-		<h3>Loading</h3>
-    </div>
-
-	<%= content_tag "div", id:"network-graph", class:'network-graph', 
-		style: "height: 600px", data:{'definition-id': definition_id} do %>
-	<% end %>
-</div>
+	<div class="network-graph" style="display:none;"></div>
+<% end %>
