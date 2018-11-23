@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -35,6 +35,7 @@ gem 'geocoder', '~> 1.4.8'
 gem 'leaflet-rails', '~> 1.3.1'
 
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+gem "rack", ">= 2.0.6"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -51,7 +52,7 @@ group :development, :test do
   gem 'ruby-debug-ide', '~> 0.7.0.beta6'
   gem 'debase', '~> 0.2.3.beta2'
   gem 'xray-rails', '~> 0.3.1'
-  gem 'jasmine-rails', '~> 0.14.8' 
+  gem 'jasmine-rails', '~> 0.14.8'
 end
 
 group :development do
@@ -61,7 +62,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  
+
   # Performance monitoring
   gem 'bullet', '~> 5.7.5'
 
@@ -84,3 +85,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', '~> 1.2.5', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "loofah", ">= 2.2.3"
