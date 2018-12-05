@@ -78,10 +78,10 @@ class BibliographyLoader
 
       short_title = source[bib_field_indexes[:short_title]]
       description = source[bib_field_indexes[:description]]
-      done = source[bib_field_indexes[:done]]
+      # done = true
       archival_ref = source[bib_field_indexes[:archival_ref]]
       archive = source[bib_field_indexes[:archive]]
-      archive_checked = source[bib_field_indexes[:archive_checked]]
+      # archive_checked = true
       source_type = source[bib_field_indexes[:source_type]]&.downcase
 
       unless source_type
@@ -91,6 +91,8 @@ class BibliographyLoader
         next
       end
 
+      puts "Loading bibliography source: #{orig_ref}"
+
       # Create source obj, set values if new only
       sm = SourceMaterial.where(title: title).first_or_create do |new_record|
         new_record.update(
@@ -98,11 +100,11 @@ class BibliographyLoader
           parent: parent_record,
           title: title,
           description: description,
-          done: done,
+          done: true,
           ref: archival_ref,
           short_title: short_title,
           archive: archive,
-          archive_checked: archive_checked,
+          archive_checked: true,
           source_type: source_type # TODO: what about if no source type?
         )
       end
