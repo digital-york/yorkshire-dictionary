@@ -1,4 +1,4 @@
-# Importing Dictionary Data from Microsoft Excel 
+# Importing Dictionary Data from Microsoft Excel
 *Author: Rainer Hind (rainerhind@gmail.com)*
 
 The goal of this process is to take the XLSX document provided by Alex Medcalfe at the Borthwick, which has a tab for each dictionary letter, and export it to a CSV with all the entries. This is problematic since the ordering/naming of the headers in each tab is inconsistent. The VBA script mentioned below takes the set of all header names, and puts them in a single tab, and then places the fields from the rows in the appropriate column.
@@ -12,13 +12,14 @@ For reference, the process was completed on a 2012 Macbook Pro running `OSX 10.1
  2. Delete the 'Cut Entries' tab if it exists
 
 **CSV Export Steps**
- 1. Using the source .xlsx document, enable the developer tab	
+ 1. Using the source .xlsx document, enable the developer tab
 	 - `File->Options->Customize ribbon->Customize the Ribbon->Main Tabs->Developer` at time of writing, Google it if not
 2. Go to `Developer` tab, select `Visual Basic`
 3. In the opened window, `File -> Import file`, browse to `import_files` in the YHD directory & select `YHD_Excel_Tab_Merger.bas`
-4. **OSX ONLY** 
+4. **OSX ONLY**
 	- `File -> Import`, browse to `import_files` in the YHD directory and select Dictionary.cls from `VBA-Dictionary-1.4.1` directory
 	- *This emulates Microsoft VBA functionality which is not included in OSX Excel version*
+  - Note: This step was not posibble to replicate on SP MacOS.
 5. Returning to the regular Excel window, select developer tab
 6. Click `Macros` in ribbon at the top
 7. Select `CombineSheetsWithDifferentHeaders` and press `Run`
@@ -33,6 +34,18 @@ For reference, the process was completed on a 2012 Macbook Pro running `OSX 10.1
 11. You now should have yhd.csv, which can be placed in the YHD project directory (conventionally it should go in `/import_files`, although the import script should locate it anywhere in the project dir.)
 
 **NOTE:** Be careful opening the .csv file in Excel. The default CSV parser will automatically convert fields beginning with `-` to a sum, which results in those fields being corrupted. If saved after opening in Excel, the CSV will contain invalid values and the import script. If you really need to open it in Excel after exporting, use the Import function of Excel instead, and preferably avoid saving it after.
+
+**Note bibliography.csv** - import script might failed if the value in last column *Type* contains space character after the value. Run following conversion in vim to fic this issue
+```
+vim bibliography.csv
+ESC:
+%s/\s*$//g
+```
+
+**Note about UTF-8** Excell on Windows will by default export csv file encoded in CP1250. This will confuse ruby import script. One quick fix is to convert an exported csv file to expected UTF-8 encoding with the following command line
+```
+iconv -f cp1250 -t utf-8 <in-cpo1250.csv >out-utf8.csv
+```
 
 **Importing the CSV**
 1. After placing `yhd.csv` in the YHD project directory, open a command prompt in the YHD directory
