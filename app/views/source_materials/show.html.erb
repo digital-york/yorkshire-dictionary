@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col">
 			<% if @source_material.archive %>
-				<h1><%= @source_material.title%>,
-					<%=@source_material.archive%>.</h1>
+				<h1><%= @source_material.title%></h1>
+				<h2><%=@source_material.archive%></h2>
 			<% else %>
 				<h1><%= @source_material.title %></h1>
 			<% end %>
@@ -12,7 +12,6 @@
 	</div>
 
 	<% if @source_material.source_references.present? %>
-		<h2>Associated words</h2>
 		<%# Create a new hash with an empty array as default value%>
 			<% excerpt_strings = Hash.new { |h, k| h[k] = [] } %>
 
