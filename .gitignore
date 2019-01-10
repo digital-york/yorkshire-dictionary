@@ -5,7 +5,9 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+/.bundle/
+# Ignore bundled gems
+/vendor/*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -31,3 +33,9 @@
 rails.out
 solr.out
 ubuntu-xenial-16.04-cloudimg-console.log
+
+server.key
+stack.yml
+yhd.csr
+yhd.key
+yhd_import-*.log
