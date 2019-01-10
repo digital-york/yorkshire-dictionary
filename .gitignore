@@ -39,3 +39,4 @@ stack.yml
 yhd.csr
 yhd.key
 yhd_import-*.log
+yhd_*.txt
