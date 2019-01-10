@@ -226,8 +226,13 @@ module Import
               excerpt.volume_start = vol_range[:start_num]
               excerpt.volume_end = vol_range[:end_num]
             end
+            # Temporary fix as show.html.erb ony support string.
+            excerpt.archival_ref = excerpt_reference
             # FIXME: errors on following save?
             excerpt.save
+            puts "Saved excerpt-reference-id: #{excerpt_reference} for
+              source-refrence-id: #{source_reference.id} with
+              title: #{source_reference.source_material.title}"
           end
         end
 

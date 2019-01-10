@@ -120,6 +120,7 @@ class BibliographyLoader
     end
 
     reference_regex = reference_regex(source_objs.keys)
+    # return json
     {
       source_materials: source_objs,
       archival_refs: archival_refs,
