@@ -51,6 +51,7 @@ group :development, :test do
   gem 'byebug', '~> 10.0.2', platforms: %i[mri mingw x64_mingw]
   gem 'debase', '~> 0.2.3.beta2'
   gem 'jasmine-rails', '~> 0.14.8'
+  gem 'pry-byebug'
   gem 'ruby-debug-ide', '~> 0.7.0.beta6'
   gem 'xray-rails', '~> 0.3.1'
 end
