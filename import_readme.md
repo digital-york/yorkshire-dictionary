@@ -18,16 +18,16 @@ For reference, the process was completed on a 2012 Macbook Pro running `OSX 10.1
 3. In the opened window, `File -> Import file`, browse to `import_files` in the YHD directory & select `YHD_Excel_Tab_Merger.bas`
 4. **OSX ONLY**
 	- `File -> Import`, browse to `import_files` in the YHD directory and select Dictionary.cls from `VBA-Dictionary-1.4.1` directory
-	- *This emulates Microsoft VBA functionality which is not included in OSX Excel version*
-  - Note: This step was not posibble to replicate on SP MacOS.
+	- *This emulates Microsoft VBA functionality which is not included in OSX Excel version* Note: This step was not possible to replicate on SP MacOS.
 5. Returning to the regular Excel window, select developer tab
 6. Click `Macros` in ribbon at the top
 7. Select `CombineSheetsWithDifferentHeaders` and press `Run`
-8. The macro will run and create a new tab. This process may take several minutes, and probably won't appear to be doing anything whilst it runs. When it completes, it will display a pop up message
+  - Ensure `Microsoft Runtime Routine` is available. `Tools -> References -> select Microsoft Runtime Routine`
+  - The macro will run and create a new tab. This process may take several minutes, and probably won't appear to be doing anything whilst it runs. When it completes, it will display a pop up message
 9. Switch to the new, merged tab
 10. Save the merged tab to a CSV:
 	- `File->Save As`
-	- Set `File Format: Select CSV UTF-8 (Comma delimited) (.csv)`
+	- Set `File Format: Select CSV UTF-8 (Comma delimited) (.csv)` Note: this is not saving files in UTF-8. See following note about yhd.csv UTF-8 conversion.
 	- Save As `Filename: yhd`
 	- Press `Save`
 	- A pop up should open explaining the *workbook cannot be saved as there are multiple sheets*. Press `OK`.
@@ -42,7 +42,7 @@ ESC:
 %s/\s*$//g
 ```
 
-**Note about UTF-8** Excell on Windows will by default export csv file encoded in CP1250. This will confuse ruby import script. One quick fix is to convert an exported csv file to expected UTF-8 encoding with the following command line
+**Note about yhd.csv UTF-8 conversion** Excell on Windows will by default export csv file encoded in CP1250. This will confuse ruby import script. One quick fix is to convert an exported csv file to expected UTF-8 encoding with the following command line
 ```
 iconv -f cp1250 -t utf-8 <in-cpo1250.csv >out-utf8.csv
 ```
