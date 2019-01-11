@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
     <script data-turbolinks-eval="false" async src="https://www.googletagmanager.com/gtag/js?id=UA-21938253-17"></script>
 
-    <title><%= "#{yield(:title)} - " if content_for?(:title) %> Yorkshire Historic Dictionary </title>
+    <title><%= "#{yield(:title)} - " if content_for?(:title) %> Yorkshire Historical Dictionary </title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
- 
+
   <body class="background">
     <%= render "shared/navbar" %>
     <div class="container-fluid flash-container">
