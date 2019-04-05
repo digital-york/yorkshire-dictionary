@@ -10,16 +10,14 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  mailer_creds = Rails.application.credentials.mailer
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            mailer_creds[:user_name],
-    password:             mailer_creds[:password],
-    authentication:       'plain',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: 'yhd.herokuapp.com',
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    authentication: 'plain',
     enable_starttls_auto: true
   }
 
