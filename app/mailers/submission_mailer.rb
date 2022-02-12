@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionMailer < ActionMailer::Base
-  default from: 'do-not-reply@york.ac.uk'
+  default from: 'lib-tech-heroku-group@york.ac.uk'
   layout 'mailer'
 
   SUBMISSION_EMAIL_ADDRESS = 'dti-service-desk-group@york.ac.uk'
