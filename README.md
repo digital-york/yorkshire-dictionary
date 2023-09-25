@@ -6,7 +6,7 @@ For more information on the wider project, please see [this link](https://www.yo
 
 The project is currently deployed to heroku for demo purposes, and can be accessed [here](https://yhd.herokuapp.com).
 
-There's also a demo running on UoY infrastructure, available on campus. It can be found [here](https://dlibingdev0.york.ac.uk/).
+There's also a demo running on UoY infrastructure, available on campus. It can be found [here](https://dlibingdev0.york.ac.uk/). 
 
 The app is developed with Rails 5 and uses a Postgres database. Data originates from a large tabbed Excel sheet, which is converted to a CSV and then imported.
 
