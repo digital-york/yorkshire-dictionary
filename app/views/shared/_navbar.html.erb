@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Yorkshire Historical Dictionary</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% nav_links = [
+        {
+          name: "Words",
+          link: words_path,
+        },
+        {
+          name: "Places",
+          link: places_path,
+        },
+        {
+          name: "Sources",
+          link: source_materials_path,
+        },
+        {
+          name: "Submissions",
+          link: submissions_path,
+        },
+        {
+          name: "About",
+          link: about_path,
+        },
+        {
+          name: "Contact",
+          link: contact_path,
+        },
+      ]
+      %>
+
+      <% nav_links.each do |tab| %>
+        <% class_string = "nav-link" %>
+        <% class_string = class_string + " active" if request.path.starts_with? tab[:link] %>
+        <li class="nav-item">
+          <%= link_to tab[:name], tab[:link], class: class_string %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

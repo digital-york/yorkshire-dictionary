@@ -1,0 +1,10 @@
+<div class="related-div">
+	<span class="related-word-prefix">
+		related
+	</span>
+	<% related_definitions.each do  |related| %>
+		<span class="related">
+		<%= link_to related.word.text, related.word %>
+		</span>
+	<% end %>
+</div>

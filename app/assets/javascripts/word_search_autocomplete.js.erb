@@ -1,0 +1,33 @@
+$(document).on("turbolinks:load", function() {
+
+	// Define data for each of the AC fields
+	let acData = [
+		{
+			autocompleteFieldSelector: '#word_search_place_autocomplete',
+			displayNameModelField: 'name',
+			termQueryUrl: '<%= Rails.application.routes.url_helpers.search_places_path %>',
+			idQueryUrl: '<%= Rails.application.routes.url_helpers.id_search_places_path %>',
+			acIdentifier: 'place',
+			selectedValuesDivSelector: '#selected-places',
+			multi: true
+		},
+		{
+			autocompleteFieldSelector: '#word_search_source_autocomplete',
+			displayNameModelField: 'title',
+			termQueryUrl: '<%= Rails.application.routes.url_helpers.search_source_materials_path %>',
+			idQueryUrl: '<%= Rails.application.routes.url_helpers.id_search_source_materials_path %>',
+			acIdentifier: 'source',
+			selectedValuesDivSelector: '#selected-sources',
+			multi: true
+		}
+	];
+	
+	// Set up each AC field
+	for (i=0; i<acData.length; i++) {
+		// Get current field data
+		let currentData = acData[i];
+		
+		// Set up AC for current field
+		setupAutocomplete(currentData);
+	}
+});
