@@ -44,7 +44,7 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'sprockets-rails', '~> 3.2.1'
 
-gem 'pg', '~> 1.0.0'
+gem 'pg', '~> 1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
