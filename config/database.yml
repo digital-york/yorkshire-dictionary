@@ -28,6 +28,6 @@ development:
 #  database: yhd_staging
 #  password: <%= Rails.application.credentials.database[:staging_pw] %>
 
-production:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+#heroku:
+#  <<: *default
+#  url: <%= ENV['DATABASE_URL'] %>

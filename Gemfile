@@ -33,6 +33,7 @@ gem 'geocoder', '~> 1.8.2'
 
 # Mapping
 gem 'leaflet-rails', '~> 1.9.4'
+gem 'leaflet-markercluster-rails', '~> 0.7.0'
 
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'rack', '>= 2.0.6'
