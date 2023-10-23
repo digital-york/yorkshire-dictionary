@@ -1,0 +1,19 @@
+.alphabet-links {
+	display: flex;
+	justify-content: center;
+}
+
+#letter-container {
+	position: absolute;
+	top: 45%;
+	width: 80%;
+	left: 10%;
+}
+
+.alphabet-button label {
+    margin-right: 0.4rem;
+}
+
+#searchTabContent .tab-pane {
+    min-height: 12rem;
+}

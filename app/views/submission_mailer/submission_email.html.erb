@@ -1,0 +1,58 @@
+<h1>New information submitted for the YHD</h1>
+<h2>From:</h2>
+<p>
+<% if @email_address.present? %>
+  <%= @email_address %>
+<% else %>
+  No email address provided
+<% end %>
+</p>
+
+<% if @word.present? %>
+  <h2>Word: </h2>
+  <p>
+     <%= @word %>
+    <% unless @new_entry.nil? %>
+      <% if @new_entry %>
+        (new word)
+      <% else %>
+        (existing word)
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
+
+<% if @sources.present? %>
+  <h2>Source(s): </h2>
+  <p>
+    <%= @sources %>
+  </p>
+<% end %>
+
+<% if @quotes.present? %>
+  <h2>Quote(s): </h2>
+  <p>
+    <%= @quotes %>
+  </p>
+<% end %>
+
+<% if @places.present? %>
+  <h2>Place(s): </h2>
+  <p>
+    <%= @places %>
+  </p>
+<% end %>
+
+<% if @dates.present? %>
+  <h2>Date(s): </h2>
+  <p>
+    <%= @dates %>
+  </p>
+<% end %>
+
+<% if @notes.present? %>
+  <h2>Note(s): </h2>
+  <p>
+    <%= @notes %>
+  </p>
+<% end %>

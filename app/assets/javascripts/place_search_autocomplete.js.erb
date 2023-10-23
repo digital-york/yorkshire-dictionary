@@ -1,0 +1,15 @@
+$(document).on("turbolinks:load", function() {
+	// Define data for each of the AC fields
+	let acData = {
+		autocompleteFieldSelector: '#place_autocomplete',
+		displayNameModelField: 'name',
+		termQueryUrl: '<%= Rails.application.routes.url_helpers.search_places_path %>',
+		idQueryUrl: '<%= Rails.application.routes.url_helpers.id_search_places_path %>',
+		acIdentifier: 'place',
+		selectedValuesDivSelector: '#selected-places',
+		multi: false,
+	};
+	
+	// Set up AC
+	setupAutocomplete(acData);
+});

@@ -1,0 +1,42 @@
+
+<div class="row">
+  <div class="col">
+  </div>
+</div>
+
+<div class="row" style="margin-top: 1em;">
+    <div class="col">
+      <div class="sort">
+        <%= label_tag :sort, "Sort by:" %>
+        <%= select_tag :sort, options_for_select(@sort_orders, params[:sort]), class: "custom-select" %>
+      </div>
+      <% if @words&.any? %>
+        <div class="words-list">
+          <!-- Render word list entry with @words collection -->
+          <%= render partial: "words/word_list/word",  collection: @words %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+    <% unless @words&.any? %>
+      <div class="row">
+        <div class="col text-center">
+          <h2>No words found</h2>
+          <h3>
+            Why not try a random  
+            <%= link_to "word", random_words_url %>,
+            <%= link_to "place", random_places_url %>,
+            or
+            <%= link_to "source", random_source_materials_url %> 
+            instead!
+          </h3>
+        </div>
+      </div>
+    <% end %>
+  
+  <div class="row">
+    <div class="col">
+      <%= will_paginate @words, class: "justify-content-center pagination"%>
+    </div>
+  </div>
