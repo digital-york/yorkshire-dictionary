@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
@@ -29,10 +29,10 @@ gem 'vis-gem', '~> 4.21.0.0'
 gem 'will_paginate', '~> 3.1.0'
 
 # Geocoding
-gem 'geocoder', '~> 1.4.8'
+gem 'geocoder', '~> 1.8.2'
 
 # Mapping
-gem 'leaflet-rails', '~> 1.3.1'
+gem 'leaflet-rails', '~> 1.9.4'
 
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'rack', '>= 2.0.6'
@@ -53,7 +53,7 @@ group :development, :test do
   gem 'jasmine-rails', '~> 0.14.8'
   gem 'pry-byebug'
   gem 'ruby-debug-ide', '~> 0.7.0.beta6'
-  gem 'xray-rails', '~> 0.3.1'
+  gem 'xray-rails', '~> 0.3.2'
 end
 
 group :development do
@@ -65,7 +65,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # Performance monitoring
-  gem 'bullet', '~> 5.7.5'
+  gem 'bullet', '~> 6.1.5'
 
   gem 'pry-rails'
   gem 'puma'
