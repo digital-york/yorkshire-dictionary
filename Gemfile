@@ -65,7 +65,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # Performance monitoring
-  gem 'bullet', '~> 5.7.5'
+  gem 'bullet', '~> 6.1.5'
 
   gem 'pry-rails'
   gem 'puma'
