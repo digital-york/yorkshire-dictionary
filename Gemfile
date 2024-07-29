@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.0'
+gem 'rails', '~> 7.1', '>= 7.1.3.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -37,8 +37,8 @@ gem 'geocoder', '~> 1.8'
 # Mapping
 gem 'leaflet-rails', '~> 1.3.1'
 
-gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
-gem 'rack', '>= 2.2.3'
+gem 'passenger', '>= 6.0.23', require: 'phusion_passenger/rack_handler'
+gem 'rack', '~> 3.1', '>= 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.6', require: false
@@ -48,6 +48,9 @@ gem 'bootstrap', '~> 4.5'
 gem 'sprockets-rails', '~> 3.4'
 
 gem 'pg', '~> 1.2'
+
+gem 'mutex_m'
+gem 'bigdecimal'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
