@@ -1,56 +1,59 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.9'
+ruby '3.3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.1'
+gem 'rails', '~> 7.0.0'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 6'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5.2'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'coffee-rails', '~> 5.0'
 
-gem 'jquery-rails', '~> 4.3.3'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+
+gem 'jquery-rails', '~> 4.5'
 gem 'jquery-ui-rails', '~> 6.0.1'
 
-gem 'js-routes', '~> 1.4.4'
+gem 'js-routes', '~> 2.0'
 
 gem 'vis-gem', '~> 4.21.0.0'
 
 # For pagination
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate', '~> 3.3'
 
 # Geocoding
-gem 'geocoder', '~> 1.8.2'
+gem 'geocoder', '~> 1.8'
 
 # Mapping
-gem 'leaflet-rails', '~> 1.9.4'
+gem 'leaflet-rails', '~> 1.3.1'
 
 gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
-gem 'rack', '>= 2.0.6'
+gem 'rack', '>= 2.2.3'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.4.6', require: false
 
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 4.5'
 
-gem 'sprockets-rails', '~> 3.2.1'
+gem 'sprockets-rails', '~> 3.4'
 
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 10.0.2', platforms: %i[mri mingw x64_mingw]
-  gem 'debase', '~> 0.2.3.beta2'
-  gem 'jasmine-rails', '~> 0.14.8'
+  gem 'byebug', '~> 11.1', platforms: %i[mri mingw x64_mingw]
+  gem 'debase', '~> 0.2.5.beta2'
+  gem 'jasmine-rails', '~> 0.15.0'
   gem 'pry-byebug'
   gem 'ruby-debug-ide', '~> 0.7.0.beta6'
   gem 'xray-rails', '~> 0.3.2'
@@ -58,14 +61,14 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.5'
+  gem 'web-console', '>= 4.0.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2.0.2'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 4.0'
+gem 'spring-watcher-listen', '~> 2.1'
 
   # Performance monitoring
-  gem 'bullet', '~> 6.1.5'
+  gem 'bullet', '~> 7.0'
 
   gem 'pry-rails'
   gem 'puma'
@@ -77,13 +80,13 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver', '~> 3.11.0'
+  gem 'capybara', '>= 3.35', '< 4.0'
+  gem 'selenium-webdriver', '~> 4.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper', '~> 1.2.0'
+  gem 'webdrivers', '~> 5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', '~> 1.2.5', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', '~> 1.2021', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'loofah', '>= 2.2.3'
+gem 'loofah', '>= 2.12.0'
