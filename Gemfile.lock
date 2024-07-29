@@ -355,7 +355,7 @@ DEPENDENCIES
   sendgrid-ruby
   spring (~> 4.0)
   spring-watcher-listen (~> 2.1)
-  sprockets-rails (~> 3.4)
+  sprockets-rails (~> 3.5.1)
   terser
   turbolinks (~> 5)
   tzinfo-data (~> 1.2021)

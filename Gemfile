@@ -46,7 +46,7 @@ gem 'bootsnap', '>= 1.4.6', require: false
 
 gem 'bootstrap', '~> 4.5'
 
-gem 'sprockets-rails', '~> 3.4'
+gem 'sprockets-rails', '~> 3.5.1'
 
 gem 'pg', '~> 1.2'
 
