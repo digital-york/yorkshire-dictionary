@@ -21,7 +21,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-gem 'jquery-rails', '~> 4.5'
+gem 'jquery-rails', '~> 5.1.0'
 gem 'jquery-ui-rails', '~> 6.0.1'
 
 gem 'js-routes', '~> 2.0'
