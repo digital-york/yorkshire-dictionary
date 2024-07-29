@@ -16,7 +16,7 @@
 
 //= require google_analytics
 
-//= require jquery4
+//= require jquery
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/slider
 //= require popper
