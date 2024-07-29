@@ -36,7 +36,7 @@ gem 'will_paginate', '~> 3.3'
 gem 'geocoder', '~> 1.8'
 
 # Mapping
-gem 'leaflet-rails', '~> 1.3.1'
+gem 'leaflet-rails', '~> 1.9.5'
 
 gem 'passenger', '>= 6.0.23', require: 'phusion_passenger/rack_handler'
 gem 'rack', '~> 3.1', '>= 3.1.7'
