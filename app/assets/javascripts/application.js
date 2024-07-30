@@ -23,8 +23,9 @@
 //= require bootstrap-sprockets
 //= require leaflet
 //= require leaflet.markercluster
-//= require js-routes
+// require js-routes
 
 //= require vis
 
 //= require_tree .
+
