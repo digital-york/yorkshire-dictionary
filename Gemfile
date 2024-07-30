@@ -23,7 +23,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 
 gem 'jquery-rails', '~> 4.6'
-gem 'jquery-ui-rails', '~> 6.0.1'
+gem 'jquery-ui-rails', '~> 7.0.0'
 
 gem 'js-routes', '~> 2.0'
 
