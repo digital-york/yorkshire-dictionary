@@ -44,7 +44,7 @@ gem 'rack', '~> 3.1', '>= 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.6', require: false
 
-gem 'bootstrap', '~> 4.5'
+gem 'bootstrap', '~> 5.3.3'
 
 gem 'sprockets-rails', '~> 3.5.1'
 
