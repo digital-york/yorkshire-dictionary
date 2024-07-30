@@ -69,8 +69,8 @@
     containers.forEach((container) => {
       const definitionId = container.dataset.definitionId;
   
-      //const dataUrl = Routes.network_graph_path({ id: definitionId });
-      const dataUrl = "";
+      const dataUrl = Routes.network_graph_path({ id: definitionId });
+      
   
       $.getJSON({
         url: dataUrl,
