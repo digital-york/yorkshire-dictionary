@@ -15,7 +15,7 @@
 //= require turbolinks
 
 //= require google_analytics
-//require js-routes
+//=require js-routes
 //= require jquery
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/slider
@@ -28,6 +28,3 @@
 //= require vis
 
 //= require_tree .
-
-import Routes from './routes';
-window.Routes = Routes;
