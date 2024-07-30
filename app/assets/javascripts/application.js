@@ -15,7 +15,7 @@
 //= require turbolinks
 
 //= require google_analytics
-//=require js-routes
+
 //= require jquery
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/slider
@@ -24,7 +24,7 @@
 //= require leaflet
 //= require leaflet.markercluster
 
-
+//= require js-routes
 //= require vis
 
 //= require_tree .
