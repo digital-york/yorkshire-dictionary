@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails', '~> 4.6'
 gem 'jquery-ui-rails', '~> 7.0.0'
 
-gem 'js-routes', '~> 1.4.4'
+gem 'js-routes', '~> 1.4.14'
 
 gem 'vis-gem', '~> 4.21.0.0'
 
