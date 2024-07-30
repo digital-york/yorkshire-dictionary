@@ -336,7 +336,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails (~> 4.6)
   jquery-ui-rails (~> 7.0.0)
-  js-routes (~> 2.0)
+  js-routes (~> 2.2.8)
   leaflet-rails (~> 1.9.5)
   listen (~> 3.5)
   loofah (>= 2.12.0)
