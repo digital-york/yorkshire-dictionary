@@ -1,2 +1,2 @@
-import JsRoutes from 'js-routes';
-export default JsRoutes;
+// app/assets/javascripts/routes.js
+//= require js-routes
