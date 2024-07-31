@@ -31,7 +31,7 @@ class PlacesController < ApplicationController
 
     # Safeguard against nil or empty term
     if term.present?
-      @places = Place.where('name LIKE ?', "%#{term}%")
+      @places = Place.where('name ILIKE ?', "%#{term}%").order(:name)
       
       respond_to do |format|
         format.json { render json: @places } # Renders @places as JSON directly
