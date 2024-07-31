@@ -329,9 +329,9 @@ DEPENDENCIES
   geocoder (~> 1.8)
   jasmine-rails (~> 0.15.0)
   jbuilder (~> 2.7)
-  jquery-rails (~> 4.6)
+  jquery-rails
   jquery-turbolinks
-  jquery-ui-rails (~> 7.0.0)
+  jquery-ui-rails
   js-routes (~> 2.2.8)
   leaflet-rails (~> 1.9.5)
   listen (~> 3.5)
