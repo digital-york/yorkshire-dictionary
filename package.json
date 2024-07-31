@@ -1,6 +1,7 @@
 {
   "name": "yhd",
   "private": true,
+  "type": "module",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^8.58.0",
