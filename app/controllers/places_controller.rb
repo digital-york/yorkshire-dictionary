@@ -30,7 +30,7 @@ class PlacesController < ApplicationController
     if term.present?
       @places = Place.where('name ILIKE ?', "%#{term}%").order(:name)      
       respond_to do |format|
-        format.json { render json: @places }
+        format.json { render :index }
       end
     else
       render json: { error: "Search term cannot be empty" }, status: :bad_request
