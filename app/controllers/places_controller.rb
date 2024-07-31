@@ -26,15 +26,11 @@ class PlacesController < ApplicationController
   #end
 
   def search
-    # Ensure you are accessing the term parameter from params
     term = params[:term]
-
-    # Safeguard against nil or empty term
     if term.present?
-      @places = Place.where('name ILIKE ?', "%#{term}%").order(:name)
-      
+      @places = Place.where('name ILIKE ?', "%#{term}%").order(:name)      
       respond_to do |format|
-        format.json { render json: @places } # Renders @places as JSON directly
+        format.json { render json: @places }
       end
     else
       render json: { error: "Search term cannot be empty" }, status: :bad_request
