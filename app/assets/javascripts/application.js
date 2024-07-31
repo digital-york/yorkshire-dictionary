@@ -30,4 +30,4 @@
 //= require_tree .
 
 //= require jquery.turbolinks
-//= require jquery_ujs
+// require jquery_ujs
