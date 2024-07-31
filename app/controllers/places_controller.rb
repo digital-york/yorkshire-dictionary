@@ -17,13 +17,21 @@ class PlacesController < ApplicationController
     @map_places = map_places
   end
 
+  #def search
+  #  term = params[:term] || nil
+  #  @places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
+  #  respond_to do |format|
+  #    format.json { render 'places/index.json' }
+  #  end
+  #end
+
   def search
-    term = params[:term] || nil
     @places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
     respond_to do |format|
-      format.json { render 'places/index.json' }
+      format.json { render :index } # This renders app/views/places/index.json.jbuilder
     end
   end
+  
 
   def id_search
     ids = params[:ids]
