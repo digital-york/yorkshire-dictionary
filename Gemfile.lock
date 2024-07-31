@@ -348,7 +348,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.1)
   sprockets-rails (~> 3.5.1)
   terser (>= 1.2.3)
-  turbolinks (~> 5)
+  turbolinks (~> 5.2.0)
   tzinfo-data (~> 1.2021)
   vis-gem (~> 4.21.0.0)
   web-console (>= 4.0.0)
