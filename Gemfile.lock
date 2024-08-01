@@ -149,7 +149,7 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-    jquery-ui-rails (6.0.1)
+    jquery-ui-rails (7.0.0)
       railties (>= 3.2.16)
     js-routes (2.2.8)
       railties (>= 4)
@@ -340,7 +340,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails (~> 4.3.5)
   jquery-turbolinks
-  jquery-ui-rails (~> 6.0.1)
+  jquery-ui-rails (~> 7.0.0)
   js-routes (~> 2.2.8)
   leaflet-rails (~> 1.9.5)
   listen (~> 3.5)
