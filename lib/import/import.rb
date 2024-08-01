@@ -90,6 +90,7 @@ module Import
       header_name ||= 'empty'
 
       # Lower case header name
+      header_name = header_name.to_s
       header_name = header_name.downcase
 
       # Try normalising as if it was an alt. spelling header
