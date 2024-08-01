@@ -14,7 +14,7 @@ gem 'sass-rails', '>= 6'
 gem 'terser', '>= 1.2.3'
 
 # Use CoffeeScript for .coffee assets and views
-#gem 'coffee-rails', '~> 5.0'
+gem 'coffee-rails', '~> 5.0'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.2.0'
