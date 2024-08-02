@@ -13,7 +13,7 @@ class CsvLoader
     Find.find(__dir__ + '/../..') do |path|
       # Check if path matches file
       if csv_file_regex.match?(path)
-        puts "\tFound #{filename} at #{path}. Reading..."
+        puts "\tFound #{filename} at #{path}. Reading file..."
         return CSV.read(path, encoding: 'bom|utf-8')
       end
     end
