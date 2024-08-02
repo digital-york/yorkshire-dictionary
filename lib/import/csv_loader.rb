@@ -14,7 +14,7 @@ class CsvLoader
       # Check if path matches file
       if csv_file_regex.match?(path)
         puts "\tFound #{filename} at #{path}. Reading..."
-        return CSV.read(path, 'r:bom|utf-8')
+        return CSV.read(path, encoding: 'bom|utf-8')
       end
     end
     puts "ERROR: Couldn't find #{filename} anywhere."
