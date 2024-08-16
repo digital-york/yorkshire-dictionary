@@ -133,6 +133,10 @@ You can now run the import process with:
 
 See the 'Importing Data' section for further information on the import process.
 
+Adding or updating a new word:
+a. add word to yhd.cdv / update existing word
+b. run the import process : `heroku run rails yhd:import`
+
 ## Importing data
 _See `import_readme.md` for more information_
 
