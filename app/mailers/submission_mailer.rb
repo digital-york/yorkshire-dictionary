@@ -4,7 +4,7 @@ class SubmissionMailer < ActionMailer::Base
   default from: 'lib-tech-heroku-group@york.ac.uk'
   layout 'mailer'
 
-  SUBMISSION_EMAIL_ADDRESS = 'dti-service-desk-group@york.ac.uk'
+  SUBMISSION_EMAIL_ADDRESS = 'borthwick-institute@york.ac.uk'
 
   def submission_email
     @email_address = params[:email_address]

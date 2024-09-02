@@ -16,15 +16,18 @@
 
 //= require google_analytics
 
-//= require jquery3
+//= require jquery
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/slider
 //= require popper
 //= require bootstrap-sprockets
 //= require leaflet
 //= require leaflet.markercluster
-//= require js-routes
 
+//= require js-routes
 //= require vis
 
 //= require_tree .
+
+// require jquery.turbolinks
+// require jquery_ujs

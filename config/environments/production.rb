@@ -12,12 +12,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    user_name: ENV['UOY_SMTP_USERNAME'],
+    password: ENV['UOY_SMTP_PASSWORD'],
+    domain: 'york.ac.uk',
+    address: 'email-smtp.eu-west-1.amazonaws.com',
     port: 587,
-    domain: 'yhd.herokuapp.com',
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    authentication: 'plain',
+    authentication: :plain,
     enable_starttls_auto: true
   }
 
@@ -34,8 +34,8 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(harmony: true)
-
+  #config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.js_compressor = :terser
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
