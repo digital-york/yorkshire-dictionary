@@ -13,8 +13,8 @@ class CsvLoader
     Find.find(__dir__ + '/../..') do |path|
       # Check if path matches file
       if csv_file_regex.match?(path)
-        puts "\tFound #{filename} at #{path}. Reading..."
-        return CSV.read(path, 'r:bom|utf-8')
+        puts "\tFound #{filename} at #{path}. Reading file..."
+        return CSV.read(path, encoding: 'bom|utf-8')
       end
     end
     puts "ERROR: Couldn't find #{filename} anywhere."

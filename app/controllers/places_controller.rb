@@ -17,13 +17,26 @@ class PlacesController < ApplicationController
     @map_places = map_places
   end
 
+  #def search
+  #  term = params[:term] || nil
+  #  @places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
+  #  respond_to do |format|
+  #    format.json { render 'places/index.json' }
+  #  end
+  #end
+
   def search
-    term = params[:term] || nil
-    @places = Place.where('name ILIKE ?', "%#{term}%").order(:name) if term
-    respond_to do |format|
-      format.json { render 'places/index.json' }
+    term = params[:term]
+    if term.present?
+      @places = Place.where('name ILIKE ?', "%#{term}%").order(:name)      
+      respond_to do |format|
+        format.json { render :index }
+      end
+    else
+      render json: { error: "Search term cannot be empty" }, status: :bad_request
     end
   end
+  
 
   def id_search
     ids = params[:ids]

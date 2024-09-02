@@ -4,11 +4,9 @@ This project is the online version of the Yorkshire Historic Dictionary. Develop
 
 For more information on the wider project, please see [this link](https://www.york.ac.uk/borthwick/projects/yorkshire-dictionary/).
 
-The project is currently deployed to heroku for demo purposes, and can be accessed [here](https://yhd.herokuapp.com).
+The project is currently deployed to heroku, and can be accessed [here](https://yhd-prod-84b1f1720b90.herokuapp.com/).
 
-There's also a demo running on UoY infrastructure, available on campus. It can be found [here](https://dlibingdev0.york.ac.uk/).
-
-The app is developed with Rails 5 and uses a Postgres database. Data originates from a large tabbed Excel sheet, which is converted to a CSV and then imported.
+The app is developed with Rails 5 and uses a Postgres database. Data originates from a large tabbed Excel sheet, which is converted to a CSV and then imported. The project has been upgraded to Rails 7 with Heroku 24 stack.
 
 Database dumps of the final imported data are available, but due to a number of limitations around our database setup may not be importable into a regular Postgres instance. In that case, a Rake task exists to import the data from the CSV.
 
@@ -48,6 +46,8 @@ The mailer is configured to use Gmail (including the York university Google suit
 You might notice that the mailer SMTP settings are configured in both `environment.rb` and the environment-specific files, such as `heroku.rb`, `staging.rb` and `production.rb`. Ideally, these settings would be defined in `environment.rb` and then only overwritten in the other files as necessary (only `heroku.rb` would need to overwrite). However, an issue with the setting `eager_load=true` in environments that use that setting causes the SMTP settings to be lost, and hence they need to be redefined after calling the eager load line.
 
 See [here](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for more information on the available mailer settings.
+
+The email endpoint has been configured to send emails to the Borthwick email address.
 
 ### Deployment
 If you want to deploy the project yourself, you can either use Heroku or configure it to run on a traditional server. 
@@ -132,6 +132,10 @@ You can now run the import process with:
 `heroku run rails yhd:import`
 
 See the 'Importing Data' section for further information on the import process.
+
+Adding or updating a new word:
+a. add word to yhd.cdv / update existing word
+b. run the import process : `heroku run rails yhd:import`
 
 ## Importing data
 _See `import_readme.md` for more information_

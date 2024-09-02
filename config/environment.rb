@@ -14,9 +14,9 @@ if (!Rails.env.development? && !Rails.env.test?) || mailer_creds.present?
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
+      address:              'email-smtp.eu-west-1.amazonaws.com',
       port:                 587,
-      domain:               'gmail.com',
+      domain:               'york.ac.uk',
       user_name:            mailer_creds[:user_name],
       password:             mailer_creds[:password],
       authentication:       'plain',
